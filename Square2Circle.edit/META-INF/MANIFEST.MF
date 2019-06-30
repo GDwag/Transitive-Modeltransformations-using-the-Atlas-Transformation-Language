@@ -5,7 +5,7 @@ Bundle-SymbolicName: Square2Circle.edit;singleton:=true
 Automatic-Module-Name: Square2Circle.edit
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: Circle.provider.CircleEditPlugin$Implementation
+Bundle-Activator: Square.provider.SquareEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

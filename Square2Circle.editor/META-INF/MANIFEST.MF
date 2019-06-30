@@ -6,7 +6,7 @@ Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources;vi
  e.emf.ecore.xmi;visibility:=reexport,org.eclipse.emf.edit.ui;visibili
  ty:=reexport,org.eclipse.ui.ide;visibility:=reexport,org.eclipse.emff
  orms.editor;bundle-version="1.8.0",org.eclipse.emfforms.editor;bundle
- -version="1.8.0"
+ -version="1.8.0",org.eclipse.emfforms.editor;bundle-version="1.8.0"
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
@@ -16,6 +16,6 @@ Bundle-Name: %pluginName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-Activator: Circle.presentation.CircleEditorPlugin$Implementatio
+Bundle-Activator: Square.presentation.SquareEditorPlugin$Implementatio
  n
 
