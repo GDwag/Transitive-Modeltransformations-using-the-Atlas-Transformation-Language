@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?eclipse version="3.0"?><!--
+--><plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated Square -->
+      <category id="org.eclipse.emf.ecore.Wizard.category.ID" name="%_UI_Wizard_category"/>
+      <wizard category="org.eclipse.emf.ecore.Wizard.category.ID" class="Square.presentation.SquareModelWizard" icon="icons/full/obj16/SquareModelFile.gif" id="Square.presentation.SquareModelWizardID" name="%_UI_SquareModelWizard_label">
+         <description>%_UI_SquareModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Square -->
+      <editor class="Square.presentation.SquareEditor" contributorClass="Square.presentation.SquareActionBarContributor" extensions="square" icon="icons/full/obj16/SquareModelFile.gif" id="Square.presentation.SquareEditorID" name="%_UI_SquareEditor_label">
+      </editor>
+   </extension>
+
+<extension point="org.eclipse.ui.editors"><editor class="org.eclipse.emfforms.spi.editor.GenericEditor" default="false" extensions="square" icon="icons/full/obj16/SquareModelFile.gif" id="Square2Circle.editor.Square.emfformseditor" name="EMFForms Editor"/></extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+
+      <!-- @generated Circle -->
+
+      <category id="org.eclipse.emf.ecore.Wizard.category.ID" name="%_UI_Wizard_category"/>
+
+      <wizard category="org.eclipse.emf.ecore.Wizard.category.ID" class="Circle.presentation.CircleModelWizard" icon="icons/full/obj16/CircleModelFile.gif" id="Circle.presentation.CircleModelWizardID" name="%_UI_CircleModelWizard_label">
+
+         <description>%_UI_CircleModelWizard_description</description>
+
+         <selection class="org.eclipse.core.resources.IResource"/>
+
+      </wizard>
+
+   </extension>
+
+
+   <extension point="org.eclipse.ui.editors">
+
+      <!-- @generated Circle -->
+
+      <editor class="Circle.presentation.CircleEditor" contributorClass="Circle.presentation.CircleActionBarContributor" extensions="circle" icon="icons/full/obj16/CircleModelFile.gif" id="Circle.presentation.CircleEditorID" name="%_UI_CircleEditor_label">
+
+      </editor>
+
+   </extension>
+
+<extension point="org.eclipse.ui.editors"><editor class="org.eclipse.emfforms.spi.editor.GenericEditor" default="false" extensions="circle" icon="icons/full/obj16/CircleModelFile.gif" id="Square2Circle.editor.Circle.emfformseditor" name="EMFForms Editor"/></extension></plugin>

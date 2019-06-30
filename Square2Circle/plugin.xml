@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Square -->
+      <package
+            uri="http://square/1.0"
+            class="Square.SquarePackage"
+            genModel="MetaM/Square.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Circle -->
+      <package
+            uri="http://circle/1.0"
+            class="Circle.CirclePackage"
+            genModel="MetaM/Circle.genmodel"/>
+   </extension>
+
+</plugin>
