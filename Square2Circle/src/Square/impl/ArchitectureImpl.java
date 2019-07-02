@@ -11,14 +11,17 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +60,7 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSquares() <em>Squares</em>}' reference list.
+	 * The cached value of the '{@link #getSquares() <em>Squares</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSquares()
@@ -67,7 +70,7 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	protected EList<Square> squares;
 
 	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
+	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRelations()
@@ -126,7 +129,7 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	@Override
 	public EList<Square> getSquares() {
 		if (squares == null) {
-			squares = new EObjectResolvingEList<Square>(Square.class, this, SquarePackage.ARCHITECTURE__SQUARES);
+			squares = new EObjectContainmentEList<Square>(Square.class, this, SquarePackage.ARCHITECTURE__SQUARES);
 		}
 		return squares;
 	}
@@ -139,9 +142,25 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	@Override
 	public EList<Relation> getRelations() {
 		if (relations == null) {
-			relations = new EObjectResolvingEList<Relation>(Relation.class, this, SquarePackage.ARCHITECTURE__RELATIONS);
+			relations = new EObjectContainmentEList<Relation>(Relation.class, this, SquarePackage.ARCHITECTURE__RELATIONS);
 		}
 		return relations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SquarePackage.ARCHITECTURE__SQUARES:
+				return ((InternalEList<?>)getSquares()).basicRemove(otherEnd, msgs);
+			case SquarePackage.ARCHITECTURE__RELATIONS:
+				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

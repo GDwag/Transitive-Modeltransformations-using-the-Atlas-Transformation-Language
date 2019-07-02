@@ -4,5 +4,6 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:square="http://square/1.0"
-    xsi:schemaLocation="http://square/1.0 ../MetaM/Square.ecore"
-    name="asdf"/>
+    xsi:schemaLocation="http://square/1.0 ../MetaM/Square.ecore">
+  <squares/>
+</square:Architecture>

@@ -48,25 +48,25 @@ public interface Architecture extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Squares</b></em>' reference list.
+	 * Returns the value of the '<em><b>Squares</b></em>' containment reference list.
 	 * The list contents are of type {@link Square.Square}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Squares</em>' reference list.
+	 * @return the value of the '<em>Squares</em>' containment reference list.
 	 * @see Square.SquarePackage#getArchitecture_Squares()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Square> getSquares();
 
 	/**
-	 * Returns the value of the '<em><b>Relations</b></em>' reference list.
+	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
 	 * The list contents are of type {@link Square.Relation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Relations</em>' reference list.
+	 * @return the value of the '<em>Relations</em>' containment reference list.
 	 * @see Square.SquarePackage#getArchitecture_Relations()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Relation> getRelations();
