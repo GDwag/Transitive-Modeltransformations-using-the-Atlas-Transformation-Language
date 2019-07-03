@@ -1,6 +1,6 @@
 /**
  */
-package Square.presentation;
+package square.presentation;
 
 
 import java.io.IOException;
@@ -155,7 +155,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import Square.provider.SquareItemProviderAdapterFactory;
+import square.provider.SquareItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 

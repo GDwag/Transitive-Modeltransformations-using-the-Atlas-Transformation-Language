@@ -1,6 +1,6 @@
 /**
  */
-package Square;
+package square;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see Square.SquarePackage
+ * @see square.SquarePackage
  * @generated
  */
 public interface SquareFactory extends EFactory {
@@ -19,7 +19,7 @@ public interface SquareFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SquareFactory eINSTANCE = Square.impl.SquareFactoryImpl.init();
+	SquareFactory eINSTANCE = square.impl.SquareFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Architecture</em>'.

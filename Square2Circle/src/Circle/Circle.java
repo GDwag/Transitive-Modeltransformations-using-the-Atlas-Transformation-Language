@@ -1,6 +1,6 @@
 /**
  */
-package Circle;
+package circle;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Circle.Circle#getName <em>Name</em>}</li>
- *   <li>{@link Circle.Circle#getColor <em>Color</em>}</li>
- *   <li>{@link Circle.Circle#getRayon <em>Rayon</em>}</li>
+ *   <li>{@link circle.Circle#getName <em>Name</em>}</li>
+ *   <li>{@link circle.Circle#getColor <em>Color</em>}</li>
+ *   <li>{@link circle.Circle#getRayon <em>Rayon</em>}</li>
  * </ul>
  *
- * @see Circle.CirclePackage#getCircle()
+ * @see circle.CirclePackage#getCircle()
  * @model
  * @generated
  */
@@ -29,14 +29,14 @@ public interface Circle extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see Circle.CirclePackage#getCircle_Name()
+	 * @see circle.CirclePackage#getCircle_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link Circle.Circle#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link circle.Circle#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -51,14 +51,14 @@ public interface Circle extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Color</em>' attribute.
 	 * @see #setColor(String)
-	 * @see Circle.CirclePackage#getCircle_Color()
+	 * @see circle.CirclePackage#getCircle_Color()
 	 * @model
 	 * @generated
 	 */
 	String getColor();
 
 	/**
-	 * Sets the value of the '{@link Circle.Circle#getColor <em>Color</em>}' attribute.
+	 * Sets the value of the '{@link circle.Circle#getColor <em>Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Color</em>' attribute.
@@ -73,14 +73,14 @@ public interface Circle extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rayon</em>' attribute.
 	 * @see #setRayon(int)
-	 * @see Circle.CirclePackage#getCircle_Rayon()
+	 * @see circle.CirclePackage#getCircle_Rayon()
 	 * @model
 	 * @generated
 	 */
 	int getRayon();
 
 	/**
-	 * Sets the value of the '{@link Circle.Circle#getRayon <em>Rayon</em>}' attribute.
+	 * Sets the value of the '{@link circle.Circle#getRayon <em>Rayon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Rayon</em>' attribute.

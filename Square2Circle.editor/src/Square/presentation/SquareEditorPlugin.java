@@ -1,6 +1,6 @@
 /**
  */
-package Square.presentation;
+package square.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
 

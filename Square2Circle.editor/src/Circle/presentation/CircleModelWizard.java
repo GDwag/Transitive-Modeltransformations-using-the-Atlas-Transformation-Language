@@ -1,6 +1,6 @@
 /**
  */
-package Circle.presentation;
+package circle.presentation;
 
 
 import java.util.ArrayList;
@@ -69,9 +69,9 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import Circle.CircleFactory;
-import Circle.CirclePackage;
-import Circle.provider.CircleEditPlugin;
+import circle.CircleFactory;
+import circle.CirclePackage;
+import circle.provider.CircleEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;

@@ -1,8 +1,8 @@
 /**
  */
-package Circle.provider;
+package circle.provider;
 
-import Circle.util.CircleAdapterFactory;
+import circle.util.CircleAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,7 +72,7 @@ public class CircleItemProviderAdapterFactory extends CircleAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Circle.Architecture} instances.
+	 * This keeps track of the one adapter used for all {@link circle.Architecture} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -80,7 +80,7 @@ public class CircleItemProviderAdapterFactory extends CircleAdapterFactory imple
 	protected ArchitectureItemProvider architectureItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Circle.Architecture}.
+	 * This creates an adapter for a {@link circle.Architecture}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -95,7 +95,7 @@ public class CircleItemProviderAdapterFactory extends CircleAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Circle.Circle} instances.
+	 * This keeps track of the one adapter used for all {@link circle.Circle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -103,7 +103,7 @@ public class CircleItemProviderAdapterFactory extends CircleAdapterFactory imple
 	protected CircleItemProvider circleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Circle.Circle}.
+	 * This creates an adapter for a {@link circle.Circle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -118,7 +118,7 @@ public class CircleItemProviderAdapterFactory extends CircleAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Circle.Relation} instances.
+	 * This keeps track of the one adapter used for all {@link circle.Relation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -126,7 +126,7 @@ public class CircleItemProviderAdapterFactory extends CircleAdapterFactory imple
 	protected RelationItemProvider relationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Circle.Relation}.
+	 * This creates an adapter for a {@link circle.Relation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

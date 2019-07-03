@@ -1,13 +1,13 @@
 /**
  */
-package Square.util;
-
-import Square.*;
+package square.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
+import square.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see Square.SquarePackage
+ * @see square.SquarePackage
  * @generated
  */
 public class SquareSwitch<T> extends Switch<T> {

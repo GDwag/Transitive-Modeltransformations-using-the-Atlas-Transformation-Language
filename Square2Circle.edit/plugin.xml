@@ -7,10 +7,10 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated Circle -->
+      <!-- @generated Square -->
       <factory
-            uri="http://circle/1.0"
-            class="Circle.provider.CircleItemProviderAdapterFactory"
+            uri="http://square/1.0"
+            class="square.provider.SquareItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -20,10 +20,10 @@
    </extension>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated Square -->
+      <!-- @generated Circle -->
       <factory
-            uri="http://square/1.0"
-            class="Square.provider.SquareItemProviderAdapterFactory"
+            uri="http://circle/1.0"
+            class="circle.provider.CircleItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

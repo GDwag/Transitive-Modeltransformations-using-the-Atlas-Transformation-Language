@@ -1,9 +1,9 @@
 /**
  */
-package Circle.impl;
+package circle.impl;
 
-import Circle.Circle;
-import Circle.CirclePackage;
+import circle.Circle;
+import circle.CirclePackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Circle.impl.CircleImpl#getName <em>Name</em>}</li>
- *   <li>{@link Circle.impl.CircleImpl#getColor <em>Color</em>}</li>
- *   <li>{@link Circle.impl.CircleImpl#getRayon <em>Rayon</em>}</li>
+ *   <li>{@link circle.impl.CircleImpl#getName <em>Name</em>}</li>
+ *   <li>{@link circle.impl.CircleImpl#getColor <em>Color</em>}</li>
+ *   <li>{@link circle.impl.CircleImpl#getRayon <em>Rayon</em>}</li>
  * </ul>
  *
  * @generated

@@ -1,9 +1,6 @@
 /**
  */
-package Square.impl;
-
-import Square.Square;
-import Square.SquarePackage;
+package square.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -11,6 +8,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import square.Square;
+import square.SquarePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Square.impl.SquareImpl#getName <em>Name</em>}</li>
- *   <li>{@link Square.impl.SquareImpl#getColor <em>Color</em>}</li>
- *   <li>{@link Square.impl.SquareImpl#getLength <em>Length</em>}</li>
+ *   <li>{@link square.impl.SquareImpl#getName <em>Name</em>}</li>
+ *   <li>{@link square.impl.SquareImpl#getColor <em>Color</em>}</li>
+ *   <li>{@link square.impl.SquareImpl#getLength <em>Length</em>}</li>
  * </ul>
  *
  * @generated

@@ -1,9 +1,9 @@
 /**
  */
-package Circle.tests;
+package circle.tests;
 
-import Circle.Architecture;
-import Circle.CircleFactory;
+import circle.Architecture;
+import circle.CircleFactory;
 
 import junit.framework.TestCase;
 

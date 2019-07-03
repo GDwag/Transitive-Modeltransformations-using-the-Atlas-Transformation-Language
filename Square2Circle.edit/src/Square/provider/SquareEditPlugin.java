@@ -1,6 +1,6 @@
 /**
  */
-package Square.provider;
+package square.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 

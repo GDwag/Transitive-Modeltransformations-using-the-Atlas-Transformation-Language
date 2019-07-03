@@ -1,6 +1,6 @@
 /**
  */
-package Square;
+package square;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see Square.SquareFactory
+ * @see square.SquareFactory
  * @model kind="package"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface SquarePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "Square";
+	String eNAME = "square";
 
 	/**
 	 * The package namespace URI.
@@ -54,14 +54,14 @@ public interface SquarePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SquarePackage eINSTANCE = Square.impl.SquarePackageImpl.init();
+	SquarePackage eINSTANCE = square.impl.SquarePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link Square.impl.ArchitectureImpl <em>Architecture</em>}' class.
+	 * The meta object id for the '{@link square.impl.ArchitectureImpl <em>Architecture</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Square.impl.ArchitectureImpl
-	 * @see Square.impl.SquarePackageImpl#getArchitecture()
+	 * @see square.impl.ArchitectureImpl
+	 * @see square.impl.SquarePackageImpl#getArchitecture()
 	 * @generated
 	 */
 	int ARCHITECTURE = 0;
@@ -112,11 +112,11 @@ public interface SquarePackage extends EPackage {
 	int ARCHITECTURE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Square.impl.SquareImpl <em>Square</em>}' class.
+	 * The meta object id for the '{@link square.impl.SquareImpl <em>Square</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Square.impl.SquareImpl
-	 * @see Square.impl.SquarePackageImpl#getSquare()
+	 * @see square.impl.SquareImpl
+	 * @see square.impl.SquarePackageImpl#getSquare()
 	 * @generated
 	 */
 	int SQUARE = 1;
@@ -167,11 +167,11 @@ public interface SquarePackage extends EPackage {
 	int SQUARE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Square.impl.RelationImpl <em>Relation</em>}' class.
+	 * The meta object id for the '{@link square.impl.RelationImpl <em>Relation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Square.impl.RelationImpl
-	 * @see Square.impl.SquarePackageImpl#getRelation()
+	 * @see square.impl.RelationImpl
+	 * @see square.impl.SquarePackageImpl#getRelation()
 	 * @generated
 	 */
 	int RELATION = 2;
@@ -223,129 +223,129 @@ public interface SquarePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link Square.Architecture <em>Architecture</em>}'.
+	 * Returns the meta object for class '{@link square.Architecture <em>Architecture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Architecture</em>'.
-	 * @see Square.Architecture
+	 * @see square.Architecture
 	 * @generated
 	 */
 	EClass getArchitecture();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Square.Architecture#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link square.Architecture#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Square.Architecture#getName()
+	 * @see square.Architecture#getName()
 	 * @see #getArchitecture()
 	 * @generated
 	 */
 	EAttribute getArchitecture_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Square.Architecture#getSquares <em>Squares</em>}'.
+	 * Returns the meta object for the containment reference list '{@link square.Architecture#getSquares <em>Squares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Squares</em>'.
-	 * @see Square.Architecture#getSquares()
+	 * @see square.Architecture#getSquares()
 	 * @see #getArchitecture()
 	 * @generated
 	 */
 	EReference getArchitecture_Squares();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Square.Architecture#getRelations <em>Relations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link square.Architecture#getRelations <em>Relations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Relations</em>'.
-	 * @see Square.Architecture#getRelations()
+	 * @see square.Architecture#getRelations()
 	 * @see #getArchitecture()
 	 * @generated
 	 */
 	EReference getArchitecture_Relations();
 
 	/**
-	 * Returns the meta object for class '{@link Square.Square <em>Square</em>}'.
+	 * Returns the meta object for class '{@link square.Square <em>Square</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Square</em>'.
-	 * @see Square.Square
+	 * @see square.Square
 	 * @generated
 	 */
 	EClass getSquare();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Square.Square#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link square.Square#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Square.Square#getName()
+	 * @see square.Square#getName()
 	 * @see #getSquare()
 	 * @generated
 	 */
 	EAttribute getSquare_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Square.Square#getColor <em>Color</em>}'.
+	 * Returns the meta object for the attribute '{@link square.Square#getColor <em>Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Color</em>'.
-	 * @see Square.Square#getColor()
+	 * @see square.Square#getColor()
 	 * @see #getSquare()
 	 * @generated
 	 */
 	EAttribute getSquare_Color();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Square.Square#getLength <em>Length</em>}'.
+	 * Returns the meta object for the attribute '{@link square.Square#getLength <em>Length</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Length</em>'.
-	 * @see Square.Square#getLength()
+	 * @see square.Square#getLength()
 	 * @see #getSquare()
 	 * @generated
 	 */
 	EAttribute getSquare_Length();
 
 	/**
-	 * Returns the meta object for class '{@link Square.Relation <em>Relation</em>}'.
+	 * Returns the meta object for class '{@link square.Relation <em>Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Relation</em>'.
-	 * @see Square.Relation
+	 * @see square.Relation
 	 * @generated
 	 */
 	EClass getRelation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Square.Relation#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link square.Relation#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Square.Relation#getName()
+	 * @see square.Relation#getName()
 	 * @see #getRelation()
 	 * @generated
 	 */
 	EAttribute getRelation_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link Square.Relation#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link square.Relation#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see Square.Relation#getSource()
+	 * @see square.Relation#getSource()
 	 * @see #getRelation()
 	 * @generated
 	 */
 	EReference getRelation_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link Square.Relation#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link square.Relation#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see Square.Relation#getTarget()
+	 * @see square.Relation#getTarget()
 	 * @see #getRelation()
 	 * @generated
 	 */
@@ -375,11 +375,11 @@ public interface SquarePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link Square.impl.ArchitectureImpl <em>Architecture</em>}' class.
+		 * The meta object literal for the '{@link square.impl.ArchitectureImpl <em>Architecture</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Square.impl.ArchitectureImpl
-		 * @see Square.impl.SquarePackageImpl#getArchitecture()
+		 * @see square.impl.ArchitectureImpl
+		 * @see square.impl.SquarePackageImpl#getArchitecture()
 		 * @generated
 		 */
 		EClass ARCHITECTURE = eINSTANCE.getArchitecture();
@@ -409,11 +409,11 @@ public interface SquarePackage extends EPackage {
 		EReference ARCHITECTURE__RELATIONS = eINSTANCE.getArchitecture_Relations();
 
 		/**
-		 * The meta object literal for the '{@link Square.impl.SquareImpl <em>Square</em>}' class.
+		 * The meta object literal for the '{@link square.impl.SquareImpl <em>Square</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Square.impl.SquareImpl
-		 * @see Square.impl.SquarePackageImpl#getSquare()
+		 * @see square.impl.SquareImpl
+		 * @see square.impl.SquarePackageImpl#getSquare()
 		 * @generated
 		 */
 		EClass SQUARE = eINSTANCE.getSquare();
@@ -443,11 +443,11 @@ public interface SquarePackage extends EPackage {
 		EAttribute SQUARE__LENGTH = eINSTANCE.getSquare_Length();
 
 		/**
-		 * The meta object literal for the '{@link Square.impl.RelationImpl <em>Relation</em>}' class.
+		 * The meta object literal for the '{@link square.impl.RelationImpl <em>Relation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Square.impl.RelationImpl
-		 * @see Square.impl.SquarePackageImpl#getRelation()
+		 * @see square.impl.RelationImpl
+		 * @see square.impl.SquarePackageImpl#getRelation()
 		 * @generated
 		 */
 		EClass RELATION = eINSTANCE.getRelation();

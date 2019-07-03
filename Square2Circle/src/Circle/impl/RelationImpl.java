@@ -1,10 +1,10 @@
 /**
  */
-package Circle.impl;
+package circle.impl;
 
-import Circle.Circle;
-import Circle.CirclePackage;
-import Circle.Relation;
+import circle.Circle;
+import circle.CirclePackage;
+import circle.Relation;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -22,9 +22,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Circle.impl.RelationImpl#getName <em>Name</em>}</li>
- *   <li>{@link Circle.impl.RelationImpl#getSource <em>Source</em>}</li>
- *   <li>{@link Circle.impl.RelationImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link circle.impl.RelationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link circle.impl.RelationImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link circle.impl.RelationImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated

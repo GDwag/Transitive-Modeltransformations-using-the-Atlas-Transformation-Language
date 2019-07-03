@@ -1,12 +1,12 @@
 /**
  */
-package Circle.impl;
+package circle.impl;
 
-import Circle.Architecture;
-import Circle.Circle;
-import Circle.CircleFactory;
-import Circle.CirclePackage;
-import Circle.Relation;
+import circle.Architecture;
+import circle.Circle;
+import circle.CircleFactory;
+import circle.CirclePackage;
+import circle.Relation;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -54,7 +54,7 @@ public class CirclePackageImpl extends EPackageImpl implements CirclePackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see Circle.CirclePackage#eNS_URI
+	 * @see circle.CirclePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

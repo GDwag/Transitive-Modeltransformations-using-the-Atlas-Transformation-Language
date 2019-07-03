@@ -1,6 +1,6 @@
 /**
  */
-package Circle.provider;
+package circle.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 

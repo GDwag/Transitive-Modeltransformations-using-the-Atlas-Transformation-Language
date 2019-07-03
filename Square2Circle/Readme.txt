@@ -10,3 +10,8 @@ Fixed
 		new child geht genau dasnn wenns ne containment referenz ist
 		sonst in properties von knoten
 		-> in ecore haken an containment
+		
+	"impl cannot be resolved or is not a field"
+		rename packages in .ecore to start with lower case
+		regenerate genmodels
+		delete and regenerate all elements generated from ecore

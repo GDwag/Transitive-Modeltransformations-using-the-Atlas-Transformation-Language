@@ -1,6 +1,6 @@
 /**
  */
-package Square.tests;
+package square.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

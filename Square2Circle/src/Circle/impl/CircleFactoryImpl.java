@@ -1,8 +1,8 @@
 /**
  */
-package Circle.impl;
+package circle.impl;
 
-import Circle.*;
+import circle.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

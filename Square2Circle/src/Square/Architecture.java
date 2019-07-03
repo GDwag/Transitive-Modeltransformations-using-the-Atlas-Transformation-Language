@@ -1,6 +1,6 @@
 /**
  */
-package Square;
+package square;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Square.Architecture#getName <em>Name</em>}</li>
- *   <li>{@link Square.Architecture#getSquares <em>Squares</em>}</li>
- *   <li>{@link Square.Architecture#getRelations <em>Relations</em>}</li>
+ *   <li>{@link square.Architecture#getName <em>Name</em>}</li>
+ *   <li>{@link square.Architecture#getSquares <em>Squares</em>}</li>
+ *   <li>{@link square.Architecture#getRelations <em>Relations</em>}</li>
  * </ul>
  *
- * @see Square.SquarePackage#getArchitecture()
+ * @see square.SquarePackage#getArchitecture()
  * @model
  * @generated
  */
@@ -31,14 +31,14 @@ public interface Architecture extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see Square.SquarePackage#getArchitecture_Name()
+	 * @see square.SquarePackage#getArchitecture_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link Square.Architecture#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link square.Architecture#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -49,11 +49,11 @@ public interface Architecture extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Squares</b></em>' containment reference list.
-	 * The list contents are of type {@link Square.Square}.
+	 * The list contents are of type {@link square.Square}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Squares</em>' containment reference list.
-	 * @see Square.SquarePackage#getArchitecture_Squares()
+	 * @see square.SquarePackage#getArchitecture_Squares()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -61,11 +61,11 @@ public interface Architecture extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
-	 * The list contents are of type {@link Square.Relation}.
+	 * The list contents are of type {@link square.Relation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relations</em>' containment reference list.
-	 * @see Square.SquarePackage#getArchitecture_Relations()
+	 * @see square.SquarePackage#getArchitecture_Relations()
 	 * @model containment="true"
 	 * @generated
 	 */

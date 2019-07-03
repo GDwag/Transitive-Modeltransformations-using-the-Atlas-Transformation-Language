@@ -10,7 +10,7 @@
       <!-- @generated Square -->
       <package
             uri="http://square/1.0"
-            class="Square.SquarePackage"
+            class="square.SquarePackage"
             genModel="MetaM/Square.genmodel"/>
    </extension>
 
@@ -18,7 +18,7 @@
       <!-- @generated Circle -->
       <package
             uri="http://circle/1.0"
-            class="Circle.CirclePackage"
+            class="circle.CirclePackage"
             genModel="MetaM/Circle.genmodel"/>
    </extension>
 

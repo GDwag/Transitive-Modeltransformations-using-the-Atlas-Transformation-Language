@@ -1,11 +1,11 @@
 /**
  */
-package Circle.provider;
+package circle.provider;
 
 
-import Circle.Architecture;
-import Circle.CircleFactory;
-import Circle.CirclePackage;
+import circle.Architecture;
+import circle.CircleFactory;
+import circle.CirclePackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Circle.Architecture} object.
+ * This is the item provider adapter for a {@link circle.Architecture} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

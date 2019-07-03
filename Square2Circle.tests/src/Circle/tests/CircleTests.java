@@ -1,6 +1,6 @@
 /**
  */
-package Circle.tests;
+package circle.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -9,7 +9,7 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test suite for the '<em><b>Circle</b></em>' package.
+ * A test suite for the '<em><b>circle</b></em>' package.
  * <!-- end-user-doc -->
  * @generated
  */
@@ -30,7 +30,7 @@ public class CircleTests extends TestSuite {
 	 * @generated
 	 */
 	public static Test suite() {
-		TestSuite suite = new CircleTests("Circle Tests");
+		TestSuite suite = new CircleTests("circle Tests");
 		return suite;
 	}
 

@@ -5,12 +5,12 @@ Bundle-SymbolicName: Square2Circle.edit;singleton:=true
 Automatic-Module-Name: Square2Circle.edit
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: Square.provider.SquareEditPlugin$Implementation
+Bundle-Activator: circle.provider.CircleEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: Circle.provider,
- Square.provider
+Export-Package: square.provider,
+ circle.provider
 Require-Bundle: org.eclipse.core.runtime,
  Square2Circle;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport

@@ -11,11 +11,11 @@ Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
-Export-Package: Circle.presentation,Square.presentation
+Export-Package: square.presentation,circle.presentation
 Bundle-Name: %pluginName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-Activator: Square.presentation.SquareEditorPlugin$Implementatio
+Bundle-Activator: circle.presentation.CircleEditorPlugin$Implementatio
  n
 

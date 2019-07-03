@@ -1,6 +1,6 @@
 /**
  */
-package Square;
+package square;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Square.Relation#getName <em>Name</em>}</li>
- *   <li>{@link Square.Relation#getSource <em>Source</em>}</li>
- *   <li>{@link Square.Relation#getTarget <em>Target</em>}</li>
+ *   <li>{@link square.Relation#getName <em>Name</em>}</li>
+ *   <li>{@link square.Relation#getSource <em>Source</em>}</li>
+ *   <li>{@link square.Relation#getTarget <em>Target</em>}</li>
  * </ul>
  *
- * @see Square.SquarePackage#getRelation()
+ * @see square.SquarePackage#getRelation()
  * @model
  * @generated
  */
@@ -29,14 +29,14 @@ public interface Relation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see Square.SquarePackage#getRelation_Name()
+	 * @see square.SquarePackage#getRelation_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link Square.Relation#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link square.Relation#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -51,14 +51,14 @@ public interface Relation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Square)
-	 * @see Square.SquarePackage#getRelation_Source()
+	 * @see square.SquarePackage#getRelation_Source()
 	 * @model required="true"
 	 * @generated
 	 */
 	Square getSource();
 
 	/**
-	 * Sets the value of the '{@link Square.Relation#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link square.Relation#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -73,14 +73,14 @@ public interface Relation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Square)
-	 * @see Square.SquarePackage#getRelation_Target()
+	 * @see square.SquarePackage#getRelation_Target()
 	 * @model required="true"
 	 * @generated
 	 */
 	Square getTarget();
 
 	/**
-	 * Sets the value of the '{@link Square.Relation#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link square.Relation#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.

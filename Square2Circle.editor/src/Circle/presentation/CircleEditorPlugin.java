@@ -1,6 +1,6 @@
 /**
  */
-package Circle.presentation;
+package circle.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
 

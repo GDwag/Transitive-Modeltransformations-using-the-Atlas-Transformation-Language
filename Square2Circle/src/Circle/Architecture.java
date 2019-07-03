@@ -1,6 +1,6 @@
 /**
  */
-package Circle;
+package circle;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Circle.Architecture#getName <em>Name</em>}</li>
- *   <li>{@link Circle.Architecture#getCircles <em>Circles</em>}</li>
- *   <li>{@link Circle.Architecture#getRelations <em>Relations</em>}</li>
+ *   <li>{@link circle.Architecture#getName <em>Name</em>}</li>
+ *   <li>{@link circle.Architecture#getCircles <em>Circles</em>}</li>
+ *   <li>{@link circle.Architecture#getRelations <em>Relations</em>}</li>
  * </ul>
  *
- * @see Circle.CirclePackage#getArchitecture()
+ * @see circle.CirclePackage#getArchitecture()
  * @model
  * @generated
  */
@@ -31,14 +31,14 @@ public interface Architecture extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see Circle.CirclePackage#getArchitecture_Name()
+	 * @see circle.CirclePackage#getArchitecture_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link Circle.Architecture#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link circle.Architecture#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -49,11 +49,11 @@ public interface Architecture extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Circles</b></em>' containment reference list.
-	 * The list contents are of type {@link Circle.Circle}.
+	 * The list contents are of type {@link circle.Circle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Circles</em>' containment reference list.
-	 * @see Circle.CirclePackage#getArchitecture_Circles()
+	 * @see circle.CirclePackage#getArchitecture_Circles()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -61,11 +61,11 @@ public interface Architecture extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
-	 * The list contents are of type {@link Circle.Relation}.
+	 * The list contents are of type {@link circle.Relation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Relations</em>' containment reference list.
-	 * @see Circle.CirclePackage#getArchitecture_Relations()
+	 * @see circle.CirclePackage#getArchitecture_Relations()
 	 * @model containment="true"
 	 * @generated
 	 */

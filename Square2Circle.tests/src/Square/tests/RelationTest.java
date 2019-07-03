@@ -1,13 +1,13 @@
 /**
  */
-package Square.tests;
-
-import Square.Relation;
-import Square.SquareFactory;
+package square.tests;
 
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
+
+import square.Relation;
+import square.SquareFactory;
 
 /**
  * <!-- begin-user-doc -->

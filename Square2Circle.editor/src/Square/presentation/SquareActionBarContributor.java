@@ -1,6 +1,6 @@
 /**
  */
-package Square.presentation;
+package square.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -179,7 +179,7 @@ public class SquareActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(SquareEditorPlugin.INSTANCE.getString("_UI_SquareEditor_menu"), "SquareMenuID");
+		IMenuManager submenuManager = new MenuManager(SquareEditorPlugin.INSTANCE.getString("_UI_SquareEditor_menu"), "squareMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));

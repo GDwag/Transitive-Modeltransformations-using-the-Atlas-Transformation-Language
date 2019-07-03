@@ -1,6 +1,6 @@
 /**
  */
-package Circle;
+package circle;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see Circle.CircleFactory
+ * @see circle.CircleFactory
  * @model kind="package"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface CirclePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "Circle";
+	String eNAME = "circle";
 
 	/**
 	 * The package namespace URI.
@@ -54,14 +54,14 @@ public interface CirclePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CirclePackage eINSTANCE = Circle.impl.CirclePackageImpl.init();
+	CirclePackage eINSTANCE = circle.impl.CirclePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link Circle.impl.ArchitectureImpl <em>Architecture</em>}' class.
+	 * The meta object id for the '{@link circle.impl.ArchitectureImpl <em>Architecture</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Circle.impl.ArchitectureImpl
-	 * @see Circle.impl.CirclePackageImpl#getArchitecture()
+	 * @see circle.impl.ArchitectureImpl
+	 * @see circle.impl.CirclePackageImpl#getArchitecture()
 	 * @generated
 	 */
 	int ARCHITECTURE = 0;
@@ -112,11 +112,11 @@ public interface CirclePackage extends EPackage {
 	int ARCHITECTURE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Circle.impl.CircleImpl <em>Circle</em>}' class.
+	 * The meta object id for the '{@link circle.impl.CircleImpl <em>Circle</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Circle.impl.CircleImpl
-	 * @see Circle.impl.CirclePackageImpl#getCircle()
+	 * @see circle.impl.CircleImpl
+	 * @see circle.impl.CirclePackageImpl#getCircle()
 	 * @generated
 	 */
 	int CIRCLE = 1;
@@ -167,11 +167,11 @@ public interface CirclePackage extends EPackage {
 	int CIRCLE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link Circle.impl.RelationImpl <em>Relation</em>}' class.
+	 * The meta object id for the '{@link circle.impl.RelationImpl <em>Relation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Circle.impl.RelationImpl
-	 * @see Circle.impl.CirclePackageImpl#getRelation()
+	 * @see circle.impl.RelationImpl
+	 * @see circle.impl.CirclePackageImpl#getRelation()
 	 * @generated
 	 */
 	int RELATION = 2;
@@ -223,129 +223,129 @@ public interface CirclePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link Circle.Architecture <em>Architecture</em>}'.
+	 * Returns the meta object for class '{@link circle.Architecture <em>Architecture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Architecture</em>'.
-	 * @see Circle.Architecture
+	 * @see circle.Architecture
 	 * @generated
 	 */
 	EClass getArchitecture();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Circle.Architecture#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link circle.Architecture#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Circle.Architecture#getName()
+	 * @see circle.Architecture#getName()
 	 * @see #getArchitecture()
 	 * @generated
 	 */
 	EAttribute getArchitecture_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Circle.Architecture#getCircles <em>Circles</em>}'.
+	 * Returns the meta object for the containment reference list '{@link circle.Architecture#getCircles <em>Circles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Circles</em>'.
-	 * @see Circle.Architecture#getCircles()
+	 * @see circle.Architecture#getCircles()
 	 * @see #getArchitecture()
 	 * @generated
 	 */
 	EReference getArchitecture_Circles();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Circle.Architecture#getRelations <em>Relations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link circle.Architecture#getRelations <em>Relations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Relations</em>'.
-	 * @see Circle.Architecture#getRelations()
+	 * @see circle.Architecture#getRelations()
 	 * @see #getArchitecture()
 	 * @generated
 	 */
 	EReference getArchitecture_Relations();
 
 	/**
-	 * Returns the meta object for class '{@link Circle.Circle <em>Circle</em>}'.
+	 * Returns the meta object for class '{@link circle.Circle <em>Circle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Circle</em>'.
-	 * @see Circle.Circle
+	 * @see circle.Circle
 	 * @generated
 	 */
 	EClass getCircle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Circle.Circle#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link circle.Circle#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Circle.Circle#getName()
+	 * @see circle.Circle#getName()
 	 * @see #getCircle()
 	 * @generated
 	 */
 	EAttribute getCircle_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Circle.Circle#getColor <em>Color</em>}'.
+	 * Returns the meta object for the attribute '{@link circle.Circle#getColor <em>Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Color</em>'.
-	 * @see Circle.Circle#getColor()
+	 * @see circle.Circle#getColor()
 	 * @see #getCircle()
 	 * @generated
 	 */
 	EAttribute getCircle_Color();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Circle.Circle#getRayon <em>Rayon</em>}'.
+	 * Returns the meta object for the attribute '{@link circle.Circle#getRayon <em>Rayon</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Rayon</em>'.
-	 * @see Circle.Circle#getRayon()
+	 * @see circle.Circle#getRayon()
 	 * @see #getCircle()
 	 * @generated
 	 */
 	EAttribute getCircle_Rayon();
 
 	/**
-	 * Returns the meta object for class '{@link Circle.Relation <em>Relation</em>}'.
+	 * Returns the meta object for class '{@link circle.Relation <em>Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Relation</em>'.
-	 * @see Circle.Relation
+	 * @see circle.Relation
 	 * @generated
 	 */
 	EClass getRelation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Circle.Relation#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link circle.Relation#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see Circle.Relation#getName()
+	 * @see circle.Relation#getName()
 	 * @see #getRelation()
 	 * @generated
 	 */
 	EAttribute getRelation_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link Circle.Relation#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link circle.Relation#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see Circle.Relation#getSource()
+	 * @see circle.Relation#getSource()
 	 * @see #getRelation()
 	 * @generated
 	 */
 	EReference getRelation_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link Circle.Relation#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link circle.Relation#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see Circle.Relation#getTarget()
+	 * @see circle.Relation#getTarget()
 	 * @see #getRelation()
 	 * @generated
 	 */
@@ -375,11 +375,11 @@ public interface CirclePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link Circle.impl.ArchitectureImpl <em>Architecture</em>}' class.
+		 * The meta object literal for the '{@link circle.impl.ArchitectureImpl <em>Architecture</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Circle.impl.ArchitectureImpl
-		 * @see Circle.impl.CirclePackageImpl#getArchitecture()
+		 * @see circle.impl.ArchitectureImpl
+		 * @see circle.impl.CirclePackageImpl#getArchitecture()
 		 * @generated
 		 */
 		EClass ARCHITECTURE = eINSTANCE.getArchitecture();
@@ -409,11 +409,11 @@ public interface CirclePackage extends EPackage {
 		EReference ARCHITECTURE__RELATIONS = eINSTANCE.getArchitecture_Relations();
 
 		/**
-		 * The meta object literal for the '{@link Circle.impl.CircleImpl <em>Circle</em>}' class.
+		 * The meta object literal for the '{@link circle.impl.CircleImpl <em>Circle</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Circle.impl.CircleImpl
-		 * @see Circle.impl.CirclePackageImpl#getCircle()
+		 * @see circle.impl.CircleImpl
+		 * @see circle.impl.CirclePackageImpl#getCircle()
 		 * @generated
 		 */
 		EClass CIRCLE = eINSTANCE.getCircle();
@@ -443,11 +443,11 @@ public interface CirclePackage extends EPackage {
 		EAttribute CIRCLE__RAYON = eINSTANCE.getCircle_Rayon();
 
 		/**
-		 * The meta object literal for the '{@link Circle.impl.RelationImpl <em>Relation</em>}' class.
+		 * The meta object literal for the '{@link circle.impl.RelationImpl <em>Relation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Circle.impl.RelationImpl
-		 * @see Circle.impl.CirclePackageImpl#getRelation()
+		 * @see circle.impl.RelationImpl
+		 * @see circle.impl.CirclePackageImpl#getRelation()
 		 * @generated
 		 */
 		EClass RELATION = eINSTANCE.getRelation();

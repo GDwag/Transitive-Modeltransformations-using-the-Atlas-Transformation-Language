@@ -1,6 +1,6 @@
 /**
  */
-package Circle.tests;
+package circle.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

@@ -1,11 +1,11 @@
 /**
  */
-package Circle.impl;
+package circle.impl;
 
-import Circle.Architecture;
-import Circle.Circle;
-import Circle.CirclePackage;
-import Circle.Relation;
+import circle.Architecture;
+import circle.Circle;
+import circle.CirclePackage;
+import circle.Relation;
 
 import java.util.Collection;
 
@@ -31,9 +31,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Circle.impl.ArchitectureImpl#getName <em>Name</em>}</li>
- *   <li>{@link Circle.impl.ArchitectureImpl#getCircles <em>Circles</em>}</li>
- *   <li>{@link Circle.impl.ArchitectureImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link circle.impl.ArchitectureImpl#getName <em>Name</em>}</li>
+ *   <li>{@link circle.impl.ArchitectureImpl#getCircles <em>Circles</em>}</li>
+ *   <li>{@link circle.impl.ArchitectureImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @generated

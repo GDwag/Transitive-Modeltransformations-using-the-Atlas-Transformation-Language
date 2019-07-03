@@ -1,11 +1,6 @@
 /**
  */
-package Square.impl;
-
-import Square.Architecture;
-import Square.Relation;
-import Square.Square;
-import Square.SquarePackage;
+package square.impl;
 
 import java.util.Collection;
 
@@ -23,6 +18,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import square.Architecture;
+import square.Relation;
+import square.Square;
+import square.SquarePackage;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Architecture</b></em>'.
@@ -31,9 +31,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Square.impl.ArchitectureImpl#getName <em>Name</em>}</li>
- *   <li>{@link Square.impl.ArchitectureImpl#getSquares <em>Squares</em>}</li>
- *   <li>{@link Square.impl.ArchitectureImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link square.impl.ArchitectureImpl#getName <em>Name</em>}</li>
+ *   <li>{@link square.impl.ArchitectureImpl#getSquares <em>Squares</em>}</li>
+ *   <li>{@link square.impl.ArchitectureImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @generated

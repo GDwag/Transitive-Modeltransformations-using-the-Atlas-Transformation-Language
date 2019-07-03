@@ -1,8 +1,8 @@
 /**
  */
-package Circle.util;
+package circle.util;
 
-import Circle.*;
+import circle.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see Circle.CirclePackage
+ * @see circle.CirclePackage
  * @generated
  */
 public class CircleAdapterFactory extends AdapterFactoryImpl {
@@ -100,13 +100,13 @@ public class CircleAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Circle.Architecture <em>Architecture</em>}'.
+	 * Creates a new adapter for an object of class '{@link circle.Architecture <em>Architecture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Circle.Architecture
+	 * @see circle.Architecture
 	 * @generated
 	 */
 	public Adapter createArchitectureAdapter() {
@@ -114,13 +114,13 @@ public class CircleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Circle.Circle <em>Circle</em>}'.
+	 * Creates a new adapter for an object of class '{@link circle.Circle <em>Circle</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Circle.Circle
+	 * @see circle.Circle
 	 * @generated
 	 */
 	public Adapter createCircleAdapter() {
@@ -128,13 +128,13 @@ public class CircleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Circle.Relation <em>Relation</em>}'.
+	 * Creates a new adapter for an object of class '{@link circle.Relation <em>Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Circle.Relation
+	 * @see circle.Relation
 	 * @generated
 	 */
 	public Adapter createRelationAdapter() {

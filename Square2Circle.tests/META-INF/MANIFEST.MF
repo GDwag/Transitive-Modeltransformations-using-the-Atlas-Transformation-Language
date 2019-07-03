@@ -8,8 +8,8 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: Circle.tests,
- Square.tests
+Export-Package: square.tests,
+ circle.tests
 Require-Bundle: org.eclipse.core.runtime,
  Square2Circle;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,

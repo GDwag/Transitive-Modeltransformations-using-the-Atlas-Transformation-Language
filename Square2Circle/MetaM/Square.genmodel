@@ -8,10 +8,8 @@
   <genPackages prefix="Square" disposableProviderFactory="true" ecorePackage="Square.ecore#/">
     <genClasses ecoreClass="Square.ecore#//Architecture">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Square.ecore#//Architecture/name"/>
-      <genFeatures notify="false" children="true" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Square.ecore#//Architecture/squares"/>
-      <genFeatures notify="false" children="true" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Square.ecore#//Architecture/relations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Square.ecore#//Architecture/squares"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Square.ecore#//Architecture/relations"/>
     </genClasses>
     <genClasses ecoreClass="Square.ecore#//Square">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Square.ecore#//Square/name"/>

@@ -1,10 +1,7 @@
 /**
  */
-package Square.provider;
+package square.provider;
 
-
-import Square.Square;
-import Square.SquarePackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -25,8 +22,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import square.Square;
+import square.SquarePackage;
+
 /**
- * This is the item provider adapter for a {@link Square.Square} object.
+ * This is the item provider adapter for a {@link square.Square} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

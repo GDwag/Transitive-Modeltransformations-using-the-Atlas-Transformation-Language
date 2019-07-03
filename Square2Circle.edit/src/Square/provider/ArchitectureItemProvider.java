@@ -1,11 +1,7 @@
 /**
  */
-package Square.provider;
+package square.provider;
 
-
-import Square.Architecture;
-import Square.SquareFactory;
-import Square.SquarePackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,8 +24,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import square.Architecture;
+import square.SquareFactory;
+import square.SquarePackage;
+
 /**
- * This is the item provider adapter for a {@link Square.Architecture} object.
+ * This is the item provider adapter for a {@link square.Architecture} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -64,8 +64,6 @@ public class ArchitectureItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addSquaresPropertyDescriptor(object);
-			addRelationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -88,50 +86,6 @@ public class ArchitectureItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Squares feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSquaresPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Architecture_squares_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Architecture_squares_feature", "_UI_Architecture_type"),
-				 SquarePackage.Literals.ARCHITECTURE__SQUARES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Relations feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRelationsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Architecture_relations_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Architecture_relations_feature", "_UI_Architecture_type"),
-				 SquarePackage.Literals.ARCHITECTURE__RELATIONS,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
@@ -207,6 +161,10 @@ public class ArchitectureItemProvider
 		switch (notification.getFeatureID(Architecture.class)) {
 			case SquarePackage.ARCHITECTURE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case SquarePackage.ARCHITECTURE__SQUARES:
+			case SquarePackage.ARCHITECTURE__RELATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);

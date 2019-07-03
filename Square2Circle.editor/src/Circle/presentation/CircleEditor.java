@@ -1,6 +1,6 @@
 /**
  */
-package Circle.presentation;
+package circle.presentation;
 
 
 import java.io.IOException;
@@ -155,7 +155,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import Circle.provider.CircleItemProviderAdapterFactory;
+import circle.provider.CircleItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 

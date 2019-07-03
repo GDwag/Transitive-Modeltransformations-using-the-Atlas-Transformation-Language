@@ -1,10 +1,10 @@
 /**
  */
-package Circle.provider;
+package circle.provider;
 
 
-import Circle.CirclePackage;
-import Circle.Relation;
+import circle.CirclePackage;
+import circle.Relation;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link Circle.Relation} object.
+ * This is the item provider adapter for a {@link circle.Relation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

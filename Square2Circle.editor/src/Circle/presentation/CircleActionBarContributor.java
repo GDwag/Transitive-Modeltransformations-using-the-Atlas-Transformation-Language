@@ -1,6 +1,6 @@
 /**
  */
-package Circle.presentation;
+package circle.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -179,7 +179,7 @@ public class CircleActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(CircleEditorPlugin.INSTANCE.getString("_UI_CircleEditor_menu"), "CircleMenuID");
+		IMenuManager submenuManager = new MenuManager(CircleEditorPlugin.INSTANCE.getString("_UI_CircleEditor_menu"), "circleMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));

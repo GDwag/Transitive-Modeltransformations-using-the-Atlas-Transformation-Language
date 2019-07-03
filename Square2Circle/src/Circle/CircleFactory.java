@@ -1,6 +1,6 @@
 /**
  */
-package Circle;
+package circle;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see Circle.CirclePackage
+ * @see circle.CirclePackage
  * @generated
  */
 public interface CircleFactory extends EFactory {
@@ -19,7 +19,7 @@ public interface CircleFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CircleFactory eINSTANCE = Circle.impl.CircleFactoryImpl.init();
+	CircleFactory eINSTANCE = circle.impl.CircleFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Architecture</em>'.

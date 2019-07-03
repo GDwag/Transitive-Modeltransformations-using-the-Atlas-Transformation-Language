@@ -1,6 +1,6 @@
 /**
  */
-package Square.presentation;
+package square.presentation;
 
 
 import java.util.ArrayList;
@@ -69,9 +69,9 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
-import Square.SquareFactory;
-import Square.SquarePackage;
-import Square.provider.SquareEditPlugin;
+import square.SquareFactory;
+import square.SquarePackage;
+import square.provider.SquareEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;

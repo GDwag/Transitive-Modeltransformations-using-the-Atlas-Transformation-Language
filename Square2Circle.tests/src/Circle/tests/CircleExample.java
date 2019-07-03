@@ -1,10 +1,10 @@
 /**
  */
-package Circle.tests;
+package circle.tests;
 
-import Circle.Architecture;
-import Circle.CircleFactory;
-import Circle.CirclePackage;
+import circle.Architecture;
+import circle.CircleFactory;
+import circle.CirclePackage;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 /**
  * <!-- begin-user-doc -->
- * A sample utility for the '<em><b>Circle</b></em>' package.
+ * A sample utility for the '<em><b>circle</b></em>' package.
  * <!-- end-user-doc -->
  * @generated
  */

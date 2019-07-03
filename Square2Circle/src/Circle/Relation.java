@@ -1,6 +1,6 @@
 /**
  */
-package Circle;
+package circle;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link Circle.Relation#getName <em>Name</em>}</li>
- *   <li>{@link Circle.Relation#getSource <em>Source</em>}</li>
- *   <li>{@link Circle.Relation#getTarget <em>Target</em>}</li>
+ *   <li>{@link circle.Relation#getName <em>Name</em>}</li>
+ *   <li>{@link circle.Relation#getSource <em>Source</em>}</li>
+ *   <li>{@link circle.Relation#getTarget <em>Target</em>}</li>
  * </ul>
  *
- * @see Circle.CirclePackage#getRelation()
+ * @see circle.CirclePackage#getRelation()
  * @model
  * @generated
  */
@@ -29,14 +29,14 @@ public interface Relation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see Circle.CirclePackage#getRelation_Name()
+	 * @see circle.CirclePackage#getRelation_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link Circle.Relation#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link circle.Relation#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -51,14 +51,14 @@ public interface Relation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Circle)
-	 * @see Circle.CirclePackage#getRelation_Source()
+	 * @see circle.CirclePackage#getRelation_Source()
 	 * @model required="true"
 	 * @generated
 	 */
 	Circle getSource();
 
 	/**
-	 * Sets the value of the '{@link Circle.Relation#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link circle.Relation#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -73,14 +73,14 @@ public interface Relation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Circle)
-	 * @see Circle.CirclePackage#getRelation_Target()
+	 * @see circle.CirclePackage#getRelation_Target()
 	 * @model required="true"
 	 * @generated
 	 */
 	Circle getTarget();
 
 	/**
-	 * Sets the value of the '{@link Circle.Relation#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link circle.Relation#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.

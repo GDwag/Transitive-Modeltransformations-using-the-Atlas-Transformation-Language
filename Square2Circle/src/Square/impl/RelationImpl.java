@@ -1,10 +1,6 @@
 /**
  */
-package Square.impl;
-
-import Square.Relation;
-import Square.Square;
-import Square.SquarePackage;
+package square.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,6 +10,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import square.Relation;
+import square.Square;
+import square.SquarePackage;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Relation</b></em>'.
@@ -22,9 +22,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link Square.impl.RelationImpl#getName <em>Name</em>}</li>
- *   <li>{@link Square.impl.RelationImpl#getSource <em>Source</em>}</li>
- *   <li>{@link Square.impl.RelationImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link square.impl.RelationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link square.impl.RelationImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link square.impl.RelationImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated

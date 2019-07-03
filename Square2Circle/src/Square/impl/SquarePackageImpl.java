@@ -1,12 +1,6 @@
 /**
  */
-package Square.impl;
-
-import Square.Architecture;
-import Square.Relation;
-import Square.Square;
-import Square.SquareFactory;
-import Square.SquarePackage;
+package square.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +8,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import square.Architecture;
+import square.Relation;
+import square.Square;
+import square.SquareFactory;
+import square.SquarePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class SquarePackageImpl extends EPackageImpl implements SquarePackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see Square.SquarePackage#eNS_URI
+	 * @see square.SquarePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

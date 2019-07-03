@@ -1,10 +1,6 @@
 /**
  */
-package Square.tests;
-
-import Square.Architecture;
-import Square.SquareFactory;
-import Square.SquarePackage;
+package square.tests;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,9 +19,13 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import square.Architecture;
+import square.SquareFactory;
+import square.SquarePackage;
+
 /**
  * <!-- begin-user-doc -->
- * A sample utility for the '<em><b>Square</b></em>' package.
+ * A sample utility for the '<em><b>square</b></em>' package.
  * <!-- end-user-doc -->
  * @generated
  */

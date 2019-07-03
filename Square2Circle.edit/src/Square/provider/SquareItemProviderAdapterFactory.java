@@ -1,8 +1,6 @@
 /**
  */
-package Square.provider;
-
-import Square.util.SquareAdapterFactory;
+package square.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,6 +20,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import square.util.SquareAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -72,7 +72,7 @@ public class SquareItemProviderAdapterFactory extends SquareAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Square.Architecture} instances.
+	 * This keeps track of the one adapter used for all {@link square.Architecture} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -80,7 +80,7 @@ public class SquareItemProviderAdapterFactory extends SquareAdapterFactory imple
 	protected ArchitectureItemProvider architectureItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Square.Architecture}.
+	 * This creates an adapter for a {@link square.Architecture}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -95,7 +95,7 @@ public class SquareItemProviderAdapterFactory extends SquareAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Square.Square} instances.
+	 * This keeps track of the one adapter used for all {@link square.Square} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -103,7 +103,7 @@ public class SquareItemProviderAdapterFactory extends SquareAdapterFactory imple
 	protected SquareItemProvider squareItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Square.Square}.
+	 * This creates an adapter for a {@link square.Square}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -118,7 +118,7 @@ public class SquareItemProviderAdapterFactory extends SquareAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link Square.Relation} instances.
+	 * This keeps track of the one adapter used for all {@link square.Relation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -126,7 +126,7 @@ public class SquareItemProviderAdapterFactory extends SquareAdapterFactory imple
 	protected RelationItemProvider relationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link Square.Relation}.
+	 * This creates an adapter for a {@link square.Relation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
