@@ -76,7 +76,7 @@ public interface CirclePackage extends EPackage {
 	int ARCHITECTURE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Circles</b></em>' reference list.
+	 * The feature id for the '<em><b>Circles</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -85,7 +85,7 @@ public interface CirclePackage extends EPackage {
 	int ARCHITECTURE__CIRCLES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Relations</b></em>' reference list.
+	 * The feature id for the '<em><b>Relations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -244,10 +244,10 @@ public interface CirclePackage extends EPackage {
 	EAttribute getArchitecture_Name();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Circle.Architecture#getCircles <em>Circles</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Circle.Architecture#getCircles <em>Circles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Circles</em>'.
+	 * @return the meta object for the containment reference list '<em>Circles</em>'.
 	 * @see Circle.Architecture#getCircles()
 	 * @see #getArchitecture()
 	 * @generated
@@ -255,10 +255,10 @@ public interface CirclePackage extends EPackage {
 	EReference getArchitecture_Circles();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Circle.Architecture#getRelations <em>Relations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Circle.Architecture#getRelations <em>Relations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Relations</em>'.
+	 * @return the meta object for the containment reference list '<em>Relations</em>'.
 	 * @see Circle.Architecture#getRelations()
 	 * @see #getArchitecture()
 	 * @generated
@@ -393,7 +393,7 @@ public interface CirclePackage extends EPackage {
 		EAttribute ARCHITECTURE__NAME = eINSTANCE.getArchitecture_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Circles</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Circles</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -401,7 +401,7 @@ public interface CirclePackage extends EPackage {
 		EReference ARCHITECTURE__CIRCLES = eINSTANCE.getArchitecture_Circles();
 
 		/**
-		 * The meta object literal for the '<em><b>Relations</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

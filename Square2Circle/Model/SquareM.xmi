@@ -4,6 +4,16 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:square="http://square/1.0"
-    xsi:schemaLocation="http://square/1.0 ../MetaM/Square.ecore">
-  <squares/>
+    xsi:schemaLocation="http://square/1.0 ../MetaM/Square.ecore"
+    name="SquareM">
+  <squares name="S1"
+      color="A"
+      length="10"/>
+  <squares name="S2"
+      color="B"
+      length="20"/>
+  <relations
+      name="R1"
+      source="//@squares.0"
+      target="//@squares.1"/>
 </square:Architecture>

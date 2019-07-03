@@ -10,15 +10,18 @@ import Circle.Relation;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +60,7 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCircles() <em>Circles</em>}' reference list.
+	 * The cached value of the '{@link #getCircles() <em>Circles</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCircles()
@@ -67,7 +70,7 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	protected EList<Circle> circles;
 
 	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
+	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRelations()
@@ -126,7 +129,7 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	@Override
 	public EList<Circle> getCircles() {
 		if (circles == null) {
-			circles = new EObjectResolvingEList<Circle>(Circle.class, this, CirclePackage.ARCHITECTURE__CIRCLES);
+			circles = new EObjectContainmentEList<Circle>(Circle.class, this, CirclePackage.ARCHITECTURE__CIRCLES);
 		}
 		return circles;
 	}
@@ -139,9 +142,25 @@ public class ArchitectureImpl extends MinimalEObjectImpl.Container implements Ar
 	@Override
 	public EList<Relation> getRelations() {
 		if (relations == null) {
-			relations = new EObjectResolvingEList<Relation>(Relation.class, this, CirclePackage.ARCHITECTURE__RELATIONS);
+			relations = new EObjectContainmentEList<Relation>(Relation.class, this, CirclePackage.ARCHITECTURE__RELATIONS);
 		}
 		return relations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CirclePackage.ARCHITECTURE__CIRCLES:
+				return ((InternalEList<?>)getCircles()).basicRemove(otherEnd, msgs);
+			case CirclePackage.ARCHITECTURE__RELATIONS:
+				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

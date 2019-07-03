@@ -1,0 +1,33 @@
+-- @path Square=/Square2Circle/MetaM/Square.ecore
+-- @path Circle=/Square2Circle/MetaM/Circle.ecore
+
+module Square2Circle;
+-- Module Template
+create OUT: Circle from IN: Square;
+
+rule Arch2Base {
+	from S : Square!Architecture
+	to C: Circle!Architecture (
+		Name <-S.Name,
+		circles<-S.squares,
+		relations<-S.relations		
+	)
+}
+
+rule transf {
+	from S : Square!Square
+	to C : Circle ! Circle (
+		Name <- S.Name,
+		Color <- S.Color,
+		Rayoin <- S.length
+	)
+}
+
+rule Realtionship2Relationship {
+	from S : Square!Relation
+	to C : Cricle!Relation (
+		Name <- S.Name,
+		source <- S.source,
+		target <- S.target
+	)
+}

@@ -48,25 +48,25 @@ public interface Architecture extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Circles</b></em>' reference list.
+	 * Returns the value of the '<em><b>Circles</b></em>' containment reference list.
 	 * The list contents are of type {@link Circle.Circle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Circles</em>' reference list.
+	 * @return the value of the '<em>Circles</em>' containment reference list.
 	 * @see Circle.CirclePackage#getArchitecture_Circles()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Circle> getCircles();
 
 	/**
-	 * Returns the value of the '<em><b>Relations</b></em>' reference list.
+	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
 	 * The list contents are of type {@link Circle.Relation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Relations</em>' reference list.
+	 * @return the value of the '<em>Relations</em>' containment reference list.
 	 * @see Circle.CirclePackage#getArchitecture_Relations()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Relation> getRelations();
