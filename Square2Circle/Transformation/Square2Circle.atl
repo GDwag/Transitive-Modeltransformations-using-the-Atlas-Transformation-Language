@@ -8,7 +8,7 @@ create OUT: Circle from IN: Square;
 rule Arch2Base {
 	from S : Square!Architecture
 	to C: Circle!Architecture (
-		Name <-S.Name,
+		name <-S.name,
 		circles<-S.squares,
 		relations<-S.relations		
 	)
@@ -17,16 +17,16 @@ rule Arch2Base {
 rule transf {
 	from S : Square!Square
 	to C : Circle ! Circle (
-		Name <- S.Name,
-		Color <- S.Color,
-		Rayoin <- S.length
+		name <- S.name,
+		color <- S.color,
+		rayon <- S.length
 	)
 }
 
-rule Realtionship2Relationship {
+rule Relationship2Relationship {
 	from S : Square!Relation
-	to C : Cricle!Relation (
-		Name <- S.Name,
+	to C : Circle!Relation (
+		name <- S.name,
 		source <- S.source,
 		target <- S.target
 	)
