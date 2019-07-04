@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Component name="UserDBAdapter"/>
+  <uml:Component name="AudioWatermarking"/>
+  <uml:Component name="Reencoding"/>
+  <uml:Component name="MediaManagement"/>
+  <uml:Component name="Facade"/>
+  <uml:Component name="MediaAccess"/>
+  <uml:Component name="Packaging"/>
+  <uml:Component name="DB"/>
+  <uml:Component name="FileStorage"/>
+  <uml:Component name="TagWatermarking"/>
+  <uml:Component name="Cache"/>
+  <uml:Component name="UserManagement"/>
+  <uml:Component name="DownloadLoadBalancer"/>
+  <uml:Component name="ParallelWatermarking"/>
+  <uml:Interface name="IUserDB"/>
+  <uml:Interface name="IDownload"/>
+  <uml:Interface name="IMediaAccess"/>
+  <uml:Interface name="IPackaging"/>
+  <uml:Interface name="IMediaManagement"/>
+  <uml:Interface name="IFacade"/>
+  <uml:Interface name="IDB"/>
+  <uml:Interface name="IFileStorage"/>
+  <uml:Interface name="IUserManagement"/>
+</xmi:XMI>

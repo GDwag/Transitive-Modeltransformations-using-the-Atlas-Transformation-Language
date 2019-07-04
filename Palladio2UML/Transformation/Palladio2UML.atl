@@ -7,7 +7,23 @@ create OUT: UML from IN: Palladio;
 
 rule BasicComponent2Component {
 	from B : Palladio!BasicComponent
-	to C: UML!Component (
-			required <- B.providedRoles_InterfaceProvidingEntity
+	to C : UML!Component (
+		name <- B.entityName,
+		required <- B.providedRoles_InterfaceProvidingEntity
+	)
+}
+
+rule Interface2Interface {
+	from PI : Palladio!Interface
+	to UI : UML!Interface (
+		name <- PI.entityName,
+		protocol <- PI.protocols__Interface
+	)
+}
+
+rule Role2Role {
+	from PR : Palladio!Role
+	to UR : UML!Role (
+		name <- PR.entityName
 	)
 }
