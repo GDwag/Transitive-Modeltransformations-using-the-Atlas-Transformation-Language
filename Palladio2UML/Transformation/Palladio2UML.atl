@@ -3,4 +3,11 @@
 
 module Palladio2UML;
 -- Module Template
-create OUT: Palladio from IN: UML;
+create OUT: UML from IN: Palladio;
+
+rule BasicComponent2Component {
+	from B : Palladio!BasicComponent
+	to C: UML!Component (
+			required <- B.providedRoles_InterfaceProvidingEntity
+	)
+}
