@@ -1,0 +1,25 @@
+-- @path Palladio=http://palladiosimulator.org/PalladioComponentModel/5.2
+-- @path JaMoPP=http://www.emftext.org/java/*
+-- @path JaMoPP_classifiers=http://www.emftext.org/java/classifiers
+-- @path JaMoPP_containers=http://www.emftext.org/java/containers
+
+module Palladio2JaMoPP;
+-- Module Template
+create OUT_classifiers: JaMoPP_classifiers, OUT_containers: JaMoPP_containers from IN: Palladio;
+
+rule BasicComponent2Package {
+	from B : Palladio!BasicComponent
+	to P : JaMoPP_containers!Package in OUT_containers(
+		name <- 'Repo/' + B.entityName
+	),
+	C : JaMoPP_classifiers!Class in OUT_classifiers (
+		name <- B.entityName + 'Impl'		
+	)
+}
+
+rule Interface2Interface {
+	from PI : Palladio!Interface
+	to JI : JaMoPP_classifiers!Interface (
+		name <- PI.entityName
+	)
+}
