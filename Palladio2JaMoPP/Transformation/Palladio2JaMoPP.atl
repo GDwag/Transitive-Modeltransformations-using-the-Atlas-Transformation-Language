@@ -2,10 +2,11 @@
 -- @path JaMoPP=http://www.emftext.org/java/*
 -- @path JaMoPP_classifiers=http://www.emftext.org/java/classifiers
 -- @path JaMoPP_containers=http://www.emftext.org/java/containers
+-- @path JaMoPP_members=http://www.emftext.org/java/members
 
 module Palladio2JaMoPP;
 -- Module Template
-create OUT_classifiers: JaMoPP_classifiers, OUT_containers: JaMoPP_containers from IN: Palladio;
+create OUT_classifiers: JaMoPP_classifiers, OUT_containers: JaMoPP_containers, OUT_members: JaMoPP_members from IN: Palladio;
 
 rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
@@ -13,7 +14,19 @@ rule BasicComponent2Package {
 		name <- 'Repo/' + B.entityName
 	),
 	C : JaMoPP_classifiers!Class in OUT_classifiers (
-		name <- B.entityName + 'Impl'		
+		name <- B.entityName + 'Impl',
+		members <- Set {B.requiredRoles_InterfaceRequiringEntity} --{first-element, B.requiredRoles_InterfaceRequiringEntity}
+	)
+	--,
+	--first_element : JaMoPP_members!Member (
+	--	name <-  
+	--)
+}
+
+rule RequiredRole2Field {
+	from R : Palladio!RequiredRole
+	to M : JaMoPP_members!Field in OUT_members(
+   		name <- R.entityName
 	)
 }
 
