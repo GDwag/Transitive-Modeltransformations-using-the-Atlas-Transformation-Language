@@ -9,7 +9,8 @@ rule BasicComponent2Component {
 	from B : Palladio!BasicComponent
 	to C : UML!Component (
 		name <- B.entityName,
-		required <- B.providedRoles_InterfaceProvidingEntity
+		provided <- B.providedRoles_InterfaceProvidingEntity,
+		required <- B.requiredRoles_InterfaceRequiringEntity
 	)
 }
 
@@ -21,9 +22,9 @@ rule Interface2Interface {
 	)
 }
 
-rule Role2Role {
-	from PR : Palladio!Role
-	to UR : UML!Role (
-		name <- PR.entityName
-	)
-}
+--rule Role2Role {
+--	from PR : Palladio!Role
+--	to UR : UML!Role (
+--		name <- PR.entityName
+--	)
+--}
