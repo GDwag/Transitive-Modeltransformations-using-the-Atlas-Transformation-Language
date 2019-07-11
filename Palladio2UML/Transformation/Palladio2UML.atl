@@ -5,20 +5,57 @@ module Palladio2UML;
 -- Module Template
 create OUT: UML from IN: Palladio;
 
-rule BasicComponent2Component {
+--rule BasicComponent2Component {
+--	from B : Palladio!BasicComponent
+--	to C : UML!Component (
+--		name <- B.entityName,
+--		provided <- B.providedRoles_InterfaceProvidingEntity,
+--		required <- B.requiredRoles_InterfaceRequiringEntity
+--	)
+--}
+
+rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
-	to C : UML!Component (
-		name <- B.entityName,
-		provided <- B.providedRoles_InterfaceProvidingEntity,
-		required <- B.requiredRoles_InterfaceRequiringEntity
+	to P : UML!Package (
+		name <- 'Repo/' + B.entityName
+	),
+	C : UML!Class (
+		name <- B.entityName + 'Impl',
+		extension <- B.providedRoles_InterfaceProvidingEntity,
+		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity
+		--extension <- OrderedSet {first_element, B.providedRoles_InterfaceProvidingEntity},
+		--attribute <- OrderedSet {first_element, B.requiredRoles_InterfaceRequiringEntity}
+		--attribute <- Set {B.requiredRoles_InterfaceRequiringEntity}
+	)
+	--,
+	--first_element : UML!Property ( --https://www.eclipse.org/atl/documentation/basicExamples_Patterns/article.php?file=ListMetamodelRefactoring/index.html
+	--	name <- C.name --necessary?
+	--)
+	--,
+	--first_element_e : UML!Extension (
+	--	name <- C.name --necessary?
+	--)
+}
+
+--rule Interface2Interface {
+--	from PI : Palladio!Interface
+--	to UI : UML!Interface (
+--		name <- PI.entityName,
+--		protocol <- PI.protocols__Interface
+--	)
+--}
+
+rule RequiredRole2Attribute {
+	from R : Palladio!RequiredRole
+	to M : UML!Property (
+   		name <- R.entityName
+		-- + Parameter in Konstruktor
 	)
 }
 
-rule Interface2Interface {
-	from PI : Palladio!Interface
-	to UI : UML!Interface (
-		name <- PI.entityName,
-		protocol <- PI.protocols__Interface
+rule ProvidedRole2Extension {
+	from P : Palladio!ProvidedRole
+	to E : UML!Extension(
 	)
 }
 
