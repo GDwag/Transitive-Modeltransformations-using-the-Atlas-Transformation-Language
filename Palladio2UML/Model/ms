@@ -55,19 +55,28 @@
   <uml:Class name="ParallelWatermarkingImpl">
     <ownedAttribute name="Required_IDownload_Watermarking"/>
   </uml:Class>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
-  <uml:Extension/>
+  <uml:Interface name="IUserDB"/>
+  <uml:Interface name="IDownload"/>
+  <uml:Interface name="IMediaAccess"/>
+  <uml:Interface name="IPackaging"/>
+  <uml:Interface name="IMediaManagement"/>
+  <uml:Interface name="IFacade"/>
+  <uml:Interface name="IDB"/>
+  <uml:Interface name="IFileStorage"/>
+  <uml:Interface name="IUserManagement"/>
+  <uml:Extension name="Provided_IUserDB_UserDBAdapter"/>
+  <uml:Extension name="Provided_IDownload_AudioWatermarking"/>
+  <uml:Extension name="Provided_IDownload_Reencoding"/>
+  <uml:Extension name="Provided_IMediaManagement_MediaManagement"/>
+  <uml:Extension name="Provided_IWebGui_Facade"/>
+  <uml:Extension name="Provided_IMediaAccess_MediaAccess"/>
+  <uml:Extension name="Provided_IDownload_MediaAccess"/>
+  <uml:Extension name="Provided_IPackaging_Packaging"/>
+  <uml:Extension name="Provided_IDB_DB"/>
+  <uml:Extension name="Provided_IDataStorage_DataStorage"/>
+  <uml:Extension name="Provided_IDownload_TagWatermarking"/>
+  <uml:Extension name="Provided_IDownload_Cache"/>
+  <uml:Extension name="Provided_IUserManagement_UserManagement"/>
+  <uml:Extension name="Provided_IDownload_DownloadLoadBalancer"/>
+  <uml:Extension name="Provided_IDownload_Watermarking"/>
 </xmi:XMI>

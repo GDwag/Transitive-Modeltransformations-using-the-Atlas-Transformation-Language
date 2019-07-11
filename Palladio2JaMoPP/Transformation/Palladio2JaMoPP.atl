@@ -21,6 +21,7 @@ rule RequiredRole2Field {
 	from R : Palladio!RequiredRole
 	to M : JaMoPP!Field(
    		name <- R.entityName
+		-- + type
 	)
 }
 
