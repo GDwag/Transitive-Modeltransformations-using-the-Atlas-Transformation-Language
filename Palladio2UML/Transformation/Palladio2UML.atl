@@ -14,6 +14,7 @@ rule BasicComponent2Package {
 		name <- B.entityName + 'Impl',
 		extension <- B.providedRoles_InterfaceProvidingEntity, --rather interface realization?
 		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity
+		
 	)
 }
 
@@ -28,10 +29,10 @@ rule OperationInterface2Interface {
 rule RequiredRole2Attribute {
 	from R : Palladio!RequiredRole
 	to M : UML!Property (
-   		name <- R.entityName--, 
+   		name <- R.entityName
 		-- + Parameter in Konstruktor
 		-- + type
-		--endType <- R.
+		--dataType <- --no single dataType anywhere to be found in palladio R.requiringEntity_RequiredRole.resourceRequiredRoles__ResourceInterfaceRequiringEntity.requiredResourceInterface__ResourceRequiredRole.resourceSignatures__ResourceInterface.parameter__ResourceSignature.dataType__Parameter
 	)
 }
 
