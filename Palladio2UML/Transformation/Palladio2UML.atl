@@ -43,3 +43,18 @@ rule ProvidedRole2Extension {
 		name <- P.entityName
 	)
 }
+
+rule CompositeDataType2Class {
+	from D : Palladio!CompositeDataType
+	to C : UML!Class (
+		
+	)	
+}
+
+rule CollectionDataType2Class {
+	from D : Palladio!CollectionDataType
+	to C : UML!Class (
+		
+	)	
+	
+}

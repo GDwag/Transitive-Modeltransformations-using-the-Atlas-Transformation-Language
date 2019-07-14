@@ -93,4 +93,6 @@
   <uml:Extension name="Provided_IUserManagement_UserManagement"/>
   <uml:Extension name="Provided_IDownload_DownloadLoadBalancer"/>
   <uml:Extension name="Provided_IDownload_Watermarking"/>
+  <uml:Class/>
+  <uml:Class/>
 </xmi:XMI>

@@ -1,78 +1,56 @@
 -- @path UML=http://www.eclipse.org/uml2/5.0.0/UML
--- @path JaMoPP=http://www.emftext.org/java/*
--- @path JaMoPP_classifiers=http://www.emftext.org/java/classifiers
--- @path JaMoPP_containers=http://www.emftext.org/java/containers
--- @path JaMoPP_members=http://www.emftext.org/java/members
--- @path JaMoPP_types=http://www.emftext.org/java/types
+-- @path JaMoPP=http://www.emftext.org/java/
 
 module UML2JaMoPP;
 -- Module Template
-create OUT_classifiers: JaMoPP_classifiers, OUT_containers: JaMoPP_containers, OUT_members: JaMoPP_members , OUT_types: JaMoPP_types from IN: UML;
+create OUT: JaMoPP from IN: UML;
 
-rule Component2Package {
-	from Co : UML!Component
-	to P : JaMoPP_containers!Package in OUT_containers(
-		name <- 'Repo/' + Co.name
+rule Package2Package {
+	from P1 : UML!Package
+	to CU: JaMoPP!CompilationUnit(
+		classifiers <- P1.packagedElement
 	),
-	Cl : JaMoPP_classifiers!Class in OUT_classifiers (
-		name <- Co.name + 'Impl',
-		implements <- Co.provided,
-		members <- OrderedSet {first_element, Co.required} --{first-element, B.requiredRoles_InterfaceRequiringEntity}
-	)
-	,
-	first_element : JaMoPP_members!Field ( --https://www.eclipse.org/atl/documentation/basicExamples_Patterns/article.php?file=ListMetamodelRefactoring/index.html
-		name <- Co.name
+	P2 : JaMoPP!Package(
+		name <- P1.name,
+		compilationUnits <- CU
 	)
 }
 
---rule RequiredRole2Field {
---	from R : Palladio!RequiredRole
---	to M : JaMoPP_members!Field in OUT_members(
---   		name <- R.entityName
---	)
---}
---
---rule ProvidedRole2ClassifierReference {
---	from P : Palladio!ProvidedRole
---	to T : JaMoPP_types!ClassifierReference in OUT_types (
---	)
---}
+rule Class2Class {
+	from C1: UML!Class
+	to C2 : JaMoPP!Class(
+		name <- C1.name,
+		implements <- C1.extension,
+		members <- C1.ownedAttribute
+	)
+}
+
+rule Attribute2Field {
+	from A : UML!Property
+	to F : JaMoPP!Field(
+   		name <- A.name
+		-- + type
+	)
+}
+
+rule Extension2ClassifierReference {
+	from E : UML!Extension
+	to C : JaMoPP!ClassifierReference(
+	)
+}
 
 rule Interface2Interface {
-	from O : UML!Interface
-	to I : JaMoPP_classifiers!Interface (
-		name <- O.name--,
+	from I1 : UML!Interface
+	to I2 : JaMoPP!Interface (
+		name <- I1.name--,
 		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
 
 --rule Signature2TypeParameter {
 --	from S :  Palladio!Signature
---	to T :  JaMoPP_types!TypeParameter (
+--	to T :  JaMoPP!TypeParameter (
 --		name <- S.entityName,
 --		extendTypes <- Set {S.parameters__OperationSignature}
 --	)
 --}
-
---rule PrimitiveParameter2PrimitiveType {
---	from P : Palladio!Parameter
---	to T : JaMoPP_types!PrimitiveType (
---		
---	)	
---} --PrimitiveType is abstract, didn't find concrete primitive types in palladio
-
---rule CompositeDataType2Class {
---	from D : Palladio!CompositeDataType
---	to C : JaMoPP_classifiers!Class (
---		
---	)	
---}
---
---rule CollectionDataType2Class {
---	from D : Palladio!CollectionDataType
---	to C : JaMoPP_classifiers!class (
---		
---	)	
---	
---}
---
