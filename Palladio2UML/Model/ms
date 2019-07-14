@@ -1,60 +1,74 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
-  <uml:Package name="Repo/UserDBAdapter"/>
-  <uml:Class name="UserDBAdapterImpl">
-    <ownedAttribute name="Required_IDB_UserDBAdapter"/>
-  </uml:Class>
-  <uml:Package name="Repo/AudioWatermarking"/>
-  <uml:Class name="AudioWatermarkingImpl">
-    <ownedAttribute name="Required_IDownload_AudioWatermarking"/>
-  </uml:Class>
-  <uml:Package name="Repo/Reencoding"/>
-  <uml:Class name="ReencodingImpl">
-    <ownedAttribute name="Required_IDownload_Reencoding"/>
-  </uml:Class>
-  <uml:Package name="Repo/MediaManagement"/>
-  <uml:Class name="MediaManagementImpl">
-    <ownedAttribute name="Required_IDownload_MediaManagement"/>
-    <ownedAttribute name="Required_IPackaging_MediaManagement"/>
-    <ownedAttribute name="Required_IMediaAccess_MediaManagement"/>
-  </uml:Class>
-  <uml:Package name="Repo/Facade"/>
-  <uml:Class name="FacadeImpl">
-    <ownedAttribute name="Required_IMediaManagement_Facade"/>
-    <ownedAttribute name="Required_IUserDB_Facade"/>
-  </uml:Class>
-  <uml:Package name="Repo/MediaAccess"/>
-  <uml:Class name="MediaAccessImpl">
-    <ownedAttribute name="Required_IDB_MediaAccess"/>
-    <ownedAttribute name="Required_IDataStorage_MediaAccess"/>
-  </uml:Class>
-  <uml:Package name="Repo/Packaging"/>
-  <uml:Class name="PackagingImpl"/>
-  <uml:Package name="Repo/DB"/>
-  <uml:Class name="DBImpl"/>
-  <uml:Package name="Repo/FileStorage"/>
-  <uml:Class name="FileStorageImpl"/>
-  <uml:Package name="Repo/TagWatermarking"/>
-  <uml:Class name="TagWatermarkingImpl">
-    <ownedAttribute name="Required_IDownload_TagWatermarking"/>
-  </uml:Class>
-  <uml:Package name="Repo/Cache"/>
-  <uml:Class name="CacheImpl">
-    <ownedAttribute name="Required_IDownload_Cache"/>
-  </uml:Class>
-  <uml:Package name="Repo/UserManagement"/>
-  <uml:Class name="UserManagementImpl">
-    <ownedAttribute name="Required_IUserDB_UserManagement"/>
-  </uml:Class>
-  <uml:Package name="Repo/DownloadLoadBalancer"/>
-  <uml:Class name="DownloadLoadBalancerImpl">
-    <ownedAttribute name="Required_IDownload_Replica2_DownloadLoadBalancer"/>
-    <ownedAttribute name="Required_IDownload_Replica1_DownloadLoadBalancer"/>
-  </uml:Class>
-  <uml:Package name="Repo/ParallelWatermarking"/>
-  <uml:Class name="ParallelWatermarkingImpl">
-    <ownedAttribute name="Required_IDownload_Watermarking"/>
-  </uml:Class>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Package name="Repo/UserDBAdapter">
+    <packagedElement xsi:type="uml:Class" name="UserDBAdapterImpl">
+      <ownedAttribute name="Required_IDB_UserDBAdapter"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/AudioWatermarking">
+    <packagedElement xsi:type="uml:Class" name="AudioWatermarkingImpl">
+      <ownedAttribute name="Required_IDownload_AudioWatermarking"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/Reencoding">
+    <packagedElement xsi:type="uml:Class" name="ReencodingImpl">
+      <ownedAttribute name="Required_IDownload_Reencoding"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/MediaManagement">
+    <packagedElement xsi:type="uml:Class" name="MediaManagementImpl">
+      <ownedAttribute name="Required_IDownload_MediaManagement"/>
+      <ownedAttribute name="Required_IPackaging_MediaManagement"/>
+      <ownedAttribute name="Required_IMediaAccess_MediaManagement"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/Facade">
+    <packagedElement xsi:type="uml:Class" name="FacadeImpl">
+      <ownedAttribute name="Required_IMediaManagement_Facade"/>
+      <ownedAttribute name="Required_IUserDB_Facade"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/MediaAccess">
+    <packagedElement xsi:type="uml:Class" name="MediaAccessImpl">
+      <ownedAttribute name="Required_IDB_MediaAccess"/>
+      <ownedAttribute name="Required_IDataStorage_MediaAccess"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/Packaging">
+    <packagedElement xsi:type="uml:Class" name="PackagingImpl"/>
+  </uml:Package>
+  <uml:Package name="Repo/DB">
+    <packagedElement xsi:type="uml:Class" name="DBImpl"/>
+  </uml:Package>
+  <uml:Package name="Repo/FileStorage">
+    <packagedElement xsi:type="uml:Class" name="FileStorageImpl"/>
+  </uml:Package>
+  <uml:Package name="Repo/TagWatermarking">
+    <packagedElement xsi:type="uml:Class" name="TagWatermarkingImpl">
+      <ownedAttribute name="Required_IDownload_TagWatermarking"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/Cache">
+    <packagedElement xsi:type="uml:Class" name="CacheImpl">
+      <ownedAttribute name="Required_IDownload_Cache"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/UserManagement">
+    <packagedElement xsi:type="uml:Class" name="UserManagementImpl">
+      <ownedAttribute name="Required_IUserDB_UserManagement"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/DownloadLoadBalancer">
+    <packagedElement xsi:type="uml:Class" name="DownloadLoadBalancerImpl">
+      <ownedAttribute name="Required_IDownload_Replica2_DownloadLoadBalancer"/>
+      <ownedAttribute name="Required_IDownload_Replica1_DownloadLoadBalancer"/>
+    </packagedElement>
+  </uml:Package>
+  <uml:Package name="Repo/ParallelWatermarking">
+    <packagedElement xsi:type="uml:Class" name="ParallelWatermarkingImpl">
+      <ownedAttribute name="Required_IDownload_Watermarking"/>
+    </packagedElement>
+  </uml:Package>
   <uml:Interface name="IUserDB"/>
   <uml:Interface name="IDownload"/>
   <uml:Interface name="IMediaAccess"/>

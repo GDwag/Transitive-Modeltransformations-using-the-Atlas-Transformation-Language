@@ -7,15 +7,16 @@ create OUT: UML from IN: Palladio;
 
 rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
-	to P : UML!Package (
-		name <- 'Repo/' + B.entityName
-	),
-	C : UML!Class (
+	to C : UML!Class (
 		name <- B.entityName + 'Impl',
 		extension <- B.providedRoles_InterfaceProvidingEntity, --rather interface realization?
 		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity
-		
+	),
+	P : UML!Package (
+		name <- 'Repo/' + B.entityName,
+		packagedElement <- C
 	)
+	
 }
 
 rule OperationInterface2Interface {
