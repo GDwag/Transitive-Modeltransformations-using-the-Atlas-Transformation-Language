@@ -7,13 +7,17 @@ create OUT : JaMoPP from IN: Palladio;
 
 rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
-	to P : JaMoPP!Package(
-		name <- 'Repo/' + B.entityName
-	),
-	C : JaMoPP!Class(
+	to C : JaMoPP!Class(
 		name <- B.entityName + 'Impl',
 		implements <- B.providedRoles_InterfaceProvidingEntity,
 		members <- B.requiredRoles_InterfaceRequiringEntity
+	),
+	CU: JaMoPP!CompilationUnit(
+		classifiers <- C
+	),
+	P : JaMoPP!Package(
+		name <- 'Repo/' + B.entityName,
+		compilationUnits <- CU
 	)
 }
 

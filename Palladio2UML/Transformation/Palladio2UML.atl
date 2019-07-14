@@ -43,10 +43,3 @@ rule ProvidedRole2Extension {
 		name <- P.entityName
 	)
 }
-
---rule Role2Role {
---	from PR : Palladio!Role
---	to UR : UML!Role (
---		name <- PR.entityName
---	)
---}
