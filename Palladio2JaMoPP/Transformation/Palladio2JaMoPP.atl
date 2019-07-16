@@ -32,6 +32,7 @@ rule RequiredRole2Field {
 rule ProvidedRole2ClassifierReference {
 	from P : Palladio!ProvidedRole
 	to T : JaMoPP!ClassifierReference(
+		target <- P.providingEntity_ProvidedRole
 	)
 }
 
@@ -39,7 +40,7 @@ rule OperationInterface2Interface {
 	from O : Palladio!OperationInterface
 	to I : JaMoPP!Interface (
 		name <- O.entityName,
-		typeParameters <- Set {O.signatures__OperationInterface}
+		typeParameters <- O.signatures__OperationInterface
 	)
 }
 
