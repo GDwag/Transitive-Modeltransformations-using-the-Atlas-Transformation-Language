@@ -11,6 +11,7 @@ rule BasicComponent2Package {
 		name <- B.entityName + 'Impl',
 		implements <- B.providedRoles_InterfaceProvidingEntity,
 		members <- B.requiredRoles_InterfaceRequiringEntity
+		--es gibt typ "ClassMethod -> Method"
 	),
 	CU: JaMoPP!CompilationUnit(
 		classifiers <- C
@@ -23,9 +24,15 @@ rule BasicComponent2Package {
 
 rule RequiredRole2Field {
 	from R : Palladio!RequiredRole
-	to M : JaMoPP!Field(
+	to F : JaMoPP!Field(
    		name <- R.entityName
 		-- + type
+	), --wird ab hier nicht mehr zu klasse hinzugefügt - ungut
+	G: JaMoPP!ClassMethod(
+		name <- 'get' + R.entityName
+	),
+	S: JaMoPP!ClassMethod(
+		name <- 'set' + R.entityName
 	)
 }
 
@@ -52,6 +59,7 @@ rule Signature2TypeParameter {
 	)
 }
 
+--CompositeDataType und CompositeComponent nicht verwandt? gewollt?!
 rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
 	from D : Palladio!CompositeDataType
 	to C : JaMoPP!Class (
@@ -66,7 +74,7 @@ rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ic
 	)
 }
 
-rule CollectionDataType2Class {
+rule CollectionDataType2Class { --? keine ArrayList in JaMoPP?! (nicht der suchfunktion vertrauen) -MemberContainer-erbe?
 	from D : Palladio!CollectionDataType
 	to C : JaMoPP!Class (
 		

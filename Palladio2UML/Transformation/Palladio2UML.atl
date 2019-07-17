@@ -44,6 +44,7 @@ rule ProvidedRole2Extension {
 	)
 }
 
+--CompositeDataType und CompositeComponent nicht verwandt? gewollt?!
 rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
 	from D : Palladio!CompositeDataType
 	to C : UML!Class (
