@@ -44,11 +44,18 @@ rule ProvidedRole2Extension {
 	)
 }
 
-rule CompositeDataType2Class {
+rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
 	from D : Palladio!CompositeDataType
 	to C : UML!Class (
-		
+		nestedClassifier <- D.innerDeclaration_CompositeDataType
 	)	
+}
+
+rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ich daraus eine sinnvolle klasse machen? TODO
+	from I : Palladio!InnerDeclaration
+	to C : UML!Class (
+		name <- I.entityName
+	)
 }
 
 rule CollectionDataType2Class {
