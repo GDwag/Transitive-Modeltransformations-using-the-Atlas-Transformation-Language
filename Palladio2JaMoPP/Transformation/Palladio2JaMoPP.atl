@@ -10,9 +10,15 @@ rule BasicComponent2Package {
 	to C : JaMoPP!Class(
 		name <- B.entityName + 'Impl',
 		implements <- B.providedRoles_InterfaceProvidingEntity,
-		members <- B.requiredRoles_InterfaceRequiringEntity
+		members <- each_member
 		--es gibt typ "ClassMethod -> Method"
 	),
+	each_member : distinct JaMoPP!Class foreach ( r in B.requiredRoles_InterfaceRequiringEntity) (
+			members <- thisModule.RequiredRole2Field(r),
+			members <- thisModule.RequiredRole2Getter(r),
+			members <- thisModule.RequiredRole2Setter(r)
+	)
+	,
 	CU: JaMoPP!CompilationUnit(
 		classifiers <- C
 	),
@@ -22,16 +28,30 @@ rule BasicComponent2Package {
 	)
 }
 
-rule RequiredRole2Field {
+lazy rule RequiredRole2Field {
 	from R : Palladio!RequiredRole
 	to F : JaMoPP!Field(
    		name <- R.entityName
 		-- + type
-	), --wird ab hier nicht mehr zu klasse hinzugefügt - ungut
-	G: JaMoPP!ClassMethod(
+	)--, --wird ab hier nicht mehr zu klasse hinzugefügt - ungut
+--	G: JaMoPP!ClassMethod(
+--		name <- 'get' + R.entityName
+--	),
+--	S: JaMoPP!ClassMethod(
+--		name <- 'set' + R.entityName
+--	)
+}
+
+lazy rule RequiredRole2Getter {
+	from R : Palladio!RequiredRole
+	to G: JaMoPP!ClassMethod(
 		name <- 'get' + R.entityName
-	),
-	S: JaMoPP!ClassMethod(
+	)
+}
+
+lazy rule RequiredRole2Setter {
+	from R : Palladio!RequiredRole
+	to S: JaMoPP!ClassMethod(
 		name <- 'set' + R.entityName
 	)
 }
