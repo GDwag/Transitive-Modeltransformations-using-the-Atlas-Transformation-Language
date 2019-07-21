@@ -5,20 +5,6 @@ module Palladio2UML;
 -- Module Template
 create OUT: UML from IN: Palladio;
 
-rule BasicComponent2Package {
-	from B : Palladio!BasicComponent
-	to C : UML!Class (
-		name <- B.entityName + 'Impl',
-		extension <- B.providedRoles_InterfaceProvidingEntity, --rather interface realization?
-		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity
-	),
-	P : UML!Package (
-		name <- 'Repo/' + B.entityName,
-		packagedElement <- C
-	)
-	
-}
-
 rule OperationInterface2Interface {
 	from PI : Palladio!Interface
 	to UI : UML!Interface (
@@ -27,13 +13,48 @@ rule OperationInterface2Interface {
 	)
 }
 
-rule RequiredRole2Attribute {
+rule BasicComponent2Package {
+	from B : Palladio!BasicComponent
+	to C : UML!Class (
+		name <- B.entityName + 'Impl',
+		extension <- B.providedRoles_InterfaceProvidingEntity, --rather interface realization?
+		--ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
+		ownedOperation <- getters_setters
+	),
+	getters_setters : distinct UML!Class foreach ( r in B.requiredRoles_InterfaceRequiringEntity) (
+			ownedOperation <- thisModule.RequiredRole2Getter(r),
+			ownedOperation <- thisModule.RequiredRole2Setter(r)
+	),
+	P : UML!Package (
+		name <- 'Repo/' + B.entityName,
+		packagedElement <- C
+	)
+	
+}
+
+lazy rule RequiredRole2Attribute {
 	from R : Palladio!RequiredRole
 	to M : UML!Property (
    		name <- R.entityName
 		-- + Parameter in Konstruktor
 		-- + type
 		--dataType <- --no single dataType anywhere to be found in palladio R.requiringEntity_RequiredRole.resourceRequiredRoles__ResourceInterfaceRequiringEntity.requiredResourceInterface__ResourceRequiredRole.resourceSignatures__ResourceInterface.parameter__ResourceSignature.dataType__Parameter
+	)
+}
+
+lazy rule RequiredRole2Getter {
+	from R : Palladio!RequiredRole
+	to M : UML!Operation (
+   		name <- 'get' + R.entityName,
+		class <- R.requiringEntity_RequiredRole
+	)
+}
+
+lazy rule RequiredRole2Setter {
+	from R : Palladio!RequiredRole
+	to M : UML!Operation (
+   		name <- 'set' + R.entityName,
+		class <- R.requiringEntity_RequiredRole
 	)
 }
 

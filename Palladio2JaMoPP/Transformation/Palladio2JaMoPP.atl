@@ -33,13 +33,7 @@ lazy rule RequiredRole2Field {
 	to F : JaMoPP!Field(
    		name <- R.entityName
 		-- + type
-	)--, --wird ab hier nicht mehr zu klasse hinzugefügt - ungut
---	G: JaMoPP!ClassMethod(
---		name <- 'get' + R.entityName
---	),
---	S: JaMoPP!ClassMethod(
---		name <- 'set' + R.entityName
---	)
+	)
 }
 
 lazy rule RequiredRole2Getter {
