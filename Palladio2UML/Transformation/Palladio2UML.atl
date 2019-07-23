@@ -18,12 +18,9 @@ rule BasicComponent2Package {
 	to C : UML!Class (
 		name <- B.entityName + 'Impl',
 		extension <- B.providedRoles_InterfaceProvidingEntity, --rather interface realization?
-		--ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
-		ownedOperation <- getters_setters
-	),
-	getters_setters : distinct UML!Class foreach ( r in B.requiredRoles_InterfaceRequiringEntity) (
-			ownedOperation <- thisModule.RequiredRole2Getter(r),
-			ownedOperation <- thisModule.RequiredRole2Setter(r)
+		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
+		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
+		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
 	),
 	P : UML!Package (
 		name <- 'Repo/' + B.entityName,
