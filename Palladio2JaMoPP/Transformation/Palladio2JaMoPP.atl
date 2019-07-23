@@ -10,11 +10,9 @@ rule BasicComponent2Package {
 	to C : JaMoPP!Class(
 		name <- B.entityName + 'Impl',
 		implements <- B.providedRoles_InterfaceProvidingEntity,
-		--members <- each_member
 		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Field(e)),
 		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
 		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
-		--es gibt typ "ClassMethod -> Method"
 	),
 	CU: JaMoPP!CompilationUnit(
 		classifiers <- C
@@ -26,29 +24,31 @@ rule BasicComponent2Package {
 }
 
 lazy rule RequiredRole2Field {
-	from R : Palladio!RequiredRole
+	from R : Palladio!OperationRequiredRole
 	to F : JaMoPP!Field(
-   		name <- R.entityName
-		-- + type
+   		name <- R.entityName--,
+		--typeParameters <- R.requiredInterface__OperationRequiredRole
 	)
 }
 
 lazy rule RequiredRole2Getter {
-	from R : Palladio!RequiredRole
+	from R : Palladio!OperationRequiredRole
 	to G: JaMoPP!ClassMethod(
-		name <- 'get' + R.entityName
+		name <- 'get' + R.entityName,
+		typeParameters <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface
 	)
 }
 
 lazy rule RequiredRole2Setter {
-	from R : Palladio!RequiredRole
+	from R : Palladio!OperationRequiredRole
 	to S: JaMoPP!ClassMethod(
-		name <- 'set' + R.entityName
+		name <- 'set' + R.entityName--,
+		--parameters <- R.requiredInterface__OperationRequiredRole
 	)
 }
 
 rule ProvidedRole2ClassifierReference {
-	from P : Palladio!ProvidedRole
+	from P : Palladio!OperationProvidedRole
 	to T : JaMoPP!ClassifierReference(
 		target <- P.providingEntity_ProvidedRole
 	)

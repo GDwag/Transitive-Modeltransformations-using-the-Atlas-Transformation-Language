@@ -30,33 +30,42 @@ rule BasicComponent2Package {
 }
 
 lazy rule RequiredRole2Attribute {
-	from R : Palladio!RequiredRole
+	from R : Palladio!OperationRequiredRole
 	to M : UML!Property (
-   		name <- R.entityName
+   		name <- R.entityName,
+		dataType <- R.requiredInterface__OperationRequiredRole
 		-- + Parameter in Konstruktor
-		-- + type
-		--dataType <- --no single dataType anywhere to be found in palladio R.requiringEntity_RequiredRole.resourceRequiredRoles__ResourceInterfaceRequiringEntity.requiredResourceInterface__ResourceRequiredRole.resourceSignatures__ResourceInterface.parameter__ResourceSignature.dataType__Parameter
 	)
 }
 
 lazy rule RequiredRole2Getter {
-	from R : Palladio!RequiredRole
+	from R : Palladio!OperationRequiredRole
 	to M : UML!Operation (
    		name <- 'get' + R.entityName,
-		class <- R.requiringEntity_RequiredRole
+		class <- R.requiringEntity_RequiredRole,
+		type <- R.requiredInterface__OperationRequiredRole
 	)
 }
 
 lazy rule RequiredRole2Setter {
-	from R : Palladio!RequiredRole
-	to M : UML!Operation (
+	from R : Palladio!OperationRequiredRole
+	to --TS : UML!TemplateSignature(
+		--template <- R.requiredInterface__OperationRequiredRole,
+		--parameter <- TP
+	--),
+	--TP : UML!OperationTemplateParameter (
+		--signature <- TS,
+		--parameteredElement <- M
+	--),
+	M : UML!Operation (
    		name <- 'set' + R.entityName,
-		class <- R.requiringEntity_RequiredRole
+		class <- R.requiringEntity_RequiredRole--,
+		--owningTemplateParameter <- TP
 	)
 }
 
 rule ProvidedRole2Extension {
-	from P : Palladio!ProvidedRole
+	from P : Palladio!OperationProvidedRole
 	to E : UML!Extension(
 		name <- P.entityName
 	)
