@@ -10,15 +10,12 @@ rule BasicComponent2Package {
 	to C : JaMoPP!Class(
 		name <- B.entityName + 'Impl',
 		implements <- B.providedRoles_InterfaceProvidingEntity,
-		members <- each_member
+		--members <- each_member
+		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Field(e)),
+		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
+		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
 		--es gibt typ "ClassMethod -> Method"
 	),
-	each_member : distinct JaMoPP!Class foreach ( r in B.requiredRoles_InterfaceRequiringEntity) (
-			members <- thisModule.RequiredRole2Field(r),
-			members <- thisModule.RequiredRole2Getter(r),
-			members <- thisModule.RequiredRole2Setter(r)
-	)
-	,
 	CU: JaMoPP!CompilationUnit(
 		classifiers <- C
 	),
