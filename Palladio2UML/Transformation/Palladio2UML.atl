@@ -10,9 +10,8 @@ rule Repostiory2Package {
 	to P : UML!Package (
 		name <- R.entityName,
 		packagedElement <- R.interfaces__Repository,
-		nestedPackage <- R.components__Repository--->collect(e | thisModule.BasicComponent2Package(e))
+		nestedPackage <- R.components__Repository
 	)
-	
 }
 
 rule OperationInterface2Interface {
