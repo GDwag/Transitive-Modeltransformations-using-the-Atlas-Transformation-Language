@@ -5,6 +5,16 @@ module Palladio2UML;
 -- Module Template
 create OUT: UML from IN: Palladio;
 
+rule Repostiory2Package {
+	from R : Palladio!Repository
+	to P : UML!Package (
+		name <- R.entityName,
+		packagedElement <- R.interfaces__Repository,
+		nestedPackage <- R.components__Repository--->collect(e | thisModule.BasicComponent2Package(e))
+	)
+	
+}
+
 rule OperationInterface2Interface {
 	from PI : Palladio!Interface
 	to UI : UML!Interface (
@@ -15,25 +25,30 @@ rule OperationInterface2Interface {
 
 rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
+	to P : UML!Package (
+		nestingPackage <- B.repository__RepositoryComponent,
+		name <- B.entityName,
+		packagedElement <- thisModule.BasicComponent2Class(B)
+	)	
+}
+
+unique lazy rule BasicComponent2Class {
+	from B : Palladio!BasicComponent
 	to C : UML!Class (
 		name <- B.entityName + 'Impl',
 		extension <- B.providedRoles_InterfaceProvidingEntity, --rather interface realization?
 		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
-	),
-	P : UML!Package (
-		name <- 'Repo/' + B.entityName,
-		packagedElement <- C
 	)
-	
 }
 
-lazy rule RequiredRole2Attribute {
+rule RequiredRole2Attribute {
 	from R : Palladio!OperationRequiredRole
 	to M : UML!Property (
-   		name <- R.entityName,
-		dataType <- R.requiredInterface__OperationRequiredRole
+   		name <- R.entityName--,
+		--dataType <- R.requiredInterface__OperationRequiredRole,
+		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)
 		-- + Parameter in Konstruktor
 	)
 }
@@ -42,7 +57,7 @@ lazy rule RequiredRole2Getter {
 	from R : Palladio!OperationRequiredRole
 	to M : UML!Operation (
    		name <- 'get' + R.entityName,
-		class <- R.requiringEntity_RequiredRole,
+		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
 		type <- R.requiredInterface__OperationRequiredRole
 	)
 }
@@ -59,7 +74,7 @@ lazy rule RequiredRole2Setter {
 	--),
 	M : UML!Operation (
    		name <- 'set' + R.entityName,
-		class <- R.requiringEntity_RequiredRole--,
+		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)--,
 		--owningTemplateParameter <- TP
 	)
 }
