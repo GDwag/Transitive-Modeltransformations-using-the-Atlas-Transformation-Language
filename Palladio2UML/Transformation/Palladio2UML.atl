@@ -54,8 +54,8 @@ rule RequiredRole2Attribute {
 	to M : UML!Property (
    		name <- R.entityName--,
 		--dataType <- R.requiredInterface__OperationRequiredRole,
-		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)
-		-- + Parameter in Konstruktor
+		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole) --un-comment? should work (lazy-unique)
+		-- + Parameter in Konstruktor -- ist eigener typ (?)
 	)
 }
 
