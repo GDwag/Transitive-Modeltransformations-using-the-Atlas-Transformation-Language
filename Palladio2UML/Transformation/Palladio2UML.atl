@@ -7,10 +7,17 @@ create OUT: UML from IN: Palladio;
 
 rule Repostiory2Package {
 	from R : Palladio!Repository
-	to P : UML!Package (
+	to P : UML!Package ( --Components
 		name <- R.entityName,
-		packagedElement <- R.interfaces__Repository,
 		nestedPackage <- R.components__Repository
+	),
+	P2 : UML!Package ( --Interfaces		--scheint nicht so zu funktionieren, andere packages werden nicht angelegt
+		name <- R.entityName + 'Contracts',
+		packagedElement <- R.interfaces__Repository
+	),
+	P3 : UML!Package ( --Datatypes
+		name <- R.entityName + 'Datatypes',
+		packagedElement <- R.dataTypes_Repository
 	)
 }
 
@@ -35,7 +42,7 @@ unique lazy rule BasicComponent2Class {
 	from B : Palladio!BasicComponent
 	to C : UML!Class (
 		name <- B.entityName + 'Impl',
-		extension <- B.providedRoles_InterfaceProvidingEntity, --rather interface realization?
+		extension <- B.providedRoles_InterfaceProvidingEntity, --TODO WARNING rather interface realization (behaviouredClassifier)? rather superClass?
 		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
