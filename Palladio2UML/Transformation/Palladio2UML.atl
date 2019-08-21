@@ -13,15 +13,15 @@ rule Repostiory2Package {
 	),
 	P2 : UML!Package ( --Interfaces		--scheint nicht so zu funktionieren, andere packages werden nicht angelegt
 		name <- R.entityName + 'Contracts',
-		packagedElement <- R.interfaces__Repository
+		packagedElement <- R.interfaces__Repository->collect(e | thisModule.OperationInterface2Interface(e))
 	),
 	P3 : UML!Package ( --Datatypes
 		name <- R.entityName + 'Datatypes',
-		packagedElement <- R.dataTypes_Repository
+		packagedElement <- R.dataTypes__Repository
 	)
 }
 
-rule OperationInterface2Interface {
+unique lazy rule OperationInterface2Interface {
 	from PI : Palladio!Interface
 	to UI : UML!Interface (
 		name <- PI.entityName,
@@ -42,7 +42,7 @@ unique lazy rule BasicComponent2Class {
 	from B : Palladio!BasicComponent
 	to C : UML!Class (
 		name <- B.entityName + 'Impl',
-		extension <- B.providedRoles_InterfaceProvidingEntity, --TODO WARNING rather interface realization (behaviouredClassifier)? rather superClass?
+		interfaceRealization <- B.providedRoles_InterfaceProvidingEntity, --NOT extension - extensions refer to stereotypes
 		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
@@ -85,10 +85,11 @@ lazy rule RequiredRole2Setter {
 	)
 }
 
-rule ProvidedRole2Extension {
+rule ProvidedRole2InterfaceRealization {
 	from P : Palladio!OperationProvidedRole
-	to E : UML!Extension(
-		name <- P.entityName
+	to E : UML!InterfaceRealization(
+		name <- P.entityName,
+		implementingClassifier <- thisModule.BasicComponent2Class(P.providingEntity_ProvidedRole)
 	)
 }
 
