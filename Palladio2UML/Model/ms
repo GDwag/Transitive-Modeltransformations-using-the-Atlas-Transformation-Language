@@ -5,24 +5,36 @@
       <packagedElement xsi:type="uml:Class" name="UserDBAdapterImpl">
         <ownedAttribute name="Required_IDB_UserDBAdapter"/>
         <interfaceRealization name="Provided_IUserDB_UserDBAdapter" client="/0/UserDBAdapter/UserDBAdapterImpl"/>
-        <ownedOperation name="getRequired_IDB_UserDBAdapter"/>
-        <ownedOperation name="setRequired_IDB_UserDBAdapter"/>
+        <ownedOperation name="getRequired_IDB_UserDBAdapter">
+          <ownedParameter type="/1/IDB" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDB_UserDBAdapter">
+          <ownedParameter type="/1/IDB" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="AudioWatermarking">
       <packagedElement xsi:type="uml:Class" name="AudioWatermarkingImpl">
         <ownedAttribute name="Required_IDownload_AudioWatermarking"/>
         <interfaceRealization name="Provided_IDownload_AudioWatermarking" client="/0/AudioWatermarking/AudioWatermarkingImpl"/>
-        <ownedOperation name="getRequired_IDownload_AudioWatermarking"/>
-        <ownedOperation name="setRequired_IDownload_AudioWatermarking"/>
+        <ownedOperation name="getRequired_IDownload_AudioWatermarking">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_AudioWatermarking">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="Reencoding">
       <packagedElement xsi:type="uml:Class" name="ReencodingImpl">
         <ownedAttribute name="Required_IDownload_Reencoding"/>
         <interfaceRealization name="Provided_IDownload_Reencoding" client="/0/Reencoding/ReencodingImpl"/>
-        <ownedOperation name="getRequired_IDownload_Reencoding"/>
-        <ownedOperation name="setRequired_IDownload_Reencoding"/>
+        <ownedOperation name="getRequired_IDownload_Reencoding">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_Reencoding">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="MediaManagement">
@@ -31,12 +43,24 @@
         <ownedAttribute name="Required_IPackaging_MediaManagement"/>
         <ownedAttribute name="Required_IMediaAccess_MediaManagement"/>
         <interfaceRealization name="Provided_IMediaManagement_MediaManagement" client="/0/MediaManagement/MediaManagementImpl"/>
-        <ownedOperation name="getRequired_IDownload_MediaManagement"/>
-        <ownedOperation name="getRequired_IPackaging_MediaManagement"/>
-        <ownedOperation name="getRequired_IMediaAccess_MediaManagement"/>
-        <ownedOperation name="setRequired_IDownload_MediaManagement"/>
-        <ownedOperation name="setRequired_IPackaging_MediaManagement"/>
-        <ownedOperation name="setRequired_IMediaAccess_MediaManagement"/>
+        <ownedOperation name="getRequired_IDownload_MediaManagement">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="getRequired_IPackaging_MediaManagement">
+          <ownedParameter type="/1/IPackaging" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="getRequired_IMediaAccess_MediaManagement">
+          <ownedParameter type="/1/IMediaAccess" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_MediaManagement">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IPackaging_MediaManagement">
+          <ownedParameter type="/1/IPackaging" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IMediaAccess_MediaManagement">
+          <ownedParameter type="/1/IMediaAccess" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="Facade">
@@ -44,10 +68,18 @@
         <ownedAttribute name="Required_IMediaManagement_Facade"/>
         <ownedAttribute name="Required_IUserDB_Facade"/>
         <interfaceRealization name="Provided_IWebGui_Facade" client="/0/Facade/FacadeImpl"/>
-        <ownedOperation name="getRequired_IMediaManagement_Facade"/>
-        <ownedOperation name="getRequired_IUserDB_Facade"/>
-        <ownedOperation name="setRequired_IMediaManagement_Facade"/>
-        <ownedOperation name="setRequired_IUserDB_Facade"/>
+        <ownedOperation name="getRequired_IMediaManagement_Facade">
+          <ownedParameter type="/1/IMediaManagement" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="getRequired_IUserDB_Facade">
+          <ownedParameter type="/1/IUserManagement" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IMediaManagement_Facade">
+          <ownedParameter type="/1/IMediaManagement" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IUserDB_Facade">
+          <ownedParameter type="/1/IUserManagement" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="MediaAccess">
@@ -56,10 +88,18 @@
         <ownedAttribute name="Required_IDataStorage_MediaAccess"/>
         <interfaceRealization name="Provided_IMediaAccess_MediaAccess" client="/0/MediaAccess/MediaAccessImpl"/>
         <interfaceRealization name="Provided_IDownload_MediaAccess" client="/0/MediaAccess/MediaAccessImpl"/>
-        <ownedOperation name="getRequired_IDB_MediaAccess"/>
-        <ownedOperation name="getRequired_IDataStorage_MediaAccess"/>
-        <ownedOperation name="setRequired_IDB_MediaAccess"/>
-        <ownedOperation name="setRequired_IDataStorage_MediaAccess"/>
+        <ownedOperation name="getRequired_IDB_MediaAccess">
+          <ownedParameter type="/1/IDB" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="getRequired_IDataStorage_MediaAccess">
+          <ownedParameter type="/1/IFileStorage" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDB_MediaAccess">
+          <ownedParameter type="/1/IDB" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDataStorage_MediaAccess">
+          <ownedParameter type="/1/IFileStorage" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="Packaging">
@@ -81,24 +121,36 @@
       <packagedElement xsi:type="uml:Class" name="TagWatermarkingImpl">
         <ownedAttribute name="Required_IDownload_TagWatermarking"/>
         <interfaceRealization name="Provided_IDownload_TagWatermarking" client="/0/TagWatermarking/TagWatermarkingImpl"/>
-        <ownedOperation name="getRequired_IDownload_TagWatermarking"/>
-        <ownedOperation name="setRequired_IDownload_TagWatermarking"/>
+        <ownedOperation name="getRequired_IDownload_TagWatermarking">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_TagWatermarking">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="Cache">
       <packagedElement xsi:type="uml:Class" name="CacheImpl">
         <ownedAttribute name="Required_IDownload_Cache"/>
         <interfaceRealization name="Provided_IDownload_Cache" client="/0/Cache/CacheImpl"/>
-        <ownedOperation name="getRequired_IDownload_Cache"/>
-        <ownedOperation name="setRequired_IDownload_Cache"/>
+        <ownedOperation name="getRequired_IDownload_Cache">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_Cache">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="UserManagement">
       <packagedElement xsi:type="uml:Class" name="UserManagementImpl">
         <ownedAttribute name="Required_IUserDB_UserManagement"/>
         <interfaceRealization name="Provided_IUserManagement_UserManagement" client="/0/UserManagement/UserManagementImpl"/>
-        <ownedOperation name="getRequired_IUserDB_UserManagement"/>
-        <ownedOperation name="setRequired_IUserDB_UserManagement"/>
+        <ownedOperation name="getRequired_IUserDB_UserManagement">
+          <ownedParameter type="/1/IUserDB" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IUserDB_UserManagement">
+          <ownedParameter type="/1/IUserDB" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="DownloadLoadBalancer">
@@ -106,18 +158,30 @@
         <ownedAttribute name="Required_IDownload_Replica2_DownloadLoadBalancer"/>
         <ownedAttribute name="Required_IDownload_Replica1_DownloadLoadBalancer"/>
         <interfaceRealization name="Provided_IDownload_DownloadLoadBalancer" client="/0/DownloadLoadBalancer/DownloadLoadBalancerImpl"/>
-        <ownedOperation name="getRequired_IDownload_Replica2_DownloadLoadBalancer"/>
-        <ownedOperation name="getRequired_IDownload_Replica1_DownloadLoadBalancer"/>
-        <ownedOperation name="setRequired_IDownload_Replica2_DownloadLoadBalancer"/>
-        <ownedOperation name="setRequired_IDownload_Replica1_DownloadLoadBalancer"/>
+        <ownedOperation name="getRequired_IDownload_Replica2_DownloadLoadBalancer">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="getRequired_IDownload_Replica1_DownloadLoadBalancer">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_Replica2_DownloadLoadBalancer">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_Replica1_DownloadLoadBalancer">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xsi:type="uml:Package" name="ParallelWatermarking">
       <packagedElement xsi:type="uml:Class" name="ParallelWatermarkingImpl">
         <ownedAttribute name="Required_IDownload_Watermarking"/>
         <interfaceRealization name="Provided_IDownload_Watermarking" client="/0/ParallelWatermarking/ParallelWatermarkingImpl"/>
-        <ownedOperation name="getRequired_IDownload_Watermarking"/>
-        <ownedOperation name="setRequired_IDownload_Watermarking"/>
+        <ownedOperation name="getRequired_IDownload_Watermarking">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
+        <ownedOperation name="setRequired_IDownload_Watermarking">
+          <ownedParameter type="/1/IDownload" direction="return"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
   </uml:Package>

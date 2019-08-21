@@ -21,7 +21,7 @@ rule Repostiory2Package {
 	)
 }
 
-unique lazy rule OperationInterface2Interface {
+unique lazy rule OperationInterface2Interface { --WARNING - making this *unique* was necessary for some later *references*, but making it *unique* required making it *lazy*, and making it *lazy* mean i need to *manually* use it for every interface
 	from PI : Palladio!Interface
 	to UI : UML!Interface (
 		name <- PI.entityName,
@@ -64,7 +64,7 @@ lazy rule RequiredRole2Getter {
 	to M : UML!Operation (
    		name <- 'get' + R.entityName,
 		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
-		type <- R.requiredInterface__OperationRequiredRole
+		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole) --TODO WARNING - does this represent a return- or a parameter-type? depending on that, it should probably be removed from either the getter or the setter
 	)
 }
 
@@ -80,7 +80,8 @@ lazy rule RequiredRole2Setter {
 	--),
 	M : UML!Operation (
    		name <- 'set' + R.entityName,
-		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)--,
+		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
+		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole) --TODO WARNING - does this represent a return- or a parameter-type? depending on that, it should probably be removed from either the getter or the setter
 		--owningTemplateParameter <- TP
 	)
 }
