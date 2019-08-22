@@ -9,21 +9,31 @@ rule Repository2Model {
 	from R : Palladio!Repository
 	to M : UML!Model (
 		name <- 'MediaStoreUML',
-		nestedPackage <- thisModule.Repostiory2Package(R)
+		nestedPackage <- thisModule.Repostiory2DatatypesPackage(R),
+		nestedPackage <- thisModule.Repostiory2ContractsPackage(R),
+		nestedPackage <- thisModule.Repostiory2DefaultPackage(R)
 	)
 }
 
-unique lazy rule Repostiory2Package {
+unique lazy rule Repostiory2DefaultPackage {
 	from R : Palladio!Repository
 	to P : UML!Package ( --Components
 		name <- R.entityName,
 		nestedPackage <- R.components__Repository
-	),
-	P2 : UML!Package ( --Interfaces		--scheint nicht so zu funktionieren, andere packages werden nicht angelegt
+	)
+}
+
+unique lazy rule Repostiory2ContractsPackage {
+	from R : Palladio!Repository
+	to P2 : UML!Package ( --Interfaces		--scheint nicht so zu funktionieren, andere packages werden nicht angelegt
 		name <- R.entityName + 'Contracts',
 		packagedElement <- R.interfaces__Repository->collect(e | thisModule.OperationInterface2Interface(e))
-	),
-	P3 : UML!Package ( --Datatypes
+	)
+}
+
+unique lazy rule Repostiory2DatatypesPackage {
+	from R : Palladio!Repository
+	to P3 : UML!Package ( --Datatypes
 		name <- R.entityName + 'Datatypes',
 		packagedElement <- R.dataTypes__Repository
 	)
@@ -40,7 +50,7 @@ unique lazy rule OperationInterface2Interface { --WARNING - making this *unique*
 rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
 	to P : UML!Package (
-		nestingPackage <- B.repository__RepositoryComponent,
+		nestingPackage <- thisModule.Repostiory2DefaultPackage(B.repository__RepositoryComponent),
 		name <- B.entityName,
 		packagedElement <- thisModule.BasicComponent2Class(B)
 	)	
