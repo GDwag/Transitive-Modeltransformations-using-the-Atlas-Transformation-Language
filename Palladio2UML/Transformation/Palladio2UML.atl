@@ -5,7 +5,15 @@ module Palladio2UML;
 -- Module Template
 create OUT: UML from IN: Palladio;
 
-rule Repostiory2Package {
+rule Repository2Model {
+	from R : Palladio!Repository
+	to M : UML!Model (
+		name <- 'MediaStoreUML',
+		nestedPackage <- thisModule.Repostiory2Package(R)
+	)
+}
+
+unique lazy rule Repostiory2Package {
 	from R : Palladio!Repository
 	to P : UML!Package ( --Components
 		name <- R.entityName,

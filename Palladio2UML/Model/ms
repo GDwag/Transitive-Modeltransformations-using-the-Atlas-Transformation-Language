@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
-  <uml:Package name="defaultRepository">
+  <uml:Model name="MediaStoreUML">
+    <packagedElement xsi:type="uml:Package" name="defaultRepository"/>
     <packagedElement xsi:type="uml:Package" name="UserDBAdapter">
       <packagedElement xsi:type="uml:Class" name="UserDBAdapterImpl">
         <ownedAttribute name="Required_IDB_UserDBAdapter" type="/1/IDB"/>
@@ -152,7 +153,7 @@
         <ownedOperation name="setRequired_IDownload_Watermarking"/>
       </packagedElement>
     </packagedElement>
-  </uml:Package>
+  </uml:Model>
   <uml:Package name="defaultRepositoryContracts">
     <packagedElement xsi:type="uml:Interface" name="IUserDB"/>
     <packagedElement xsi:type="uml:Interface" name="IDownload"/>
