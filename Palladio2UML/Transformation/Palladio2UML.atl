@@ -127,7 +127,8 @@ lazy rule RequiredRole2Getter {
 	to M : UML!Operation (
    		name <- 'get' + R.entityName,
 		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
-		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole) --this is a return type, though it is a "parameter" in the model
+		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)--, --this is a return type, though it is a "parameter" in the model
+		--ownedTemplateSignature <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(e | thisModule.Signature2TemplateSignature(e)) --not good, because causes signatures to be stored in Operations instead of Interfaces. Workarround?
 	)
 }
 
@@ -144,6 +145,7 @@ lazy rule RequiredRole2Setter {
 	M : UML!Operation (
    		name <- 'set' + R.entityName,
 		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)--,
+		--ownedTemplateSignature <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(e | thisModule.Signature2TemplateSignature(e)) --not good, because causes signatures to be stored in Operations instead of Interfaces. Workarround?
 		--type <- Void --return type: how to set to void?
 		--owningTemplateParameter <- TP
 	)
