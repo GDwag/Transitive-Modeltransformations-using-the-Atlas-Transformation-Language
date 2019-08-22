@@ -8,15 +8,107 @@
     </packagedElement>
   </packagedElement>
   <packagedElement xsi:type="uml:Package" name="defaultRepositoryContracts">
-    <packagedElement xsi:type="uml:Interface" name="IUserDB"/>
-    <packagedElement xsi:type="uml:Interface" name="IDownload"/>
-    <packagedElement xsi:type="uml:Interface" name="IMediaAccess"/>
-    <packagedElement xsi:type="uml:Interface" name="IPackaging"/>
-    <packagedElement xsi:type="uml:Interface" name="IMediaManagement"/>
-    <packagedElement xsi:type="uml:Interface" name="IFacade"/>
-    <packagedElement xsi:type="uml:Interface" name="IDB"/>
-    <packagedElement xsi:type="uml:Interface" name="IFileStorage"/>
-    <packagedElement xsi:type="uml:Interface" name="IUserManagement"/>
+    <packagedElement xsi:type="uml:Interface" name="IUserDB">
+      <ownedOperation name="addUser">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+      <ownedOperation name="getUserData">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IDownload">
+      <ownedOperation name="download">
+        <ownedParameter type="//defaultRepositoryDatatypes/@packagedElement.1" direction="return"/>
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IDownload/download/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IMediaAccess">
+      <ownedOperation name="upload">
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IMediaAccess/upload/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+      <ownedOperation name="getFileList">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IPackaging">
+      <ownedOperation name="zip">
+        <ownedParameter type="//defaultRepositoryDatatypes/@packagedElement.0" direction="return"/>
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IPackaging/zip/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IMediaManagement">
+      <ownedOperation name="upload">
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IMediaManagement/upload/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+      <ownedOperation name="download">
+        <ownedParameter type="//defaultRepositoryDatatypes/@packagedElement.0" direction="return"/>
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IMediaManagement/download/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+      <ownedOperation name="getFileList">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IFacade">
+      <ownedOperation name="upload">
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IFacade/upload/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+      <ownedOperation name="getFileList">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+      <ownedOperation name="register">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+      <ownedOperation name="login">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+      <ownedOperation name="download">
+        <ownedParameter type="//defaultRepositoryDatatypes/@packagedElement.0" direction="return"/>
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IFacade/download/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IDB">
+      <ownedOperation name="query">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+      <ownedOperation name="getFileList">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IFileStorage">
+      <ownedOperation name="getFiles">
+        <ownedParameter type="//defaultRepositoryDatatypes/@packagedElement.0" direction="return"/>
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IFileStorage/getFiles/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+      <ownedOperation name="storeFile">
+        <ownedTemplateSignature parameter="//defaultRepositoryContracts/IFileStorage/storeFile/@ownedTemplateSignature/@ownedParameter.0">
+          <ownedParameter/>
+        </ownedTemplateSignature>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interface" name="IUserManagement">
+      <ownedOperation name="register">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+      <ownedOperation name="login">
+        <ownedTemplateSignature/>
+      </ownedOperation>
+    </packagedElement>
   </packagedElement>
   <packagedElement xsi:type="uml:Package" name="defaultRepository">
     <packagedElement xsi:type="uml:Package" name="UserDBAdapter">

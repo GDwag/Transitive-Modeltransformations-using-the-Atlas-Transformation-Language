@@ -15,6 +15,7 @@ rule Repository2Model {
 	)
 }
 
+--Package Stuff
 unique lazy rule Repostiory2DefaultPackage {
 	from R : Palladio!Repository
 	to P : UML!Package ( --Components
@@ -38,15 +39,59 @@ unique lazy rule Repostiory2DatatypesPackage {
 		packagedElement <- R.dataTypes__Repository
 	)
 }
+--Package Stuff end
 
+--Interface Stuff
 unique lazy rule OperationInterface2Interface { --WARNING - making this *unique* was necessary for some later *references*, but making it *unique* required making it *lazy*, and making it *lazy* mean i need to *manually* use it for every interface
 	from PI : Palladio!Interface
 	to UI : UML!Interface (
 		name <- PI.entityName,
-		protocol <- PI.protocols__Interface
+		protocol <- PI.protocols__Interface,
+		ownedOperation <- PI.signatures__OperationInterface->collect(e | thisModule.Signature2Operation(e))
 	)
 }
 
+
+	--Signature-Stuff
+unique lazy rule Signature2Operation {
+	from S : Palladio!Signature
+	to O : UML!Operation (
+		name <- S.entityName,
+		type <- S.returnType__OperationSignature,
+		ownedTemplateSignature <- thisModule.Signature2TemplateSignature(S) --owned correct? also non-containment alternative available
+	)
+}
+
+--unique lazy rule Signature2TemplateParameter {
+--	from S : Palladio!Signature
+--	to T : UML!OperationTemplateParameter (
+--		signature <- thisModule.Signature2TemplateSignature(S)
+--	)
+--}
+
+unique lazy rule Signature2TemplateSignature {
+	from S :  Palladio!Signature
+	to T : UML!TemplateSignature (
+		ownedParameter <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2TemplateParameter(e)) --owned correct? also non-containment alternative available
+	)
+}
+
+unique lazy rule Parameter2TemplateParameter {
+	from P : Palladio!Parameter
+	to T : UML!TemplateParameter (
+		--TODO how to get from PCM-Parameter-Type to a type definition in UML?
+	)
+}
+	--Signature Stuff end
+--Interface Stuff end
+
+rule Protocol2ProtocalStateMachine { --WARNING no change in model - why?
+	from PP : Palladio!Protocol
+	to UP: UML!ProtocalStateMachine ( --Palladio Protocol only has EString ID, which UML doesnt
+	)
+}
+
+--Component Stuff
 rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
 	to P : UML!Package (
@@ -99,7 +144,7 @@ lazy rule RequiredRole2Setter {
 	M : UML!Operation (
    		name <- 'set' + R.entityName,
 		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)--,
-		--type <- Void --how to set to void?
+		--type <- Void --return type: how to set to void?
 		--owningTemplateParameter <- TP
 	)
 }
@@ -111,6 +156,7 @@ rule ProvidedRole2InterfaceRealization {
 		implementingClassifier <- thisModule.BasicComponent2Class(P.providingEntity_ProvidedRole)
 	)
 }
+--Class Stuff end
 
 --CompositeDataType und CompositeComponent nicht verwandt? gewollt?!
 rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
