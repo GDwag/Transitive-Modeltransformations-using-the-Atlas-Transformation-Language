@@ -64,7 +64,7 @@ lazy rule RequiredRole2Getter {
 	to M : UML!Operation (
    		name <- 'get' + R.entityName,
 		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
-		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole) --TODO WARNING - does this represent a return- or a parameter-type? depending on that, it should probably be removed from either the getter or the setter
+		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole) --this is a return type, though it is a "parameter" in the model
 	)
 }
 
@@ -80,8 +80,8 @@ lazy rule RequiredRole2Setter {
 	--),
 	M : UML!Operation (
    		name <- 'set' + R.entityName,
-		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
-		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole) --TODO WARNING - does this represent a return- or a parameter-type? depending on that, it should probably be removed from either the getter or the setter
+		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)--,
+		--type <- Void --how to set to void?
 		--owningTemplateParameter <- TP
 	)
 }
