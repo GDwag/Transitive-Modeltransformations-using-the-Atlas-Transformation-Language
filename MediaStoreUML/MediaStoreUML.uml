@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_TxOO8MS0EemAbKYWvpTVcg" name="MediaStoreUML">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_T0dJIMS0EemAbKYWvpTVcg">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_fMta0MS0EemAbKYWvpTVcg" name="defaultRepository">
+    <packagedElement xmi:type="uml:Package" xmi:id="_DW-NkMS1EemAbKYWvpTVcg" name="UserDBAdapter">
+      <packagedElement xmi:type="uml:Class" xmi:id="_5917AMS0EemAbKYWvpTVcg" name="UserDBAdapterImpl">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_i7IX4MS1EemAbKYWvpTVcg" annotatedElement="_5917AMS0EemAbKYWvpTVcg">
+          <body>TODO - how to set interfaceRealization?</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_nGfoQMS5EemAbKYWvpTVcg" name="Required_IDB_UserDBAdapter" type="_24MfEMS8EemAbKYWvpTVcg"/>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_RNBIoMS7EemAbKYWvpTVcg" client="_5917AMS0EemAbKYWvpTVcg" supplier="_OMBc0MS7EemAbKYWvpTVcg" contract="_OMBc0MS7EemAbKYWvpTVcg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_9ch2IMS5EemAbKYWvpTVcg" name="getRequired_IDB_UserDBAdapter">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_F4RzEMS9EemAbKYWvpTVcg" annotatedElement="_9ch2IMS5EemAbKYWvpTVcg">
+            <body>TODO - how to add return type?</body>
+          </ownedComment>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_M7gFkMS6EemAbKYWvpTVcg" name="setRequired_IDB_UserDBAdapter"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_rtlhcMS0EemAbKYWvpTVcg" name="defaultRepositoryContracts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OMBc0MS7EemAbKYWvpTVcg" name="IUserDB">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_kXbSkMS8EemAbKYWvpTVcg" name="protocol">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_utwNMMS8EemAbKYWvpTVcg" annotatedElement="_kXbSkMS8EemAbKYWvpTVcg">
+          <body>how to set type to &quot;ProtocolStateMachine&quot;?</body>
+        </ownedComment>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_24MfEMS8EemAbKYWvpTVcg" name="IDB">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_24MfEcS8EemAbKYWvpTVcg" name="protocol">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_24MfEsS8EemAbKYWvpTVcg" annotatedElement="_24MfEcS8EemAbKYWvpTVcg">
+          <body>how to set type to &quot;ProtocolStateMachine&quot;?</body>
+        </ownedComment>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_x_2JsMS0EemAbKYWvpTVcg" name="defaultRepositoryDataTypes"/>
+</uml:Model>
