@@ -8,7 +8,7 @@ create OUT : JaMoPP from IN: Palladio;
 rule Repostiory2Package {
 	from R : Palladio!Repository
 	to CUI : JaMoPP!CompilationUnit (
-		classifiers <- R.interfaces__Repository
+		classifiers <- R.interfaces__Repository->collect(e | thisModule.OperationInterface2Interface(e))
 	),
 	PI : JaMoPP!Package (
 		name <- R.entityName + 'Contracts',
@@ -47,6 +47,25 @@ rule DataType2Class {
 --	)
 --}
 
+--Interface Foo
+unique lazy rule OperationInterface2Interface {
+	from O : Palladio!OperationInterface
+	to I : JaMoPP!Interface (
+		name <- O.entityName,
+		typeParameters <- O.signatures__OperationInterface
+	)
+}
+
+rule Signature2TypeParameter {
+	from S :  Palladio!Signature
+	to T :  JaMoPP!TypeParameter (
+		name <- S.entityName,
+		extendTypes <- Set {S.parameters__OperationSignature}
+	)
+}
+--Interface Foo end
+
+--Component Foo
 rule BasicComponent2CompilationUnit {
 	from B : Palladio!BasicComponent
 	to CU : JaMoPP!CompilationUnit (
@@ -66,11 +85,20 @@ unique lazy rule BasicComponent2Class {
 	)
 }
 
+	--Component Member Foo
 lazy rule RequiredRole2Field {
 	from R : Palladio!OperationRequiredRole
 	to F : JaMoPP!Field(
-   		name <- R.entityName--,
-		--typeParameters <- R.requiredInterface__OperationRequiredRole
+   		name <- R.entityName,
+		typeReference <- thisModule.OperationInterface2ClassifierReference(R.requiredInterface__OperationRequiredRole)
+	)
+}
+
+		--Member Ref. to Interface
+lazy rule OperationInterface2ClassifierReference {
+	from I : Palladio!OperationInterface
+	to R : JaMoPP!ClassifierReference (
+		target <- thisModule.OperationInterface2Interface(I)
 	)
 }
 
@@ -85,8 +113,16 @@ lazy rule RequiredRole2Getter {
 lazy rule RequiredRole2Setter {
 	from R : Palladio!OperationRequiredRole
 	to S: JaMoPP!ClassMethod(
-		name <- 'set' + R.entityName--,
-		--parameters <- R.requiredInterface__OperationRequiredRole
+		name <- 'set' + R.entityName,
+		parameters <- thisModule.OperationInterface2Parameter(R.requiredInterface__OperationRequiredRole)
+	)
+}
+
+		--Member Ref. to Interface
+lazy rule OperationInterface2Parameter {
+	from I : Palladio!OperationInterface
+	to P : JaMoPP!OrdinaryParameter (
+		typeReference <- thisModule.OperationInterface2ClassifierReference(I)
 	)
 }
 
@@ -96,22 +132,8 @@ rule ProvidedRole2ClassifierReference {
 		target <- thisModule.BasicComponent2Class(P.providingEntity_ProvidedRole)
 	)
 }
-
-rule OperationInterface2Interface {
-	from O : Palladio!OperationInterface
-	to I : JaMoPP!Interface (
-		name <- O.entityName,
-		typeParameters <- O.signatures__OperationInterface
-	)
-}
-
-rule Signature2TypeParameter {
-	from S :  Palladio!Signature
-	to T :  JaMoPP!TypeParameter (
-		name <- S.entityName,
-		extendTypes <- Set {S.parameters__OperationSignature}
-	)
-}
+	--Component Member Foo end
+--Component Foo end
 
 --no CompositeDataType found in MediaStore example
 --rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
