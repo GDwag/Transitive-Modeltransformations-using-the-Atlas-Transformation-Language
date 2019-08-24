@@ -20,7 +20,8 @@ unique lazy rule Package2Package {
 	from P1 : UML!Package
 	to P2 : JaMoPP!Package (
 		name <- P1.name,
-		compilationUnits <- P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e))
+		--compilationUnits <- P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e)),
+		compilationUnits <- if P1.nestedPackage.isEmpty() then thisModule.Package2CompilationUnit(P1) else P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e)) endif
 	)
 }
 
@@ -28,15 +29,15 @@ unique lazy rule Package2CompilationUnit {
 	from P : UML!Package
 	to C : JaMoPP!CompilationUnit (
 		name <- P.name,
-		classifiers <- P.packagedElement
+		classifiers <- P.packagedElement->collect(e | if e->oclIsTypeOf(UML!Interface) then thisModule.Interface2Interface(e) else thisModule.Class2Class(e) endif)
 	)
 }
 
-rule Class2Class {
+unique lazy rule Class2Class {
 	from C1: UML!Class
 	to C2 : JaMoPP!Class(
 		name <- C1.name,
-		implements <- C1.interfaceRealization,
+		--implements <- C1.interfaceRealization, --WARNING TODO "Feature interfaceRealization does not exist on DataType" - WTF?
 		members <- C1.ownedAttribute,
 		members <- C1.ownedOperation
 	)
@@ -58,13 +59,13 @@ rule Operation2ClassMethod {
 	
 }
 
-rule Extension2ClassifierReference {
-	from E : UML!Extension
+rule InterfaceRealization2ClassifierReference {
+	from E : UML!InterfaceRealization
 	to C : JaMoPP!ClassifierReference(
 	)
 }
 
-rule Interface2Interface {
+unique lazy rule Interface2Interface {
 	from I1 : UML!Interface
 	to I2 : JaMoPP!Interface (
 		name <- I1.name--,
