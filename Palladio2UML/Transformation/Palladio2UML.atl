@@ -124,7 +124,7 @@ rule RequiredRole2Attribute {
 	from R : Palladio!OperationRequiredRole
 	to M : UML!Property (
    		name <- R.entityName,
-		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)--,
+		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)
 		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole) --"feature 'class' is not changeable"
 		-- + Parameter in Konstruktor -- ist eigener typ (?)
 	)

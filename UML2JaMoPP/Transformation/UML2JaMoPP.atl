@@ -29,25 +29,44 @@ unique lazy rule Package2CompilationUnit {
 	from P : UML!Package
 	to C : JaMoPP!CompilationUnit (
 		name <- P.name,
-		classifiers <- P.packagedElement->collect(e | if e->oclIsTypeOf(UML!Interface) then thisModule.Interface2Interface(e) else thisModule.Class2Class(e) endif)
+		classifiers <- P.packagedElement -- ->collect(e | if e->oclIsTypeOf(UML!Interface) then thisModule.Interface2Interface(e) else thisModule.Class2Class(e) endif)
 	)
 }
 
-unique lazy rule Class2Class {
+--unique lazy 
+rule Class2Class {
 	from C1: UML!Class
 	to C2 : JaMoPP!Class(
 		name <- C1.name,
-		implements <- C1.interfaceRealization, --WARNING TODO "Feature interfaceRealization does not exist on DataType" - WTF?
-		members <- C1.ownedAttribute,
+		implements <- C1.interfaceRealization,
+		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
 		members <- C1.ownedOperation
 	)
 }
 
-rule Attribute2Field {
-	from A : UML!Property
+rule DataType2Class{
+	from C1: UML!DataType
+	to C2 : JaMoPP!Class(
+		name <- C1.name, --all below would exist, but is unnecessary because it doesn't exist in Palladio
+		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
+		members <- C1.ownedOperation
+	)
+}
+
+unique lazy rule Property2Field {
+	from P : UML!Property
 	to F : JaMoPP!Field(
-   		name <- A.name
+   		name <- P.name,
+		typeReference <- thisModule.Interface2ClassifierReference(P.type)
+		--type <- P.type
 		-- + type
+	)
+}
+
+unique lazy rule Interface2ClassifierReference {
+	from I : UML!Interface
+	to R : JaMoPP!ClassifierReference (
+		target <- I
 	)
 }
 
@@ -65,7 +84,8 @@ rule InterfaceRealization2ClassifierReference {
 	)
 }
 
-unique lazy rule Interface2Interface {
+--unique lazy 
+rule Interface2Interface {
 	from I1 : UML!Interface
 	to I2 : JaMoPP!Interface (
 		name <- I1.name,
