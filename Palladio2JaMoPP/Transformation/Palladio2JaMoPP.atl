@@ -80,6 +80,7 @@ unique lazy rule BasicComponent2Class {
 		name <- B.entityName + 'Impl',
 		implements <- B.providedRoles_InterfaceProvidingEntity,
 		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Field(e)),
+		members <- thisModule.BasicComponent2Constructor(B),
 		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
 		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
 	)
@@ -91,6 +92,15 @@ lazy rule RequiredRole2Field {
 	to F : JaMoPP!Field(
    		name <- R.entityName,
 		typeReference <- thisModule.OperationInterface2ClassifierReference(R.requiredInterface__OperationRequiredRole)
+	)
+}
+	
+lazy rule BasicComponent2Constructor {
+	from B : Palladio!BasicComponent
+	to C : JaMoPP!Constructor (
+		name <- B.entityName + 'Constructor',
+		parameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.OperationInterface2Parameter(e.requiredInterface__OperationRequiredRole)),
+		typeParameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | e.requiredInterface__OperationRequiredRole.signatures__OperationInterface)
 	)
 }
 
