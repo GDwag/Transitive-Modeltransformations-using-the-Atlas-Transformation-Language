@@ -3,16 +3,32 @@
 
 module UML2JaMoPP;
 -- Module Template
-create OUT: JaMoPP from IN: UML;
+create OUT: JaMoPP from IN: UML; 
 
-rule Package2Package {
+helper context UML!Model def: setupPackages() : String =
+	self.nestedPackage->collect(e | thisModule.Package2Package(e).name)->sum();
+
+rule Model2EmptyModel {
+	from M : UML!Model
+	to E : JaMoPP!EmptyModel (
+		name <-	M->setupPackages(), --dirty Hack to force hierarchical
+		name <- M.name
+	)
+}
+
+unique lazy rule Package2Package {
 	from P1 : UML!Package
-	to CU: JaMoPP!CompilationUnit(
-		classifiers <- P1.packagedElement
-	),
-	P2 : JaMoPP!Package(
+	to P2 : JaMoPP!Package (
 		name <- P1.name,
-		compilationUnits <- CU
+		compilationUnits <- P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e))
+	)
+}
+
+unique lazy rule Package2CompilationUnit {
+	from P : UML!Package
+	to C : JaMoPP!CompilationUnit (
+		name <- P.name,
+		classifiers <- P.packagedElement
 	)
 }
 
@@ -20,8 +36,9 @@ rule Class2Class {
 	from C1: UML!Class
 	to C2 : JaMoPP!Class(
 		name <- C1.name,
-		implements <- C1.extension,
-		members <- C1.ownedAttribute
+		implements <- C1.interfaceRealization,
+		members <- C1.ownedAttribute,
+		members <- C1.ownedOperation
 	)
 }
 
