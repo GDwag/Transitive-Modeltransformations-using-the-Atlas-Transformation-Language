@@ -29,24 +29,39 @@ unique lazy rule Package2CompilationUnit {
 	from P : UML!Package
 	to C : JaMoPP!CompilationUnit (
 		name <- P.name,
-		classifiers <- P.packagedElement -- ->collect(e | if e->oclIsTypeOf(UML!Interface) then thisModule.Interface2Interface(e) else thisModule.Class2Class(e) endif)
+		classifiers <- P.packagedElement-- ->collect(e | 
+			--if e->oclIsTypeOf(UML!Interface) then thisModule.Interface2Interface(e) 
+			--else if e->oclIsTypeOf(UML!DataType) then thisModule.DataType2Class 
+			--else thisModule.Class2Class(e) endif endif)
+			--without this lazy stuff, Behaviors are Translated to Classes outside of any context; with it, there are errors
+	)
+}
+
+--unique lazy 
+rule Interface2Interface {
+	from I1 : UML!Interface
+	to I2 : JaMoPP!Interface (
+		name <- I1.name,
+		members <- I1.ownedOperation
+		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
 
 --unique lazy 
 rule Class2Class {
 	from C1: UML!Class
-	to C2 : JaMoPP!Class(
+	to C2 : JaMoPP!Class (
 		name <- C1.name,
 		implements <- C1.interfaceRealization,
 		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
+		members <- C1.ownedBehavior->collect (e | thisModule.Behavior2Constructor(e)),
 		members <- C1.ownedOperation
 	)
 }
 
-rule DataType2Class{
+unique lazy rule DataType2Class{
 	from C1: UML!DataType
-	to C2 : JaMoPP!Class(
+	to C2 : JaMoPP!Class (
 		name <- C1.name, --all below would exist, but is unnecessary because it doesn't exist in Palladio
 		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
 		members <- C1.ownedOperation
@@ -55,11 +70,29 @@ rule DataType2Class{
 
 unique lazy rule Property2Field {
 	from P : UML!Property
-	to F : JaMoPP!Field(
+	to F : JaMoPP!Field (
    		name <- P.name,
 		typeReference <- thisModule.Interface2ClassifierReference(P.type)
 		--type <- P.type
 		-- + type
+	)
+}
+
+--WARNING TODO Behavior isKindOf(UML!Class), which is why they are created as classes outside of any context.
+lazy rule Behavior2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
+	from B : UML!Behavior
+	to C : JaMoPP!Constructor (
+		name <- B.name + 'Constructor',
+		parameters <- B.ownedParameter->collect(e | thisModule.Parameter2Parameter(e))--,
+		--typeParameters <- B.ownedParameter
+	)
+}
+
+unique lazy rule Parameter2Parameter {
+	from P1 : UML!Parameter
+	to P2 : JaMoPP!OrdinaryParameter (
+		name <- P1.name,
+		typeReference <- thisModule.Interface2ClassifierReference(P1.type)
 	)
 }
 
@@ -81,16 +114,6 @@ rule Operation2ClassMethod {
 rule InterfaceRealization2ClassifierReference {
 	from E : UML!InterfaceRealization
 	to C : JaMoPP!ClassifierReference(
-	)
-}
-
---unique lazy 
-rule Interface2Interface {
-	from I1 : UML!Interface
-	to I2 : JaMoPP!Interface (
-		name <- I1.name,
-		members <- I1.ownedOperation
-		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
 
