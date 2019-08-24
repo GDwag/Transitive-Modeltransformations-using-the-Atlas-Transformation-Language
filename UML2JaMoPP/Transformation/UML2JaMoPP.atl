@@ -11,7 +11,7 @@ helper context UML!Model def: setupPackages() : String =
 rule Model2EmptyModel {
 	from M : UML!Model
 	to E : JaMoPP!EmptyModel (
-		name <-	M->setupPackages(), --dirty Hack to force hierarchical
+		name <-	M->setupPackages(), --dirty Hack to force hierarchical creation of Packages
 		name <- M.name
 	)
 }

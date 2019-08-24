@@ -55,7 +55,7 @@ unique lazy rule OperationInterface2Interface { --WARNING - making this *unique*
 	to UI : UML!Interface (
 		name <- PI.entityName,
 		protocol <- PI.protocols__Interface,
-		ownedOperation <- PI.signatures__OperationInterface->collect(e | thisModule.Signature2Operation(e))
+		ownedOperation <- PI.signatures__OperationInterface->collect(e | thisModule.Signature2Operation(e))--,
 	)
 }
 
@@ -115,8 +115,18 @@ unique lazy rule BasicComponent2Class {
 		name <- B.entityName + 'Impl',
 		interfaceRealization <- B.providedRoles_InterfaceProvidingEntity, --NOT extension - extensions refer to stereotypes
 		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
+		ownedBehavior <- thisModule.Component2Behaviour(B),
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
+	)
+}
+
+-- is this comparable to a constructor
+lazy rule Component2Behaviour {
+	from B : Palladio!BasicComponent
+	to A : UML!Activity(
+		name <- B.entityName + 'Behavior',
+		ownedParameter <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Parameter(e))
 	)
 }
 
@@ -125,8 +135,16 @@ rule RequiredRole2Attribute {
 	to M : UML!Property (
    		name <- R.entityName,
 		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)
-		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole) --"feature 'class' is not changeable"
+		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole) --"feature 'class' is not changeable" - allready given by inheritance?
 		-- + Parameter in Konstruktor -- ist eigener typ (?)
+	)
+}
+
+lazy rule RequiredRole2Parameter {
+	from R : Palladio!OperationRequiredRole
+	to M : UML!Parameter (
+   		name <- R.entityName,
+		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)
 	)
 }
 
