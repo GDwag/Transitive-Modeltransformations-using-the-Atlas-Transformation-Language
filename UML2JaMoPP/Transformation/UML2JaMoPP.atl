@@ -50,6 +50,14 @@ rule Attribute2Field {
 	)
 }
 
+rule Operation2ClassMethod {
+	from O : UML!Operation
+	to M : JaMoPP!ClassMethod (
+		name <- O.name
+	)
+	
+}
+
 rule Extension2ClassifierReference {
 	from E : UML!Extension
 	to C : JaMoPP!ClassifierReference(
