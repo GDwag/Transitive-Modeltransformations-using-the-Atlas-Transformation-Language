@@ -37,7 +37,7 @@ unique lazy rule Class2Class {
 	from C1: UML!Class
 	to C2 : JaMoPP!Class(
 		name <- C1.name,
-		--implements <- C1.interfaceRealization, --WARNING TODO "Feature interfaceRealization does not exist on DataType" - WTF?
+		implements <- C1.interfaceRealization, --WARNING TODO "Feature interfaceRealization does not exist on DataType" - WTF?
 		members <- C1.ownedAttribute,
 		members <- C1.ownedOperation
 	)
@@ -68,7 +68,8 @@ rule InterfaceRealization2ClassifierReference {
 unique lazy rule Interface2Interface {
 	from I1 : UML!Interface
 	to I2 : JaMoPP!Interface (
-		name <- I1.name--,
+		name <- I1.name,
+		members <- I1.ownedOperation
 		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
