@@ -42,10 +42,18 @@ rule Interface2Interface {
 	from I1 : UML!Interface
 	to I2 : JaMoPP!Interface (
 		name <- I1.name,
-		members <- I1.ownedOperation
+		members <- I1.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e))
 		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
+
+--rule Signature2TypeParameter {
+--	from S :  UML!Parameter
+--	to T :  JaMoPP!TypeParameter (
+--		name <- S.entityName--,
+--		--extendTypes <- Set {S.parameters__OperationSignature} --from Palladio2JaMoPP
+--	)
+--}
 
 --unique lazy 
 rule Class2Class {
@@ -55,16 +63,17 @@ rule Class2Class {
 		implements <- C1.interfaceRealization,
 		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
 		members <- C1.ownedBehavior->collect (e | thisModule.Behavior2Constructor(e)),
-		members <- C1.ownedOperation
+		members <- C1.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e))
 	)
 }
 
-unique lazy rule DataType2Class{
+--unique lazy 
+rule DataType2Class{
 	from C1: UML!DataType
 	to C2 : JaMoPP!Class (
 		name <- C1.name, --all below would exist, but is unnecessary because it doesn't exist in Palladio
 		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
-		members <- C1.ownedOperation
+		members <- C1.ownedOperation->collect(e | thisModule.Operation2ClassMethod(e))
 	)
 }
 
@@ -103,7 +112,7 @@ unique lazy rule Interface2ClassifierReference {
 	)
 }
 
-rule Operation2ClassMethod {
+unique lazy rule Operation2ClassMethod { --if not "unique lazy", there seems to be some kind of "race condition", causing these to be created outside of their intended scope after doing seemingly unrelated changes
 	from O : UML!Operation
 	to M : JaMoPP!ClassMethod (
 		name <- O.name
