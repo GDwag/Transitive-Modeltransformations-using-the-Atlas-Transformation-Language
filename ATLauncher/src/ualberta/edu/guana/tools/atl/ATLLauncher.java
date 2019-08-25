@@ -32,16 +32,16 @@ import org.eclipse.m2m.atl.emftvm.util.TimingData;
 public class ATLLauncher {
 	
 	// Some constants for quick initialization and testing.
-	public final static String IN_METAMODEL = "./metamodels/Composed.ecore";
-	public final static String IN_METAMODEL_NAME = "Composed";
-	public final static String OUT_METAMODEL = "./metamodels/Simple.ecore";
-	public final static String OUT_METAMODEL_NAME = "Simple";
+	public final static String IN_METAMODEL = "../Palladio2UML/MetaM/pcm.ecore";//"http://palladiosimulator.org/PalladioComponentModel/5.2";
+	public final static String IN_METAMODEL_NAME = "Palladio";
+	public final static String OUT_METAMODEL = "../Palladio2UML/MetaM/UML.ecore";//"http://www.eclipse.org/uml2/5.0.0/UML";
+	public final static String OUT_METAMODEL_NAME = "UML";
 	
-	public final static String IN_MODEL = "./models/composed.xmi";
-	public final static String OUT_MODEL = "./models/simple.xmi";
+	public final static String IN_MODEL = "../MediaStore3_Model/ms.repository";
+	public final static String OUT_MODEL = "../Palladio2UML/Model/ms";
 	
-	public final static String TRANSFORMATION_DIR = "./transformations/";
-	public final static String TRANSFORMATION_MODULE= "Composed2Simple";
+	public final static String TRANSFORMATION_DIR = "../Palladio2UML/Transformation/";
+	public final static String TRANSFORMATION_MODULE= "Palladio2UML";
 	
 	// The input and output metamodel nsURIs are resolved using lazy registration of metamodels, see below.
 	private String inputMetamodelNsURI;
