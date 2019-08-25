@@ -63,7 +63,8 @@ rule Class2Class {
 		implements <- C1.interfaceRealization,
 		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
 		members <- C1.ownedBehavior->collect (e | thisModule.Behavior2Constructor(e)),
-		members <- C1.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e))
+		members <- C1.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e)),
+		members <- C1.nestedClassifier --From InnerDeclaration of Palladios CompositeDataType
 	)
 }
 
