@@ -3,6 +3,8 @@ package ualberta.edu.guana.tools.atl;
 import java.io.IOException;
 import java.util.Collections;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.BasicMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,6 +15,14 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.merge.BatchMerger;
+import org.eclipse.emf.compare.merge.IBatchMerger;
+import org.eclipse.emf.compare.merge.IMerger;
+import org.eclipse.emf.compare.scope.DefaultComparisonScope;
+import org.eclipse.emf.compare.scope.IComparisonScope; //https://repo.eclipse.org/content/repositories/emfcompare-snapshots/
 import org.eclipse.m2m.atl.emftvm.EmftvmFactory;
 import org.eclipse.m2m.atl.emftvm.ExecEnv;
 import org.eclipse.m2m.atl.emftvm.Metamodel;
@@ -79,12 +89,12 @@ public class ATLLauncher {
 		 * we need an .xmi parser because our in/output models are .xmi and our transformations are
 		 * compiled using the ATL-EMFTV compiler that generates .emftvm files
 		 */
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl()); //*!* error "a registered resource factory is needed" shouldn't appear, as this is where the ResourceFatory is registered
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emftvm", new EMFTVMResourceFactoryImpl());
 		
 		// Load models
 		Model inModel = EmftvmFactory.eINSTANCE.createModel();
-		inModel.setResource(rs.getResource(URI.createURI(inModelPath, true), true));
+		inModel.setResource(rs.getResource(URI.createURI(inModelPath, true), true)); //"a registered resource factory is needed" see *!*
 		env.registerInputModel("IN", inModel);
 		
 		Model outModel = EmftvmFactory.eINSTANCE.createModel();
@@ -109,6 +119,28 @@ public class ATLLauncher {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		// Compare Models
+		// From https://www.eclipse.org/emf/compare/documentation/latest/FAQ.html#How_can_I_programmatically_add_my_model_file_extension_in_EMF_Compare_so_that_it_is_called_automatically_.3F
+		URI uri1 = URI.createFileURI("path/to/first/model.xmi"); //*!** insert copy of old Transformed Model here - create that copy in this code automatically? history comparison possible instead?
+		URI uri2 = URI.createFileURI("path/to/second/model.xmi");
+
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+
+		ResourceSet resourceSet1 = new ResourceSetImpl();
+		ResourceSet resourceSet2 = new ResourceSetImpl();
+
+		resourceSet1.getResource(uri1, true);
+		resourceSet2.getResource(uri2, true);
+
+		IComparisonScope scope = new DefaultComparisonScope(resourceSet1, resourceSet2, resourceSet1);//DefaultComparisonScope(resourceSet1, resourceSet2); example had only 2 parameters, the three, are "left, right, origin", origin being a "common ancestor of left and right"?!
+		Comparison comparison = EMFCompare.builder().build().compare(scope);
+
+		EList<Diff> differences = comparison.getDifferences();
+		// Let's merge every single diff
+		IMerger.Registry mergerRegistry = new IMerger.RegistryImpl();
+		IBatchMerger merger = new BatchMerger(mergerRegistry);
+		merger.copyAllLeftToRight(differences, new BasicMonitor());
 	}
 	
 	/*

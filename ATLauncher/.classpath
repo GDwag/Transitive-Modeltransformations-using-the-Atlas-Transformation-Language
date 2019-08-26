@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore.xmi_2.10.0.v20140514-1158.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore_2.10.0.v20140514-1158.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.10.0.v20140514-1158.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Gilbert/Dropbox/Studium/SS19/Praktikum Ingenieurmäßige Software-Entwicklung/ATLauncher/ATLauncher/lib/org.eclipse.emf.compare-3.2.0-20161213.092057-12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
