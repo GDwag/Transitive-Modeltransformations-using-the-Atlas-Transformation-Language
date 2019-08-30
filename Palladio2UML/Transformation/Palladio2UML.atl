@@ -115,17 +115,17 @@ unique lazy rule BasicComponent2Class {
 		name <- B.entityName + 'Impl',
 		interfaceRealization <- B.providedRoles_InterfaceProvidingEntity, --NOT extension - extensions refer to stereotypes
 		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
-		ownedBehavior <- thisModule.Component2Behaviour(B),
+		ownedOperation <- thisModule.Component2Operation(B),
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
 		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
 	)
 }
 
--- is this comparable to a constructor
-lazy rule Component2Behaviour {
+-- constructor
+unique lazy rule Component2Operation {
 	from B : Palladio!BasicComponent
-	to A : UML!Activity(
-		name <- B.entityName + 'Behavior',
+	to A : UML!Operation(
+		name <- B.entityName,
 		ownedParameter <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Parameter(e))
 	)
 }
