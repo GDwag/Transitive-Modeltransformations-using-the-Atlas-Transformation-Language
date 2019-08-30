@@ -1,8 +1,8 @@
 package atlTransformationEMFCompare;
 
-import java.util.Map;
+//import java.util.Map;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 //https://www.eclipse.org/emf/compare/documentation/latest/developer/how-to-open-compare-dialog.html
 //https://stackoverflow.com/questions/26944174/load-emf-model-instance-from-xmi-file
@@ -12,21 +12,21 @@ import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.emf.compare.ide.ui.internal.configuration.EMFCompareConfiguration;
 import org.eclipse.emf.compare.ide.ui.internal.editor.ComparisonEditorInput;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
-import org.eclipse.emf.ecore.EPackage;
+//import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+//import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+//import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 //import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.preference.PreferenceStore;
-import org.eclipse.uml2.uml.UMLPackage;
+//import org.eclipse.jface.preference.IPreferenceStore;
+//import org.eclipse.jface.preference.PreferenceStore;
+//import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.compare.CompareUI;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notifier;
+//import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
@@ -78,10 +78,12 @@ public class CompareTest {
 	
 	public void run() {
 		//try {
-			CompareEditorInput input = new ComparisonEditorInput(new EMFCompareConfiguration(new CompareConfiguration()), comparison, editingDomain, adapterFactory);
+			CompareEditorInput input = new ComparisonEditorInput(new EMFCompareConfiguration(new CompareConfiguration()), comparison, editingDomain, adapterFactory); //thread mit genau meinem Problem: https://www.eclipse.org/forums/index.php?t=msg&th=220139/
 			CompareUI.openCompareDialog(input);
-		//} catch (ExceptionInInitializerError e) {
-		//	System.out.println("ExceptionInInitializerError, with message: " + e.getMessage());
-		//}
+		/*} catch (ExceptionInInitializerError e) {
+			System.out.println("ExceptionInInitializerError, with message: " + e.getMessage());
+			System.out.println("ExceptionInInitializerError, with exception: " + e.getException());
+			System.out.println("ExceptionInInitializerError, with cause: " + e.getCause());
+		}*/
 	}
 }
