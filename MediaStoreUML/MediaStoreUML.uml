@@ -5,30 +5,78 @@
   </packageImport>
   <packagedElement xmi:type="uml:Package" xmi:id="_fMta0MS0EemAbKYWvpTVcg" name="defaultRepository">
     <packagedElement xmi:type="uml:Package" xmi:id="_DW-NkMS1EemAbKYWvpTVcg" name="EnqueueDownloadCache">
-      <packagedElement xmi:type="uml:Class" xmi:id="_5917AMS0EemAbKYWvpTVcg" name="EnqueueDownloadCache">
+      <packagedElement xmi:type="uml:Class" xmi:id="_5917AMS0EemAbKYWvpTVcg" name="EnqueueDownloadCacheImpl">
         <ownedComment xmi:type="uml:Comment" xmi:id="_i7IX4MS1EemAbKYWvpTVcg" annotatedElement="_5917AMS0EemAbKYWvpTVcg">
           <body>TODO - how to set interfaceRealization?</body>
         </ownedComment>
         <ownedComment xmi:type="uml:Comment" xmi:id="_dfxUMNSUEemqEY6fsa17pw" annotatedElement="_5917AMS0EemAbKYWvpTVcg">
           <body>WARNING - IDownload is Required AND provided!</body>
         </ownedComment>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_nGfoQMS5EemAbKYWvpTVcg" name="IDownload"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_nGfoQMS5EemAbKYWvpTVcg" name="IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_RNBIoMS7EemAbKYWvpTVcg" client="_5917AMS0EemAbKYWvpTVcg" supplier="_OMBc0MS7EemAbKYWvpTVcg" contract="_OMBc0MS7EemAbKYWvpTVcg"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_9ch2IMS5EemAbKYWvpTVcg" name="getIDownload">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_F4RzEMS9EemAbKYWvpTVcg" annotatedElement="_9ch2IMS5EemAbKYWvpTVcg">
-            <body>TODO - how to add return type?</body>
-          </ownedComment>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_MzXK0NSgEemqEY6fsa17pw" type="_OMBc0MS7EemAbKYWvpTVcg" direction="return"/>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_M7gFkMS6EemAbKYWvpTVcg" name="setIDownload"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_M7gFkMS6EemAbKYWvpTVcg" name="setIDownload">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_Kj_wQNSgEemqEY6fsa17pw" name="IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_rtlhcMS0EemAbKYWvpTVcg" name="defaultRepositoryContracts">
-    <packagedElement xmi:type="uml:Interface" xmi:id="_OMBc0MS7EemAbKYWvpTVcg" name="IDownload"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_VTZTMNSVEemqEY6fsa17pw" name="IFileStorage"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_alQY8NSWEemqEY6fsa17pw" name="IMediaAccess"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_fIZM8NSWEemqEY6fsa17pw" name="IPackaging"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_hp3EINSWEemqEY6fsa17pw" name="IMediaManagement"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OMBc0MS7EemAbKYWvpTVcg" name="IDownload">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_fjJqwNSgEemqEY6fsa17pw" name="download">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_gTOnYNShEemqEY6fsa17pw" annotatedElement="_fjJqwNSgEemqEY6fsa17pw">
+          <body>WARNING - IDownloads' &quot;download&quot; Operation has AudioCollectionRequest as return type, IMediaManagements' &quot;download&quot; Operation has FileContent as return type (in original OCM MediaStoreSmallerModel)</body>
+        </ownedComment>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_kSa2QNSgEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_lyW_ANSgEemqEY6fsa17pw" type="_4yZF8NSWEemqEY6fsa17pw" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_VTZTMNSVEemqEY6fsa17pw" name="IFileStorage">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_oICH0NSeEemqEY6fsa17pw" name="getFiles">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_IGLfcNSfEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_5hXVsNSfEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_VTG-UNSgEemqEY6fsa17pw" name="storeFile">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_b4kPYNSgEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_alQY8NSWEemqEY6fsa17pw" name="IMediaAccess">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_poI9wNSgEemqEY6fsa17pw" name="upload">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_tNi-MNSgEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_0TcC0NSgEemqEY6fsa17pw" name="getFileList">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_5_g00NSgEemqEY6fsa17pw" annotatedElement="_0TcC0NSgEemqEY6fsa17pw">
+          <body>WARNING - has no return type or parameter (in original PCM MediaStoreSmallerModel)&#xD;
+</body>
+        </ownedComment>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_fIZM8NSWEemqEY6fsa17pw" name="IPackaging">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_974jwNSgEemqEY6fsa17pw" name="zip">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_BzDpoNShEemqEY6fsa17pw" name="audios" type="_4yZF8NSWEemqEY6fsa17pw"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_DlIEMNShEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hp3EINSWEemqEY6fsa17pw" name="IMediaManagement">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_G8JqYNShEemqEY6fsa17pw" name="upload">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_G8JqYdShEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_N00yYNShEemqEY6fsa17pw" name="download">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_eXkL8NShEemqEY6fsa17pw" annotatedElement="_N00yYNShEemqEY6fsa17pw">
+          <body>WARNING - IDownloads' &quot;download&quot; Operation has AudioCollectionRequest as return type, IMediaManagements' &quot;download&quot; Operation has FileContent as return type (in original OCM MediaStoreSmallerModel)</body>
+        </ownedComment>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_N01ZcNShEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_N01ZcdShEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_jQXG4NShEemqEY6fsa17pw" name="getFileList">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_jQXG4dShEemqEY6fsa17pw" annotatedElement="_jQXG4NShEemqEY6fsa17pw">
+          <body>WARNING - has no return type or parameter (in original PCM MediaStoreSmallerModel)&#xD;
+</body>
+        </ownedComment>
+      </ownedOperation>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_x_2JsMS0EemAbKYWvpTVcg" name="defaultRepositoryDataTypes">
     <packagedElement xmi:type="uml:Class" xmi:id="_4yZF8NSWEemqEY6fsa17pw" name="AudioCollectionRequest">
