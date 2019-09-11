@@ -66,20 +66,6 @@ unique lazy rule Signature2Operation {
 	to O : UML!Operation (
 		name <- S.entityName,
 		type <- S.returnType__OperationSignature,
-		ownedTemplateSignature <- thisModule.Signature2TemplateSignature(S) --owned correct? also non-containment alternative available
-	)
-}
-
---unique lazy rule Signature2TemplateParameter {
---	from S : Palladio!Signature
---	to T : UML!OperationTemplateParameter (
---		signature <- thisModule.Signature2TemplateSignature(S)
---	)
---}
-
-unique lazy rule Signature2TemplateSignature {
-	from S :  Palladio!Signature
-	to T : UML!TemplateSignature (
 		ownedParameter <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2TemplateParameter(e)) --owned correct? also non-containment alternative available
 	)
 }
