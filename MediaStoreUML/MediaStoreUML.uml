@@ -4,37 +4,37 @@
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
   <packagedElement xmi:type="uml:Package" xmi:id="_fMta0MS0EemAbKYWvpTVcg" name="defaultRepository">
-    <packagedElement xmi:type="uml:Package" xmi:id="_DW-NkMS1EemAbKYWvpTVcg" name="UserDBAdapter">
-      <packagedElement xmi:type="uml:Class" xmi:id="_5917AMS0EemAbKYWvpTVcg" name="UserDBAdapterImpl">
+    <packagedElement xmi:type="uml:Package" xmi:id="_DW-NkMS1EemAbKYWvpTVcg" name="EnqueueDownloadCache">
+      <packagedElement xmi:type="uml:Class" xmi:id="_5917AMS0EemAbKYWvpTVcg" name="EnqueueDownloadCache">
         <ownedComment xmi:type="uml:Comment" xmi:id="_i7IX4MS1EemAbKYWvpTVcg" annotatedElement="_5917AMS0EemAbKYWvpTVcg">
           <body>TODO - how to set interfaceRealization?</body>
         </ownedComment>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_nGfoQMS5EemAbKYWvpTVcg" name="Required_IDB_UserDBAdapter" type="_24MfEMS8EemAbKYWvpTVcg"/>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_dfxUMNSUEemqEY6fsa17pw" annotatedElement="_5917AMS0EemAbKYWvpTVcg">
+          <body>WARNING - IDownload is Required AND provided!</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_nGfoQMS5EemAbKYWvpTVcg" name="IDownload"/>
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_RNBIoMS7EemAbKYWvpTVcg" client="_5917AMS0EemAbKYWvpTVcg" supplier="_OMBc0MS7EemAbKYWvpTVcg" contract="_OMBc0MS7EemAbKYWvpTVcg"/>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_9ch2IMS5EemAbKYWvpTVcg" name="getRequired_IDB_UserDBAdapter">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_9ch2IMS5EemAbKYWvpTVcg" name="getIDownload">
           <ownedComment xmi:type="uml:Comment" xmi:id="_F4RzEMS9EemAbKYWvpTVcg" annotatedElement="_9ch2IMS5EemAbKYWvpTVcg">
             <body>TODO - how to add return type?</body>
           </ownedComment>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_M7gFkMS6EemAbKYWvpTVcg" name="setRequired_IDB_UserDBAdapter"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_M7gFkMS6EemAbKYWvpTVcg" name="setIDownload"/>
       </packagedElement>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_rtlhcMS0EemAbKYWvpTVcg" name="defaultRepositoryContracts">
-    <packagedElement xmi:type="uml:Interface" xmi:id="_OMBc0MS7EemAbKYWvpTVcg" name="IUserDB">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_kXbSkMS8EemAbKYWvpTVcg" name="protocol">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_utwNMMS8EemAbKYWvpTVcg" annotatedElement="_kXbSkMS8EemAbKYWvpTVcg">
-          <body>how to set type to &quot;ProtocolStateMachine&quot;?</body>
-        </ownedComment>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_24MfEMS8EemAbKYWvpTVcg" name="IDB">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_24MfEcS8EemAbKYWvpTVcg" name="protocol">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_24MfEsS8EemAbKYWvpTVcg" annotatedElement="_24MfEcS8EemAbKYWvpTVcg">
-          <body>how to set type to &quot;ProtocolStateMachine&quot;?</body>
-        </ownedComment>
-      </ownedAttribute>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OMBc0MS7EemAbKYWvpTVcg" name="IDownload"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_VTZTMNSVEemqEY6fsa17pw" name="IFileStorage"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_alQY8NSWEemqEY6fsa17pw" name="IMediaAccess"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_fIZM8NSWEemqEY6fsa17pw" name="IPackaging"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hp3EINSWEemqEY6fsa17pw" name="IMediaManagement"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_x_2JsMS0EemAbKYWvpTVcg" name="defaultRepositoryDataTypes"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_x_2JsMS0EemAbKYWvpTVcg" name="defaultRepositoryDataTypes">
+    <packagedElement xmi:type="uml:Class" xmi:id="_4yZF8NSWEemqEY6fsa17pw" name="AudioCollectionRequest">
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_HdLfYNSXEemqEY6fsa17pw" name="Count"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_Jx8-YNSXEemqEY6fsa17pw" name="Size"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8qVn4NSWEemqEY6fsa17pw" name="FileContent"/>
+  </packagedElement>
 </uml:Model>
