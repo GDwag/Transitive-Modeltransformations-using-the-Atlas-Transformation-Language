@@ -96,6 +96,9 @@ lazy rule CompositeDataType2ReturnParameter {
 unique lazy rule Parameter2Parameter {
 	from P : Palladio!Parameter
 	to T : UML!Parameter (
+		name <- P.parameterName,
+		type <- thisModule.CompositeDataType2Class(P.dataType__Parameter)--,
+		--direction <- #in -- doesn't work, but doesn't seem to be necessary
 		--TODO how to get from PCM-Parameter-Type to a type definition in UML?
 	)
 }
