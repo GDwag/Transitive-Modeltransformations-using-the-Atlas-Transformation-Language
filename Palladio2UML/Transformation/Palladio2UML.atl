@@ -119,7 +119,7 @@ unique lazy rule Component2Operation {
 rule RequiredRole2Attribute {
 	from R : Palladio!OperationRequiredRole
 	to M : UML!Property (
-   		name <- R.entityName,
+   		name <- 'required_' + R.entityName,
 		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)
 		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole) --"feature 'class' is not changeable" - allready given by inheritance?
 		-- + Parameter in Konstruktor -- ist eigener typ (?)
