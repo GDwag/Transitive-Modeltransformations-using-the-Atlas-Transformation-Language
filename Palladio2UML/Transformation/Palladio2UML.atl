@@ -65,12 +65,19 @@ unique lazy rule Signature2Operation {
 	from S : Palladio!Signature
 	to O : UML!Operation (
 		name <- S.entityName,
-		ownedParameter <- S.returnType__OperationSignature, --thisModule.CompositeDataType2ReturnParameter(S.returnType__OperationSignature),-- nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
+		--returnType so nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
+		--if-abfrage mit dirty-hack notwendiges übel, weil sonst "NullPointer" (bzw. OclUndefined) fehler auftreten, wenn kein returnType existiert
+		ownedParameter <- 
+		if not S.returnType__OperationSignature->oclIsUndefined()
+			then thisModule.CompositeDataType2ReturnParameter(S.returnType__OperationSignature)
+			--TODO dirty Hack, der nur aufgeht weil Parameter2Parameter unique ist
+			else S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
+		endif,
 		ownedParameter <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
 	)
 }
 	
-rule CompositeDataType2ReturnParameter {
+lazy rule CompositeDataType2ReturnParameter {
 	from D : Palladio!CompositeDataType
 	to R : UML!Parameter (
 		name <- D.entityName,
