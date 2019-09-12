@@ -9,9 +9,9 @@ rule Repository2Model {
 	from R : Palladio!Repository
 	to M : UML!Model (
 		name <- 'MediaStoreUML',
-		nestedPackage <- thisModule.Repostiory2DatatypesPackage(R),
+		nestedPackage <- thisModule.Repostiory2DefaultPackage(R),
 		nestedPackage <- thisModule.Repostiory2ContractsPackage(R),
-		nestedPackage <- thisModule.Repostiory2DefaultPackage(R)
+		nestedPackage <- thisModule.Repostiory2DatatypesPackage(R)
 	)
 }
 
@@ -65,14 +65,30 @@ unique lazy rule Signature2Operation {
 	from S : Palladio!Signature
 	to O : UML!Operation (
 		name <- S.entityName,
-		type <- S.returnType__OperationSignature,
-		ownedParameter <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2TemplateParameter(e)) --owned correct? also non-containment alternative available
+		ownedParameter <- S.returnType__OperationSignature, --thisModule.CompositeDataType2ReturnParameter(S.returnType__OperationSignature),-- nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
+		ownedParameter <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
+	)
+}
+	
+rule CompositeDataType2ReturnParameter {
+	from D : Palladio!CompositeDataType
+	to R : UML!Parameter (
+		name <- D.entityName,
+		type <- thisModule.CompositeDataType2Class(D),
+		direction <- #return --thisModule.DataType2ReturnParameterDirectionKind(D) --return
 	)
 }
 
-unique lazy rule Parameter2TemplateParameter {
+--lazy rule DataType2ReturnParameterDirectionKind {
+--	from D : Palladio!DataType
+--	to P : UML!ParameterDirectionKind (
+--		name <- 'return'
+--	)
+--}
+
+unique lazy rule Parameter2Parameter {
 	from P : Palladio!Parameter
-	to T : UML!TemplateParameter (
+	to T : UML!Parameter (
 		--TODO how to get from PCM-Parameter-Type to a type definition in UML?
 	)
 }
