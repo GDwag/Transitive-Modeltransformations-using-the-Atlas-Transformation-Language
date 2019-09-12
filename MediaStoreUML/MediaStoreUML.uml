@@ -12,13 +12,48 @@
         <ownedComment xmi:type="uml:Comment" xmi:id="_dfxUMNSUEemqEY6fsa17pw" annotatedElement="_5917AMS0EemAbKYWvpTVcg">
           <body>WARNING - IDownload is Required AND provided!</body>
         </ownedComment>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_nGfoQMS5EemAbKYWvpTVcg" name="IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_nGfoQMS5EemAbKYWvpTVcg" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_RNBIoMS7EemAbKYWvpTVcg" client="_5917AMS0EemAbKYWvpTVcg" supplier="_OMBc0MS7EemAbKYWvpTVcg" contract="_OMBc0MS7EemAbKYWvpTVcg"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_9ch2IMS5EemAbKYWvpTVcg" name="getIDownload">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_MzXK0NSgEemqEY6fsa17pw" type="_OMBc0MS7EemAbKYWvpTVcg" direction="return"/>
         </ownedOperation>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_M7gFkMS6EemAbKYWvpTVcg" name="setIDownload">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_Kj_wQNSgEemqEY6fsa17pw" name="IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_Kj_wQNSgEemqEY6fsa17pw" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_SPcDoNU9Eemf_NMuXb_mnQ" name="EnqueueDownloadCacheImpl">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_fedpsNU9Eemf_NMuXb_mnQ" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        </ownedOperation>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_5yjeANU8Eemf_NMuXb_mnQ" name="InstantDownloadCache">
+      <packagedElement xmi:type="uml:Class" xmi:id="_zabo4NU9Eemf_NMuXb_mnQ" name="InstantDownloadCacheIml">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_zabo4dU9Eemf_NMuXb_mnQ" annotatedElement="_zabo4NU9Eemf_NMuXb_mnQ">
+          <body>TODO - how to set interfaceRealization?</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_zabo4tU9Eemf_NMuXb_mnQ" annotatedElement="_zabo4NU9Eemf_NMuXb_mnQ">
+          <body>WARNING - IDownload is Required AND provided!</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_zabo49U9Eemf_NMuXb_mnQ" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_1jauoNU9Eemf_NMuXb_mnQ" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_zabo5NU9Eemf_NMuXb_mnQ" client="_zabo4NU9Eemf_NMuXb_mnQ" supplier="_OMBc0MS7EemAbKYWvpTVcg" contract="_OMBc0MS7EemAbKYWvpTVcg"/>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_0slNQNU9Eemf_NMuXb_mnQ" client="_zabo4NU9Eemf_NMuXb_mnQ" supplier="_OMBc0MS7EemAbKYWvpTVcg" contract="_OMBc0MS7EemAbKYWvpTVcg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_zabo5dU9Eemf_NMuXb_mnQ" name="getIDownload">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_zabo5tU9Eemf_NMuXb_mnQ" type="_OMBc0MS7EemAbKYWvpTVcg" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_zabo59U9Eemf_NMuXb_mnQ" name="setIDownload">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_zabo6NU9Eemf_NMuXb_mnQ" name="IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_zabo6dU9Eemf_NMuXb_mnQ" name="EnqueueDownloadCacheImpl">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_zabo6tU9Eemf_NMuXb_mnQ" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_6TytYNU9Eemf_NMuXb_mnQ" name="getIDownload">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_6TytYdU9Eemf_NMuXb_mnQ" type="_OMBc0MS7EemAbKYWvpTVcg" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_6Tz7gNU9Eemf_NMuXb_mnQ" name="EnqueueDownloadCacheImpl">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_6Tz7gdU9Eemf_NMuXb_mnQ" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_6T2XwNU9Eemf_NMuXb_mnQ" name="setIDownload">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_6T2XwdU9Eemf_NMuXb_mnQ" name="required_IDownload" type="_OMBc0MS7EemAbKYWvpTVcg"/>
         </ownedOperation>
       </packagedElement>
     </packagedElement>
