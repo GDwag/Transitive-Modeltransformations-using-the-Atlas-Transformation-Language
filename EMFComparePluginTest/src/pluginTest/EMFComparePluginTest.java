@@ -20,11 +20,20 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 
 public class EMFComparePluginTest {
+	
 	@Test
 	public void compareUML() {
-
-	    URI uri1 = URI.createURI("../MediaStoreUML/MediaStoreUML.uml");
-	    URI uri2 = URI.createURI("../Palladio2UML/Model/ms_small.uml");
+		assert compare("../MediaStoreUML/MediaStoreUML.uml", "../Palladio2UML/Model/ms_small.uml");
+	}
+	
+	@Test
+	public void compareJava() {
+		assert compare("../Palladio2JaMoPP/Model/ms_small", "../UML2JaMoPP/Model/ms_small");
+	}
+	
+	private boolean compare(String model1, String model2) {
+		URI uri1 = URI.createURI(model1);
+	    URI uri2 = URI.createURI(model2);
 
 	    UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
 
@@ -43,7 +52,7 @@ public class EMFComparePluginTest {
 	    	System.out.println("----- CONTENT OF DIFFERENCES -----");
 	    	for (Diff difference : differences) System.out.println(differences.get(0).toString());
 	    }
-	    assert differences.isEmpty();
+	    return differences.isEmpty();
 	    // Let's NOT merge every single diff, becuase that's not the point - at least not in the file ("java.lang.RuntimeException: The resource already exists at that location.")
 	    //IMerger.Registry mergerRegistry = IMerger.RegistryImpl.createStandaloneInstance();// "new IMerger.RegistryImpl();" disencouraged by https://www.eclipse.org/forums/index.php/t/531137/
 	    //IBatchMerger merger = new BatchMerger(mergerRegistry);
