@@ -7,27 +7,25 @@ create OUT : JaMoPP from IN: Palladio;
 
 rule Repostiory2Package {
 	from R : Palladio!Repository
-	to CUI : JaMoPP!CompilationUnit (
-		classifiers <- R.interfaces__Repository->collect(e | thisModule.OperationInterface2Interface(e))
-	),
-	PI : JaMoPP!Package (
+	to PI : JaMoPP!Package (
 		name <- R.entityName + 'Contracts',
-		compilationUnits <- CUI--,
+		compilationUnits <- R.interfaces__Repository
 		--imports <- R.components__Repository --how to create sub-Packages?!
 	),
 	PC : JaMoPP!Package (
-		name <- R.entityName,
-		compilationUnits <- R.components__Repository
-		--subPackages <- R.components__Repository
+		name <- R.entityName--,
+		--compilationUnits <- R.components__Repository --each their own package instead - seperate, but with a corresponding name
 	),
 	CUD : JaMoPP!CompilationUnit (
-		classifiers <- R.dataTypes__Repository->collect(e | if e->oclIsTypeOf(Palladio!CompositeDataType) then thisModule.CompositeDataType2Class(e) else thisModule.DataType2Class(e) endif)
+		classifiers <- R.dataTypes__Repository->collect(e | thisModule.CompositeDataType2Class(e)) -- ->collect(e | if e->oclIsTypeOf(Palladio!CompositeDataType) then thisModule.CompositeDataType2Class(e) else thisModule.DataType2Class(e) endif)
 	),
 	PD : JaMoPP!Package (
 		name <- R.entityName + 'DataTypes',
 		compilationUnits <- CUD
 	)
 }
+
+
 
 --anything better than class? TypeParameter doesn't work, as it is no concrete classifier
 unique lazy rule DataType2Class {
@@ -48,6 +46,14 @@ unique lazy rule DataType2Class {
 --}
 
 --Interface Foo
+unique lazy rule OperationInterface2CompilationUnit {
+	from B : Palladio!OperationInterface
+	to CU : JaMoPP!CompilationUnit (
+		name <- B.entityName,
+		classifiers <- thisModule.OperationInterface2Interface(B)
+	)
+}
+
 unique lazy rule OperationInterface2Interface {
 	from O : Palladio!OperationInterface
 	to I : JaMoPP!Interface (
@@ -66,10 +72,18 @@ rule Signature2TypeParameter {
 --Interface Foo end
 
 --Component Foo
-rule BasicComponent2CompilationUnit {
+rule BasicComponent2Package {
+	from B : Palladio!BasicComponent
+	to CU : JaMoPP!Package (
+		name <- B.repository__RepositoryComponent.entityName + '.' + B.entityName,
+		compilationUnits <- thisModule.BasicComponent2CompilationUnit(B)
+	)
+}
+
+lazy rule BasicComponent2CompilationUnit {
 	from B : Palladio!BasicComponent
 	to CU : JaMoPP!CompilationUnit (
-		name <- B.entityName,
+		name <- B.entityName + 'Impl',
 		classifiers <- thisModule.BasicComponent2Class(B)
 	)
 }
