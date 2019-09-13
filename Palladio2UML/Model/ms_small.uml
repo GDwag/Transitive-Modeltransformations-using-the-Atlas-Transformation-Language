@@ -1,140 +1,140 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_8PBkwNYeEemmPe_2K5i3Dg" name="MediaStoreUML">
-  <packagedElement xmi:type="uml:Package" xmi:id="_8PBkwdYeEemmPe_2K5i3Dg" name="MediaStoreRepository">
-    <packagedElement xmi:type="uml:Package" xmi:id="_8PBkwtYeEemmPe_2K5i3Dg" name="EnqueueDownloadCache">
-      <packagedElement xmi:type="uml:Class" xmi:id="_8PBkw9YeEemmPe_2K5i3Dg" name="EnqueueDownloadCacheImpl">
-        <ownedAttribute xmi:id="_8PBkxNYeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
-        <interfaceRealization xmi:id="_8PBkxdYeEemmPe_2K5i3Dg" name="IDownload" client="_8PBkw9YeEemmPe_2K5i3Dg"/>
-        <ownedOperation xmi:id="_8PBkxtYeEemmPe_2K5i3Dg" name="EnqueueDownloadCache">
-          <ownedParameter xmi:id="_8PBkx9YeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_OgO10NYgEemmPe_2K5i3Dg" name="MediaStoreUML">
+  <packagedElement xmi:type="uml:Package" xmi:id="_OgO10dYgEemmPe_2K5i3Dg" name="MediaStoreRepository">
+    <packagedElement xmi:type="uml:Package" xmi:id="_OgO10tYgEemmPe_2K5i3Dg" name="EnqueueDownloadCache">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OgO109YgEemmPe_2K5i3Dg" name="EnqueueDownloadCacheImpl">
+        <ownedAttribute xmi:id="_OgO11NYgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
+        <interfaceRealization xmi:id="_OgO11dYgEemmPe_2K5i3Dg" name="IDownload" client="_OgO109YgEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO11tYgEemmPe_2K5i3Dg" name="EnqueueDownloadCacheImpl">
+          <ownedParameter xmi:id="_OgO119YgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_8PBkyNYeEemmPe_2K5i3Dg" name="getIDownload">
-          <ownedParameter xmi:id="_8PBkydYeEemmPe_2K5i3Dg" type="_8PBlBtYeEemmPe_2K5i3Dg" direction="return"/>
+        <ownedOperation xmi:id="_OgO12NYgEemmPe_2K5i3Dg" name="getIDownload">
+          <ownedParameter xmi:id="_OgO12dYgEemmPe_2K5i3Dg" type="_OgO2FtYgEemmPe_2K5i3Dg" direction="return"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_8PBkytYeEemmPe_2K5i3Dg" name="setIDownload">
-          <ownedParameter xmi:id="_8PBky9YeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
-        </ownedOperation>
-      </packagedElement>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_8PBkzNYeEemmPe_2K5i3Dg" name="InstantDownloadCache">
-      <packagedElement xmi:type="uml:Class" xmi:id="_8PBkzdYeEemmPe_2K5i3Dg" name="InstantDownloadCacheImpl">
-        <ownedAttribute xmi:id="_8PBkztYeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
-        <interfaceRealization xmi:id="_8PBkz9YeEemmPe_2K5i3Dg" name="IDownload" client="_8PBkzdYeEemmPe_2K5i3Dg"/>
-        <ownedOperation xmi:id="_8PBk0NYeEemmPe_2K5i3Dg" name="InstantDownloadCache">
-          <ownedParameter xmi:id="_8PBk0dYeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_8PBk0tYeEemmPe_2K5i3Dg" name="getIDownload">
-          <ownedParameter xmi:id="_8PBk09YeEemmPe_2K5i3Dg" type="_8PBlBtYeEemmPe_2K5i3Dg" direction="return"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_8PBk1NYeEemmPe_2K5i3Dg" name="setIDownload">
-          <ownedParameter xmi:id="_8PBk1dYeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO12tYgEemmPe_2K5i3Dg" name="setIDownload">
+          <ownedParameter xmi:id="_OgO129YgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
         </ownedOperation>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_8PBk1tYeEemmPe_2K5i3Dg" name="FileStorage">
-      <packagedElement xmi:type="uml:Class" xmi:id="_8PBk19YeEemmPe_2K5i3Dg" name="FileStorageImpl">
-        <interfaceRealization xmi:id="_8PBk2NYeEemmPe_2K5i3Dg" name="IDataStorage" client="_8PBk19YeEemmPe_2K5i3Dg"/>
-        <ownedOperation xmi:id="_8PBk2dYeEemmPe_2K5i3Dg" name="FileStorage"/>
-      </packagedElement>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_8PBk2tYeEemmPe_2K5i3Dg" name="MediaManagement">
-      <packagedElement xmi:type="uml:Class" xmi:id="_8PBk29YeEemmPe_2K5i3Dg" name="MediaManagementImpl">
-        <ownedAttribute xmi:id="_8PBk3NYeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
-        <ownedAttribute xmi:id="_8PBk3dYeEemmPe_2K5i3Dg" name="required_IPackaging" type="_8PBlDtYeEemmPe_2K5i3Dg"/>
-        <ownedAttribute xmi:id="_8PBk3tYeEemmPe_2K5i3Dg" name="required_IMediaAccess" type="_8PBlCtYeEemmPe_2K5i3Dg"/>
-        <interfaceRealization xmi:id="_8PBk39YeEemmPe_2K5i3Dg" name="IMediaManagement" client="_8PBk29YeEemmPe_2K5i3Dg"/>
-        <ownedOperation xmi:id="_8PBk4NYeEemmPe_2K5i3Dg" name="MediaManagement">
-          <ownedParameter xmi:id="_8PBk4dYeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
-          <ownedParameter xmi:id="_8PBk4tYeEemmPe_2K5i3Dg" name="required_IPackaging" type="_8PBlDtYeEemmPe_2K5i3Dg"/>
-          <ownedParameter xmi:id="_8PBk49YeEemmPe_2K5i3Dg" name="required_IMediaAccess" type="_8PBlCtYeEemmPe_2K5i3Dg"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_OgO13NYgEemmPe_2K5i3Dg" name="InstantDownloadCache">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OgO13dYgEemmPe_2K5i3Dg" name="InstantDownloadCacheImpl">
+        <ownedAttribute xmi:id="_OgO13tYgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
+        <interfaceRealization xmi:id="_OgO139YgEemmPe_2K5i3Dg" name="IDownload" client="_OgO13dYgEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO14NYgEemmPe_2K5i3Dg" name="InstantDownloadCacheImpl">
+          <ownedParameter xmi:id="_OgO14dYgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_8PBk5NYeEemmPe_2K5i3Dg" name="getIDownload">
-          <ownedParameter xmi:id="_8PBk5dYeEemmPe_2K5i3Dg" type="_8PBlBtYeEemmPe_2K5i3Dg" direction="return"/>
+        <ownedOperation xmi:id="_OgO14tYgEemmPe_2K5i3Dg" name="getIDownload">
+          <ownedParameter xmi:id="_OgO149YgEemmPe_2K5i3Dg" type="_OgO2FtYgEemmPe_2K5i3Dg" direction="return"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_8PBk5tYeEemmPe_2K5i3Dg" name="getIPackaging">
-          <ownedParameter xmi:id="_8PBk59YeEemmPe_2K5i3Dg" type="_8PBlDtYeEemmPe_2K5i3Dg" direction="return"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_8PBk6NYeEemmPe_2K5i3Dg" name="getIMediaAccess">
-          <ownedParameter xmi:id="_8PBk6dYeEemmPe_2K5i3Dg" type="_8PBlCtYeEemmPe_2K5i3Dg" direction="return"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_8PBk6tYeEemmPe_2K5i3Dg" name="setIDownload">
-          <ownedParameter xmi:id="_8PBk69YeEemmPe_2K5i3Dg" name="required_IDownload" type="_8PBlBtYeEemmPe_2K5i3Dg"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_8PBk7NYeEemmPe_2K5i3Dg" name="setIPackaging">
-          <ownedParameter xmi:id="_8PBk7dYeEemmPe_2K5i3Dg" name="required_IPackaging" type="_8PBlDtYeEemmPe_2K5i3Dg"/>
-        </ownedOperation>
-        <ownedOperation xmi:id="_8PBk7tYeEemmPe_2K5i3Dg" name="setIMediaAccess">
-          <ownedParameter xmi:id="_8PBk79YeEemmPe_2K5i3Dg" name="required_IMediaAccess" type="_8PBlCtYeEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO15NYgEemmPe_2K5i3Dg" name="setIDownload">
+          <ownedParameter xmi:id="_OgO15dYgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
         </ownedOperation>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_8PBk8NYeEemmPe_2K5i3Dg" name="Packaging">
-      <packagedElement xmi:type="uml:Class" xmi:id="_8PBk8dYeEemmPe_2K5i3Dg" name="PackagingImpl">
-        <interfaceRealization xmi:id="_8PBk8tYeEemmPe_2K5i3Dg" name="IPackaging" client="_8PBk8dYeEemmPe_2K5i3Dg"/>
-        <ownedOperation xmi:id="_8PBk89YeEemmPe_2K5i3Dg" name="Packaging"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_OgO15tYgEemmPe_2K5i3Dg" name="FileStorage">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OgO159YgEemmPe_2K5i3Dg" name="FileStorageImpl">
+        <interfaceRealization xmi:id="_OgO16NYgEemmPe_2K5i3Dg" name="IDataStorage" client="_OgO159YgEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO16dYgEemmPe_2K5i3Dg" name="FileStorageImpl"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_8PBk9NYeEemmPe_2K5i3Dg" name="MediaAccess">
-      <packagedElement xmi:type="uml:Class" xmi:id="_8PBk9dYeEemmPe_2K5i3Dg" name="MediaAccessImpl">
-        <ownedAttribute xmi:id="_8PBk9tYeEemmPe_2K5i3Dg" name="required_IDataStorage" type="_8PBlANYeEemmPe_2K5i3Dg"/>
-        <interfaceRealization xmi:id="_8PBk99YeEemmPe_2K5i3Dg" name="IMediaAccess" client="_8PBk9dYeEemmPe_2K5i3Dg"/>
-        <interfaceRealization xmi:id="_8PBk-NYeEemmPe_2K5i3Dg" name="IDownload" client="_8PBk9dYeEemmPe_2K5i3Dg"/>
-        <ownedOperation xmi:id="_8PBk-dYeEemmPe_2K5i3Dg" name="MediaAccess">
-          <ownedParameter xmi:id="_8PBk-tYeEemmPe_2K5i3Dg" name="required_IDataStorage" type="_8PBlANYeEemmPe_2K5i3Dg"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_OgO16tYgEemmPe_2K5i3Dg" name="MediaManagement">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OgO169YgEemmPe_2K5i3Dg" name="MediaManagementImpl">
+        <ownedAttribute xmi:id="_OgO17NYgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
+        <ownedAttribute xmi:id="_OgO17dYgEemmPe_2K5i3Dg" name="required_IPackaging" type="_OgO2HtYgEemmPe_2K5i3Dg"/>
+        <ownedAttribute xmi:id="_OgO17tYgEemmPe_2K5i3Dg" name="required_IMediaAccess" type="_OgO2GtYgEemmPe_2K5i3Dg"/>
+        <interfaceRealization xmi:id="_OgO179YgEemmPe_2K5i3Dg" name="IMediaManagement" client="_OgO169YgEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO18NYgEemmPe_2K5i3Dg" name="MediaManagementImpl">
+          <ownedParameter xmi:id="_OgO18dYgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
+          <ownedParameter xmi:id="_OgO18tYgEemmPe_2K5i3Dg" name="required_IPackaging" type="_OgO2HtYgEemmPe_2K5i3Dg"/>
+          <ownedParameter xmi:id="_OgO189YgEemmPe_2K5i3Dg" name="required_IMediaAccess" type="_OgO2GtYgEemmPe_2K5i3Dg"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_8PBk-9YeEemmPe_2K5i3Dg" name="getIDataStorage">
-          <ownedParameter xmi:id="_8PBk_NYeEemmPe_2K5i3Dg" type="_8PBlANYeEemmPe_2K5i3Dg" direction="return"/>
+        <ownedOperation xmi:id="_OgO19NYgEemmPe_2K5i3Dg" name="getIDownload">
+          <ownedParameter xmi:id="_OgO19dYgEemmPe_2K5i3Dg" type="_OgO2FtYgEemmPe_2K5i3Dg" direction="return"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_8PBk_dYeEemmPe_2K5i3Dg" name="setIDataStorage">
-          <ownedParameter xmi:id="_8PBk_tYeEemmPe_2K5i3Dg" name="required_IDataStorage" type="_8PBlANYeEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO19tYgEemmPe_2K5i3Dg" name="getIPackaging">
+          <ownedParameter xmi:id="_OgO199YgEemmPe_2K5i3Dg" type="_OgO2HtYgEemmPe_2K5i3Dg" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_OgO1-NYgEemmPe_2K5i3Dg" name="getIMediaAccess">
+          <ownedParameter xmi:id="_OgO1-dYgEemmPe_2K5i3Dg" type="_OgO2GtYgEemmPe_2K5i3Dg" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_OgO1-tYgEemmPe_2K5i3Dg" name="setIDownload">
+          <ownedParameter xmi:id="_OgO1-9YgEemmPe_2K5i3Dg" name="required_IDownload" type="_OgO2FtYgEemmPe_2K5i3Dg"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_OgO1_NYgEemmPe_2K5i3Dg" name="setIPackaging">
+          <ownedParameter xmi:id="_OgO1_dYgEemmPe_2K5i3Dg" name="required_IPackaging" type="_OgO2HtYgEemmPe_2K5i3Dg"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_OgO1_tYgEemmPe_2K5i3Dg" name="setIMediaAccess">
+          <ownedParameter xmi:id="_OgO1_9YgEemmPe_2K5i3Dg" name="required_IMediaAccess" type="_OgO2GtYgEemmPe_2K5i3Dg"/>
+        </ownedOperation>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_OgO2ANYgEemmPe_2K5i3Dg" name="Packaging">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OgO2AdYgEemmPe_2K5i3Dg" name="PackagingImpl">
+        <interfaceRealization xmi:id="_OgO2AtYgEemmPe_2K5i3Dg" name="IPackaging" client="_OgO2AdYgEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO2A9YgEemmPe_2K5i3Dg" name="PackagingImpl"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_OgO2BNYgEemmPe_2K5i3Dg" name="MediaAccess">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OgO2BdYgEemmPe_2K5i3Dg" name="MediaAccessImpl">
+        <ownedAttribute xmi:id="_OgO2BtYgEemmPe_2K5i3Dg" name="required_IDataStorage" type="_OgO2ENYgEemmPe_2K5i3Dg"/>
+        <interfaceRealization xmi:id="_OgO2B9YgEemmPe_2K5i3Dg" name="IMediaAccess" client="_OgO2BdYgEemmPe_2K5i3Dg"/>
+        <interfaceRealization xmi:id="_OgO2CNYgEemmPe_2K5i3Dg" name="IDownload" client="_OgO2BdYgEemmPe_2K5i3Dg"/>
+        <ownedOperation xmi:id="_OgO2CdYgEemmPe_2K5i3Dg" name="MediaAccessImpl">
+          <ownedParameter xmi:id="_OgO2CtYgEemmPe_2K5i3Dg" name="required_IDataStorage" type="_OgO2ENYgEemmPe_2K5i3Dg"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_OgO2C9YgEemmPe_2K5i3Dg" name="getIDataStorage">
+          <ownedParameter xmi:id="_OgO2DNYgEemmPe_2K5i3Dg" type="_OgO2ENYgEemmPe_2K5i3Dg" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_OgO2DdYgEemmPe_2K5i3Dg" name="setIDataStorage">
+          <ownedParameter xmi:id="_OgO2DtYgEemmPe_2K5i3Dg" name="required_IDataStorage" type="_OgO2ENYgEemmPe_2K5i3Dg"/>
         </ownedOperation>
       </packagedElement>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_8PBk_9YeEemmPe_2K5i3Dg" name="MediaStoreRepositoryContracts">
-    <packagedElement xmi:type="uml:Interface" xmi:id="_8PBlANYeEemmPe_2K5i3Dg" name="IFileStorage">
-      <ownedOperation xmi:id="_8PBlAdYeEemmPe_2K5i3Dg" name="getFiles">
-        <ownedParameter xmi:id="_8PBlAtYeEemmPe_2K5i3Dg" name="FileContent" type="_8PBlGtYeEemmPe_2K5i3Dg" direction="return"/>
-        <ownedParameter xmi:id="_8PBlA9YeEemmPe_2K5i3Dg" name="audioRequest" type="_8PBlG9YeEemmPe_2K5i3Dg"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_OgO2D9YgEemmPe_2K5i3Dg" name="MediaStoreRepositoryContracts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OgO2ENYgEemmPe_2K5i3Dg" name="IFileStorage">
+      <ownedOperation xmi:id="_OgO2EdYgEemmPe_2K5i3Dg" name="getFiles">
+        <ownedParameter xmi:id="_OgO2EtYgEemmPe_2K5i3Dg" name="FileContent" type="_OgO2KtYgEemmPe_2K5i3Dg" direction="return"/>
+        <ownedParameter xmi:id="_OgO2E9YgEemmPe_2K5i3Dg" name="audioRequest" type="_OgO2K9YgEemmPe_2K5i3Dg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_8PBlBNYeEemmPe_2K5i3Dg" name="storeFile">
-        <ownedParameter xmi:id="_8PBlBdYeEemmPe_2K5i3Dg" name="file" type="_8PBlGtYeEemmPe_2K5i3Dg"/>
-      </ownedOperation>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_8PBlBtYeEemmPe_2K5i3Dg" name="IDownload">
-      <ownedOperation xmi:id="_8PBlB9YeEemmPe_2K5i3Dg" name="download">
-        <ownedParameter xmi:id="_8PBlCNYeEemmPe_2K5i3Dg" name="AudioCollectionRequest" type="_8PBlG9YeEemmPe_2K5i3Dg" direction="return"/>
-        <ownedParameter xmi:id="_8PBlCdYeEemmPe_2K5i3Dg" name="audioRequest" type="_8PBlG9YeEemmPe_2K5i3Dg"/>
+      <ownedOperation xmi:id="_OgO2FNYgEemmPe_2K5i3Dg" name="storeFile">
+        <ownedParameter xmi:id="_OgO2FdYgEemmPe_2K5i3Dg" name="file" type="_OgO2KtYgEemmPe_2K5i3Dg"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_8PBlCtYeEemmPe_2K5i3Dg" name="IMediaAccess">
-      <ownedOperation xmi:id="_8PBlC9YeEemmPe_2K5i3Dg" name="upload">
-        <ownedParameter xmi:id="_8PBlDNYeEemmPe_2K5i3Dg" name="file" type="_8PBlGtYeEemmPe_2K5i3Dg"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_8PBlDdYeEemmPe_2K5i3Dg" name="getFileList"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_8PBlDtYeEemmPe_2K5i3Dg" name="IPackaging">
-      <ownedOperation xmi:id="_8PBlD9YeEemmPe_2K5i3Dg" name="zip">
-        <ownedParameter xmi:id="_8PBlENYeEemmPe_2K5i3Dg" name="FileContent" type="_8PBlGtYeEemmPe_2K5i3Dg" direction="return"/>
-        <ownedParameter xmi:id="_8PBlEdYeEemmPe_2K5i3Dg" name="audios" type="_8PBlG9YeEemmPe_2K5i3Dg"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OgO2FtYgEemmPe_2K5i3Dg" name="IDownload">
+      <ownedOperation xmi:id="_OgO2F9YgEemmPe_2K5i3Dg" name="download">
+        <ownedParameter xmi:id="_OgO2GNYgEemmPe_2K5i3Dg" name="AudioCollectionRequest" type="_OgO2K9YgEemmPe_2K5i3Dg" direction="return"/>
+        <ownedParameter xmi:id="_OgO2GdYgEemmPe_2K5i3Dg" name="audioRequest" type="_OgO2K9YgEemmPe_2K5i3Dg"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_8PBlEtYeEemmPe_2K5i3Dg" name="IMediaManagement">
-      <ownedOperation xmi:id="_8PBlE9YeEemmPe_2K5i3Dg" name="upload">
-        <ownedParameter xmi:id="_8PBlFNYeEemmPe_2K5i3Dg" name="file" type="_8PBlGtYeEemmPe_2K5i3Dg"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OgO2GtYgEemmPe_2K5i3Dg" name="IMediaAccess">
+      <ownedOperation xmi:id="_OgO2G9YgEemmPe_2K5i3Dg" name="upload">
+        <ownedParameter xmi:id="_OgO2HNYgEemmPe_2K5i3Dg" name="file" type="_OgO2KtYgEemmPe_2K5i3Dg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_8PBlFdYeEemmPe_2K5i3Dg" name="download">
-        <ownedParameter xmi:id="_8PBlFtYeEemmPe_2K5i3Dg" name="FileContent" type="_8PBlGtYeEemmPe_2K5i3Dg" direction="return"/>
-        <ownedParameter xmi:id="_8PBlF9YeEemmPe_2K5i3Dg" name="audioRequest" type="_8PBlG9YeEemmPe_2K5i3Dg"/>
+      <ownedOperation xmi:id="_OgO2HdYgEemmPe_2K5i3Dg" name="getFileList"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OgO2HtYgEemmPe_2K5i3Dg" name="IPackaging">
+      <ownedOperation xmi:id="_OgO2H9YgEemmPe_2K5i3Dg" name="zip">
+        <ownedParameter xmi:id="_OgO2INYgEemmPe_2K5i3Dg" name="FileContent" type="_OgO2KtYgEemmPe_2K5i3Dg" direction="return"/>
+        <ownedParameter xmi:id="_OgO2IdYgEemmPe_2K5i3Dg" name="audios" type="_OgO2K9YgEemmPe_2K5i3Dg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_8PBlGNYeEemmPe_2K5i3Dg" name="getFileList"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OgO2ItYgEemmPe_2K5i3Dg" name="IMediaManagement">
+      <ownedOperation xmi:id="_OgO2I9YgEemmPe_2K5i3Dg" name="upload">
+        <ownedParameter xmi:id="_OgO2JNYgEemmPe_2K5i3Dg" name="file" type="_OgO2KtYgEemmPe_2K5i3Dg"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_OgO2JdYgEemmPe_2K5i3Dg" name="download">
+        <ownedParameter xmi:id="_OgO2JtYgEemmPe_2K5i3Dg" name="FileContent" type="_OgO2KtYgEemmPe_2K5i3Dg" direction="return"/>
+        <ownedParameter xmi:id="_OgO2J9YgEemmPe_2K5i3Dg" name="audioRequest" type="_OgO2K9YgEemmPe_2K5i3Dg"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_OgO2KNYgEemmPe_2K5i3Dg" name="getFileList"/>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_8PBlGdYeEemmPe_2K5i3Dg" name="MediaStoreRepositoryDatatypes">
-    <packagedElement xmi:type="uml:Class" xmi:id="_8PBlGtYeEemmPe_2K5i3Dg" name="FileContent"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_8PBlG9YeEemmPe_2K5i3Dg" name="AudioCollectionRequest">
-      <nestedClassifier xmi:type="uml:Class" xmi:id="_8PBlHNYeEemmPe_2K5i3Dg" name="Count"/>
-      <nestedClassifier xmi:type="uml:Class" xmi:id="_8PBlHdYeEemmPe_2K5i3Dg" name="Size"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_OgO2KdYgEemmPe_2K5i3Dg" name="MediaStoreRepositoryDatatypes">
+    <packagedElement xmi:type="uml:Class" xmi:id="_OgO2KtYgEemmPe_2K5i3Dg" name="FileContent"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OgO2K9YgEemmPe_2K5i3Dg" name="AudioCollectionRequest">
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_OgO2LNYgEemmPe_2K5i3Dg" name="Count"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_OgO2LdYgEemmPe_2K5i3Dg" name="Size"/>
     </packagedElement>
   </packagedElement>
 </uml:Model>

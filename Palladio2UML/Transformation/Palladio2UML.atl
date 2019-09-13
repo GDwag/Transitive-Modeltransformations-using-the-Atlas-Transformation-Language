@@ -137,7 +137,7 @@ unique lazy rule BasicComponent2Class {
 unique lazy rule Component2Operation {
 	from B : Palladio!BasicComponent
 	to A : UML!Operation(
-		name <- B.entityName,
+		name <- B.entityName + 'Impl',
 		ownedParameter <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Parameter(e))
 	)
 }
