@@ -16,12 +16,9 @@ rule Repostiory2Package {
 		name <- R.entityName--,
 		--compilationUnits <- R.components__Repository --each their own package instead - seperate, but with a corresponding name
 	),
-	CUD : JaMoPP!CompilationUnit (
-		classifiers <- R.dataTypes__Repository->collect(e | thisModule.CompositeDataType2Class(e)) -- ->collect(e | if e->oclIsTypeOf(Palladio!CompositeDataType) then thisModule.CompositeDataType2Class(e) else thisModule.DataType2Class(e) endif)
-	),
 	PD : JaMoPP!Package (
 		name <- R.entityName + 'DataTypes',
-		compilationUnits <- CUD
+		compilationUnits <- R.dataTypes__Repository
 	)
 }
 
@@ -158,6 +155,15 @@ rule ProvidedRole2ClassifierReference {
 }
 	--Component Member Foo end
 --Component Foo end
+
+--CompositeDataType Foo
+rule CompositeDataType2CompilationUnit {
+	from B : Palladio!CompositeDataType
+	to CU : JaMoPP!CompilationUnit (
+		name <- B.entityName,
+		classifiers <- thisModule.CompositeDataType2Class(B)
+	)
+}
 
 unique lazy rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
 	from D : Palladio!CompositeDataType
