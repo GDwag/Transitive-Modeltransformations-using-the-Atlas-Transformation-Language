@@ -155,7 +155,7 @@ rule RequiredRole2Attribute {
 lazy rule RequiredRole2Parameter {
 	from R : Palladio!OperationRequiredRole
 	to M : UML!Parameter (
-   		name <- R.entityName,
+   		name <- 'required_' + R.entityName,
 		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)
 	)
 }
@@ -172,20 +172,10 @@ lazy rule RequiredRole2Getter {
 
 lazy rule RequiredRole2Setter {
 	from R : Palladio!OperationRequiredRole
-	to --TS : UML!TemplateSignature(
-		--template <- R.requiredInterface__OperationRequiredRole,
-		--parameter <- TP
-	--),
-	--TP : UML!OperationTemplateParameter (
-		--signature <- TS,
-		--parameteredElement <- M
-	--),
-	M : UML!Operation (
+	to M : UML!Operation (
    		name <- 'set' + R.entityName,
-		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole)--,
-		--ownedTemplateSignature <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(e | thisModule.Signature2TemplateSignature(e)) --not good, because causes signatures to be stored in Operations instead of Interfaces. Workarround?
-		--type <- Void --return type: how to set to void?
-		--owningTemplateParameter <- TP
+		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
+		ownedParameter <- thisModule.RequiredRole2Parameter(R)
 	)
 }
 
