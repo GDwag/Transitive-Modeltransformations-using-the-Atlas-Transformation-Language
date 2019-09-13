@@ -15,8 +15,10 @@ import org.eclipse.emf.compare.merge.IBatchMerger;
 import org.eclipse.emf.compare.merge.IMerger;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 
 public class EMFComparePluginTest {
@@ -35,7 +37,8 @@ public class EMFComparePluginTest {
 		URI uri1 = URI.createURI(model1);
 	    URI uri2 = URI.createURI(model2);
 
-	    UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
+	    //UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
+	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 
 	    ResourceSet resourceSet1 = new ResourceSetImpl();
 	    ResourceSet resourceSet2 = new ResourceSetImpl();
