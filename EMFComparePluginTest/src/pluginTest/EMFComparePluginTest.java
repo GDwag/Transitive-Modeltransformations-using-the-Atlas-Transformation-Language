@@ -23,7 +23,7 @@ public class EMFComparePluginTest {
 	@Test
 	public void compareUML() {
 
-	    URI uri1 = URI.createURI("../Palladio2UML/Model/ms.uml");
+	    URI uri1 = URI.createURI("../MediaStoreUML/MediaStoreUML.uml");
 	    URI uri2 = URI.createURI("../Palladio2UML/Model/ms_small.uml");
 
 	    UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
