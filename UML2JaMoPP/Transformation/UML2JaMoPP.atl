@@ -5,9 +5,10 @@ module UML2JaMoPP;
 -- Module Template
 create OUT: JaMoPP from IN: UML; 
 
-helper context UML!Model def: setupPackages() : String =
+helper context UML!Package def: setupPackages() : String =
 	self.nestedPackage->collect(e | thisModule.Package2Package(e).name)->sum();
 
+--Package foo
 rule Model2Package {
 	from M : UML!Model
 	to E : JaMoPP!Package (
@@ -19,13 +20,23 @@ rule Model2Package {
 unique lazy rule Package2Package {
 	from P1 : UML!Package
 	to P2 : JaMoPP!Package (
-		name <- P1.name,
-		compilationUnits <- P1.packagedElement --if P1.nestedPackage.isEmpty() then thisModule.Package2CompilationUnit(P1) else P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e)) endif
+		name <- P1->setupPackages(), --dirty Hack to force creation of Packages with lazy rule (otherwise setting up compilation units is hindered by packages being of kind UML!PackageableElements themselves)
+		name <- if P1.nestingPackage->oclIsUndefined() then P1.name 
+			else if P1.nestingPackage->oclIsTypeOf(UML!Model) then P1.nestingPackage.name + '.' + P1.name
+			else P1.nestingPackage.nestingPackage.name + '.' + P1.nestingPackage.name + '.' + P1.name endif endif, --WARNING TODO - helper function for any amount of packages above?
+		--compilationUnits <- P1.packagedElement --would be too easy - Class-CUs are created outside of Repo-Package for some reason
+		compilationUnits <- P1.packagedElement->collect(e | 
+			if e.oclIsTypeOf(UML!Interface) then thisModule.Interface2CompilationUnit(e)
+			else if e.oclIsTypeOf(UML!Class) then thisModule.Class2CompilationUnit(e)
+			else if e.oclIsTypeOf(UML!DataType) then thisModule.DataType2CompilationUnit(e)
+			else Sequence {} endif endif endif
+		)
 	)
 }
+--Package foo end
 
 --Interface foo
-rule Interface2CompilationUnit {
+unique lazy rule Interface2CompilationUnit {
 	from I : UML!Interface
 	to C : JaMoPP!CompilationUnit (
 		name <- I.name,
@@ -44,7 +55,7 @@ unique lazy rule Interface2Interface {
 --Interface foo end
 
 --Class foo
-rule Class2CompilationUnit {
+unique lazy rule Class2CompilationUnit {
 	from CL : UML!Class
 	to CU : JaMoPP!CompilationUnit (
 		name <- CL.name,
@@ -65,7 +76,7 @@ unique lazy rule Class2Class {
 }
 --Class foo end
 
-rule DataType2CompilationUnit {
+unique lazy rule DataType2CompilationUnit {
 	from D : UML!DataType
 	to C : JaMoPP!CompilationUnit (
 		name <- D.name,
@@ -123,7 +134,7 @@ unique lazy rule Operation2ClassMethod { --if not "unique lazy", there seems to 
 	)
 }
 
-rule InterfaceRealization2ClassifierReference {
+unique lazy rule InterfaceRealization2ClassifierReference {
 	from E : UML!InterfaceRealization
 	to C : JaMoPP!ClassifierReference(
 	)
