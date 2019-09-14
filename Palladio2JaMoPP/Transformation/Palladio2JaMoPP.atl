@@ -49,7 +49,32 @@ unique lazy rule OperationInterface2Interface {
 	from O : Palladio!OperationInterface
 	to I : JaMoPP!Interface (
 		name <- O.entityName,
-		typeParameters <- O.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
+		members <- O.signatures__OperationInterface->collect(e | thisModule.Signature2ClassMethod(e))
+		--typeParameters <- O.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
+	)
+}
+
+unique lazy rule Signature2ClassMethod{
+	from S : Palladio!Signature
+	to O : JaMoPP!ClassMethod (
+		name <- S.entityName,
+		--returnType so nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
+		--if-abfrage mit dirty-hack notwendiges übel, weil sonst "NullPointer" (bzw. OclUndefined) fehler auftreten, wenn kein returnType existiert
+		typeReference <- 
+		if not S.returnType__OperationSignature->oclIsUndefined()
+			then thisModule.CompositeDataType2ClassifierReference(S.returnType__OperationSignature)
+			else Set{}
+		endif,
+		parameters <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e))
+	)
+}
+
+unique lazy rule Parameter2Parameter {
+	from P1 : Palladio!Parameter
+	to P2 : JaMoPP!OrdinaryParameter (
+		name <- P1.parameterName,
+		--so nur möglich, weil im Modell alle Parameter Typen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
+		typeReference <- thisModule.CompositeDataType2ClassifierReference(P1.dataType__Parameter)
 	)
 }
 
@@ -104,8 +129,7 @@ lazy rule BasicComponent2Constructor {
 	from B : Palladio!BasicComponent
 	to C : JaMoPP!Constructor (
 		name <- B.entityName + 'Impl',
-		parameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.OperationInterface2Parameter(e.requiredInterface__OperationRequiredRole)),
-		typeParameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | e.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(f | thisModule.Signature2TypeParameter(f)))
+		parameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.OperationInterface2Parameter(e.requiredInterface__OperationRequiredRole))
 	)
 }
 
@@ -121,7 +145,6 @@ lazy rule RequiredRole2Getter {
 	from R : Palladio!OperationRequiredRole
 	to G: JaMoPP!ClassMethod(
 		name <- 'get' + R.entityName,
-		--typeParameters <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
 		typeReference <- thisModule.OperationInterface2ClassifierReference(R.requiredInterface__OperationRequiredRole)
 	)
 }
@@ -175,3 +198,11 @@ rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ic
 		name <- I.entityName
 	)
 }
+
+lazy rule CompositeDataType2ClassifierReference {
+	from C : Palladio!CompositeDataType
+	to R : JaMoPP!ClassifierReference (
+		target <- thisModule.CompositeDataType2Class(C)
+	)
+}
+--CompositeDataType Foo end

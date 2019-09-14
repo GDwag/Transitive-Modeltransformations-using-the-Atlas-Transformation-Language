@@ -28,8 +28,8 @@ unique lazy rule Package2Package {
 		compilationUnits <- P1.packagedElement->collect(e | 
 			if e.oclIsTypeOf(UML!Interface) then thisModule.Interface2CompilationUnit(e)
 			else if e.oclIsTypeOf(UML!Class) then thisModule.Class2CompilationUnit(e)
-			else if e.oclIsTypeOf(UML!DataType) then thisModule.DataType2CompilationUnit(e)
-			else Sequence {} endif endif endif
+			--else if e.oclIsTypeOf(UML!DataType) then thisModule.DataType2CompilationUnit(e) --Palladio DataTypes are Transformed to UML Classes
+			else Sequence {} endif endif --endif
 		)
 	)
 }
@@ -93,9 +93,19 @@ unique lazy rule Property2Field {
 	from P : UML!Property
 	to F : JaMoPP!Field (
    		name <- P.name,
-		typeReference <- thisModule.Interface2ClassifierReference(P.type) -- why doesn't this seem to do anything?
+		--thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
+		--typeReference <- if P.type.oclIsTypeOf(UML!Interface) then thisModule.Interface2ClassifierReference(P.type) else thisModule.Class2ClassifierReference(P.type) endif
+		typeReference <- thisModule.Interface2ClassifierReference(P.type)
 	)
 }
+	
+--thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
+--lazy rule Class2ClassifierReference {
+--	from C : UML!Class
+--	to R : JaMoPP!ClassifierReference (
+--		target <- thisModule.Class2Class(C)
+--	)
+--}
 
 lazy rule Operation2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
 	from B : UML!Operation
@@ -130,23 +140,3 @@ unique lazy rule Parameter2ReturnType {
 }
 	--Class Members foo end
 --Class foo end
-
---DataType foo
-unique lazy rule DataType2CompilationUnit {
-	from D : UML!DataType
-	to C : JaMoPP!CompilationUnit (
-		name <- D.name,
-		classifiers <- thisModule.DataType2Class(D)
-	)
-}
-
-
-unique lazy rule DataType2Class {
-	from C1: UML!DataType
-	to C2 : JaMoPP!Class (
-		name <- C1.name, --all below would exist, but is unnecessary because it doesn't exist in Palladio
-		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
-		members <- C1.ownedOperation->collect(e | thisModule.Operation2ClassMethod(e))
-	)
-}
---DataType foo end
