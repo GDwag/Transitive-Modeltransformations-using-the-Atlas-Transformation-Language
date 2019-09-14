@@ -7,7 +7,10 @@ create OUT : JaMoPP from IN: Palladio;
 
 rule Repostiory2Package {
 	from R : Palladio!Repository
-	to PI : JaMoPP!Package (
+	to PM : JaMoPP!Package (
+		name <- 'MediaStore'
+	),
+	PI : JaMoPP!Package (
 		name <- R.entityName + 'Contracts',
 		compilationUnits <- R.interfaces__Repository
 		--imports <- R.components__Repository --how to create sub-Packages?!

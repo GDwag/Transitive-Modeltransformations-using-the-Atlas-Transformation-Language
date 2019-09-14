@@ -8,7 +8,7 @@ create OUT: UML from IN: Palladio;
 rule Repository2Model {
 	from R : Palladio!Repository
 	to M : UML!Model (
-		name <- 'MediaStoreUML',
+		name <- 'MediaStore',
 		nestedPackage <- thisModule.Repostiory2DefaultPackage(R),
 		nestedPackage <- thisModule.Repostiory2ContractsPackage(R),
 		nestedPackage <- thisModule.Repostiory2DatatypesPackage(R)
