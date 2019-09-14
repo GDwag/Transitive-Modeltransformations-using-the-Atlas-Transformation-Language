@@ -70,8 +70,7 @@ unique lazy rule Signature2Operation {
 		ownedParameter <- 
 		if not S.returnType__OperationSignature->oclIsUndefined()
 			then thisModule.CompositeDataType2ReturnParameter(S.returnType__OperationSignature)
-			--TODO dirty Hack, der nur aufgeht weil Parameter2Parameter unique ist
-			else S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
+			else Set{}
 		endif,
 		ownedParameter <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
 	)
