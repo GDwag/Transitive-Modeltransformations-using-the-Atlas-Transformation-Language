@@ -8,10 +8,10 @@ create OUT: JaMoPP from IN: UML;
 helper context UML!Model def: setupPackages() : String =
 	self.nestedPackage->collect(e | thisModule.Package2Package(e).name)->sum();
 
-rule Model2EmptyModel {
+rule Model2Package {
 	from M : UML!Model
-	to E : JaMoPP!EmptyModel (
-		name <-	M->setupPackages(), --dirty Hack to force hierarchical creation of Packages
+	to E : JaMoPP!Package (
+		name <-	M->setupPackages(), --dirty Hack to force creation of Packages with lazy rule (otherwise setting up compilation units is hindered by packages being of kind UML!PackageableElements themselves)
 		name <- M.name
 	)
 }
@@ -20,25 +20,20 @@ unique lazy rule Package2Package {
 	from P1 : UML!Package
 	to P2 : JaMoPP!Package (
 		name <- P1.name,
-		--compilationUnits <- P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e)),
-		compilationUnits <- if P1.nestedPackage.isEmpty() then thisModule.Package2CompilationUnit(P1) else P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e)) endif
+		compilationUnits <- P1.packagedElement --if P1.nestedPackage.isEmpty() then thisModule.Package2CompilationUnit(P1) else P1.nestedPackage->collect(e | thisModule.Package2CompilationUnit(e)) endif
 	)
 }
 
-unique lazy rule Package2CompilationUnit {
-	from P : UML!Package
+--Interface foo
+rule Interface2CompilationUnit {
+	from I : UML!Interface
 	to C : JaMoPP!CompilationUnit (
-		name <- P.name,
-		classifiers <- P.packagedElement-- ->collect(e | 
-			--if e->oclIsTypeOf(UML!Interface) then thisModule.Interface2Interface(e) 
-			--else if e->oclIsTypeOf(UML!DataType) then thisModule.DataType2Class 
-			--else thisModule.Class2Class(e) endif endif)
-			--without this lazy stuff, Behaviors are Translated to Classes outside of any context; with it, there are errors
+		name <- I.name,
+		classifiers <- thisModule.Interface2Interface(I)
 	)
 }
 
---unique lazy 
-rule Interface2Interface {
+unique lazy rule Interface2Interface {
 	from I1 : UML!Interface
 	to I2 : JaMoPP!Interface (
 		name <- I1.name,
@@ -46,17 +41,18 @@ rule Interface2Interface {
 		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
+--Interface foo end
 
---rule Signature2TypeParameter {
---	from S :  UML!Parameter
---	to T :  JaMoPP!TypeParameter (
---		name <- S.entityName--,
---		--extendTypes <- Set {S.parameters__OperationSignature} --from Palladio2JaMoPP
---	)
---}
+--Class foo
+rule Class2CompilationUnit {
+	from CL : UML!Class
+	to CU : JaMoPP!CompilationUnit (
+		name <- CL.name,
+		classifiers <- thisModule.Class2Class(CL)
+	)
+}
 
---unique lazy 
-rule Class2Class {
+unique lazy rule Class2Class {
 	from C1: UML!Class
 	to C2 : JaMoPP!Class (
 		name <- C1.name,
@@ -64,12 +60,20 @@ rule Class2Class {
 		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
 		members <- C1.ownedBehavior->collect (e | thisModule.Behavior2Constructor(e)),
 		members <- C1.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e)),
-		members <- C1.nestedClassifier --From InnerDeclaration of Palladios CompositeDataType
+		members <- C1.nestedClassifier->collect(e | thisModule.Class2Class(e)) --From InnerDeclaration of Palladios CompositeDataType
+	)
+}
+--Class foo end
+
+rule DataType2CompilationUnit {
+	from D : UML!DataType
+	to C : JaMoPP!CompilationUnit (
+		name <- D.name,
+		classifiers <- thisModule.DataType2Class(D)
 	)
 }
 
---unique lazy 
-rule DataType2Class{
+unique lazy rule DataType2Class {
 	from C1: UML!DataType
 	to C2 : JaMoPP!Class (
 		name <- C1.name, --all below would exist, but is unnecessary because it doesn't exist in Palladio
@@ -88,13 +92,11 @@ unique lazy rule Property2Field {
 	)
 }
 
---WARNING TODO Behavior isKindOf(UML!Class), which is why they are created as classes outside of any context.
-lazy rule Behavior2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
-	from B : UML!Behavior
+lazy rule Operation2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
+	from B : UML!Operation
 	to C : JaMoPP!Constructor (
 		name <- B.name + 'Constructor',
 		parameters <- B.ownedParameter->collect(e | thisModule.Parameter2Parameter(e))--,
-		--typeParameters <- B.ownedParameter
 	)
 }
 
@@ -109,16 +111,16 @@ unique lazy rule Parameter2Parameter {
 unique lazy rule Interface2ClassifierReference {
 	from I : UML!Interface
 	to R : JaMoPP!ClassifierReference (
-		target <- I
+		target <- thisModule.Interface2Interface(I)
 	)
 }
 
 unique lazy rule Operation2ClassMethod { --if not "unique lazy", there seems to be some kind of "race condition", causing these to be created outside of their intended scope after doing seemingly unrelated changes
 	from O : UML!Operation
 	to M : JaMoPP!ClassMethod (
-		name <- O.name
+		name <- O.name,
+		parameters <- O.ownedParameter->collect(e | thisModule.Parameter2Parameter(e))
 	)
-	
 }
 
 rule InterfaceRealization2ClassifierReference {
@@ -126,11 +128,3 @@ rule InterfaceRealization2ClassifierReference {
 	to C : JaMoPP!ClassifierReference(
 	)
 }
-
---rule Signature2TypeParameter {
---	from S :  Palladio!Signature
---	to T :  JaMoPP!TypeParameter (
---		name <- S.entityName,
---		extendTypes <- Set {S.parameters__OperationSignature}
---	)
---}
