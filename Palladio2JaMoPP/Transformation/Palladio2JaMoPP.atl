@@ -11,17 +11,17 @@ rule Repostiory2Package {
 		name <- 'MediaStore'
 	),
 	PI : JaMoPP!Package (
-		name <- R.entityName + 'Contracts',
-		compilationUnits <- R.interfaces__Repository
+		name <- 'MediaStore.' + R.entityName + 'Contracts',
+		compilationUnits <- R.interfaces__Repository->collect(e | thisModule.OperationInterface2CompilationUnit(e))
 		--imports <- R.components__Repository --how to create sub-Packages?!
 	),
-	PC : JaMoPP!Package (
-		name <- R.entityName--,
-		--compilationUnits <- R.components__Repository --each their own package instead - seperate, but with a corresponding name
-	),
 	PD : JaMoPP!Package (
-		name <- R.entityName + 'DataTypes',
+		name <- 'MediaStore.' + R.entityName + 'DataTypes',
 		compilationUnits <- R.dataTypes__Repository
+	),
+	PC : JaMoPP!Package (
+		name <- 'MediaStore.' + R.entityName--,
+		--compilationUnits <- R.components__Repository --each their own package instead - seperate, but with a corresponding name
 	)
 }
 
@@ -36,15 +36,6 @@ unique lazy rule DataType2Class {
 	)
 }
 
---WARNING CompilationUnit instead of Package ok? JaMoPP doesn't know subpackages...
---unique lazy rule BasicComponent2Package {
---	from B : Palladio!BasicComponent
---	to P : JaMoPP!Package(
---		name <- 'Repo/' + B.entityName,
---		compilationUnits <- thisModule.BasicComponent2CompilationUnit(B)
---	)
---}
-
 --Interface Foo
 unique lazy rule OperationInterface2CompilationUnit {
 	from B : Palladio!OperationInterface
@@ -58,12 +49,12 @@ unique lazy rule OperationInterface2Interface {
 	from O : Palladio!OperationInterface
 	to I : JaMoPP!Interface (
 		name <- O.entityName,
-		typeParameters <- O.signatures__OperationInterface
+		typeParameters <- O.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
 	)
 }
 
-rule Signature2TypeParameter {
-	from S :  Palladio!Signature
+unique lazy rule Signature2TypeParameter {
+	from S :  Palladio!OperationSignature
 	to T :  JaMoPP!TypeParameter (
 		name <- S.entityName,
 		extendTypes <- Set {S.parameters__OperationSignature}
@@ -75,7 +66,7 @@ rule Signature2TypeParameter {
 rule BasicComponent2Package {
 	from B : Palladio!BasicComponent
 	to CU : JaMoPP!Package (
-		name <- B.repository__RepositoryComponent.entityName + '.' + B.entityName,
+		name <- 'MediaStore.' + B.repository__RepositoryComponent.entityName + '.' + B.entityName,
 		compilationUnits <- thisModule.BasicComponent2CompilationUnit(B)
 	)
 }
@@ -104,7 +95,7 @@ unique lazy rule BasicComponent2Class {
 lazy rule RequiredRole2Field {
 	from R : Palladio!OperationRequiredRole
 	to F : JaMoPP!Field(
-   		name <- R.entityName,
+   		name <- 'required_' + R.entityName,
 		typeReference <- thisModule.OperationInterface2ClassifierReference(R.requiredInterface__OperationRequiredRole)
 	)
 }
@@ -112,9 +103,9 @@ lazy rule RequiredRole2Field {
 lazy rule BasicComponent2Constructor {
 	from B : Palladio!BasicComponent
 	to C : JaMoPP!Constructor (
-		name <- B.entityName + 'Constructor',
+		name <- B.entityName + 'Impl',
 		parameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.OperationInterface2Parameter(e.requiredInterface__OperationRequiredRole)),
-		typeParameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | e.requiredInterface__OperationRequiredRole.signatures__OperationInterface)
+		typeParameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | e.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(f | thisModule.Signature2TypeParameter(f)))
 	)
 }
 
@@ -130,7 +121,8 @@ lazy rule RequiredRole2Getter {
 	from R : Palladio!OperationRequiredRole
 	to G: JaMoPP!ClassMethod(
 		name <- 'get' + R.entityName,
-		typeParameters <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface
+		--typeParameters <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
+		typeReference <- thisModule.OperationInterface2ClassifierReference(R.requiredInterface__OperationRequiredRole)
 	)
 }
 
@@ -146,6 +138,7 @@ lazy rule RequiredRole2Setter {
 lazy rule OperationInterface2Parameter {
 	from I : Palladio!OperationInterface
 	to P : JaMoPP!OrdinaryParameter (
+		name <- 'required_' + I.entityName,
 		typeReference <- thisModule.OperationInterface2ClassifierReference(I)
 	)
 }
@@ -182,12 +175,3 @@ rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ic
 		name <- I.entityName
 	)
 }
-
---no CollectionDataType found in MediaStore example
---rule CollectionDataType2Class { --? keine ArrayList in JaMoPP?! (nicht der suchfunktion vertrauen) -MemberContainer-erbe?
---	from D : Palladio!CollectionDataType
---	to C : JaMoPP!Class (
---		
---	)	
---	
---}

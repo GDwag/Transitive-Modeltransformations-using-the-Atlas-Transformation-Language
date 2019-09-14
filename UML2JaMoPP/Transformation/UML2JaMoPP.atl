@@ -52,6 +52,20 @@ unique lazy rule Interface2Interface {
 		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
+
+lazy rule Interface2ClassifierReference {
+	from I : UML!Interface
+	to R : JaMoPP!ClassifierReference (
+		target <- thisModule.Interface2Interface(I)
+	)
+}
+
+unique lazy rule InterfaceRealization2ClassifierReference {
+	from I : UML!InterfaceRealization
+	to C : JaMoPP!ClassifierReference(
+		target <- thisModule.Class2Class(I.implementingClassifier)
+	)
+}
 --Interface foo end
 
 --Class foo
@@ -67,47 +81,36 @@ unique lazy rule Class2Class {
 	from C1: UML!Class
 	to C2 : JaMoPP!Class (
 		name <- C1.name,
-		implements <- C1.interfaceRealization,
+		implements <- C1.interfaceRealization->collect(e | thisModule.InterfaceRealization2ClassifierReference(e)),
 		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
-		members <- C1.ownedBehavior->collect (e | thisModule.Behavior2Constructor(e)),
-		members <- C1.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e)),
+		members <- C1.ownedOperation->collect (e | if e.name = C1.name then thisModule.Operation2Constructor(e) else thisModule.Operation2ClassMethod(e) endif),
 		members <- C1.nestedClassifier->collect(e | thisModule.Class2Class(e)) --From InnerDeclaration of Palladios CompositeDataType
 	)
 }
---Class foo end
 
-unique lazy rule DataType2CompilationUnit {
-	from D : UML!DataType
-	to C : JaMoPP!CompilationUnit (
-		name <- D.name,
-		classifiers <- thisModule.DataType2Class(D)
-	)
-}
-
-unique lazy rule DataType2Class {
-	from C1: UML!DataType
-	to C2 : JaMoPP!Class (
-		name <- C1.name, --all below would exist, but is unnecessary because it doesn't exist in Palladio
-		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
-		members <- C1.ownedOperation->collect(e | thisModule.Operation2ClassMethod(e))
-	)
-}
-
+	--Class Members foo
 unique lazy rule Property2Field {
 	from P : UML!Property
 	to F : JaMoPP!Field (
    		name <- P.name,
-		typeReference <- thisModule.Interface2ClassifierReference(P.type)
-		--type <- P.type
-		-- + type
+		typeReference <- thisModule.Interface2ClassifierReference(P.type) -- why doesn't this seem to do anything?
 	)
 }
 
 lazy rule Operation2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
 	from B : UML!Operation
 	to C : JaMoPP!Constructor (
-		name <- B.name + 'Constructor',
+		name <- B.name,
 		parameters <- B.ownedParameter->collect(e | thisModule.Parameter2Parameter(e))--,
+	)
+}
+
+unique lazy rule Operation2ClassMethod { --if not "unique lazy", there seems to be some kind of "race condition", causing these to be created outside of their intended scope after doing seemingly unrelated changes
+	from O : UML!Operation
+	to M : JaMoPP!ClassMethod (
+		name <- O.name,
+		parameters <- O.ownedParameter->collect(e | if e.direction = #return then Set{} else thisModule.Parameter2Parameter(e) endif),
+		typeReference <- O.ownedParameter->collect(e | if e.direction = #return then thisModule.Parameter2ReturnType(e) else Set{} endif)
 	)
 }
 
@@ -119,23 +122,31 @@ unique lazy rule Parameter2Parameter {
 	)
 }
 
-unique lazy rule Interface2ClassifierReference {
-	from I : UML!Interface
-	to R : JaMoPP!ClassifierReference (
-		target <- thisModule.Interface2Interface(I)
+unique lazy rule Parameter2ReturnType {
+	from P : UML!Parameter
+	to T : JaMoPP!ClassifierReference (
+		target <- thisModule.Interface2Interface(P.type)
+	)
+}
+	--Class Members foo end
+--Class foo end
+
+--DataType foo
+unique lazy rule DataType2CompilationUnit {
+	from D : UML!DataType
+	to C : JaMoPP!CompilationUnit (
+		name <- D.name,
+		classifiers <- thisModule.DataType2Class(D)
 	)
 }
 
-unique lazy rule Operation2ClassMethod { --if not "unique lazy", there seems to be some kind of "race condition", causing these to be created outside of their intended scope after doing seemingly unrelated changes
-	from O : UML!Operation
-	to M : JaMoPP!ClassMethod (
-		name <- O.name,
-		parameters <- O.ownedParameter->collect(e | thisModule.Parameter2Parameter(e))
-	)
-}
 
-unique lazy rule InterfaceRealization2ClassifierReference {
-	from E : UML!InterfaceRealization
-	to C : JaMoPP!ClassifierReference(
+unique lazy rule DataType2Class {
+	from C1: UML!DataType
+	to C2 : JaMoPP!Class (
+		name <- C1.name, --all below would exist, but is unnecessary because it doesn't exist in Palladio
+		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
+		members <- C1.ownedOperation->collect(e | thisModule.Operation2ClassMethod(e))
 	)
 }
+--DataType foo end
