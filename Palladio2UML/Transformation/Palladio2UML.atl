@@ -9,9 +9,9 @@ rule Repository2Model {
 	from R : Palladio!Repository
 	to M : UML!Model (
 		name <- 'MediaStore',
-		nestedPackage <- thisModule.Repostiory2DefaultPackage(R),
 		nestedPackage <- thisModule.Repostiory2ContractsPackage(R),
-		nestedPackage <- thisModule.Repostiory2DatatypesPackage(R)
+		nestedPackage <- thisModule.Repostiory2DatatypesPackage(R),
+		nestedPackage <- thisModule.Repostiory2DefaultPackage(R)
 	)
 }
 
@@ -85,13 +85,6 @@ lazy rule CompositeDataType2ReturnParameter {
 		direction <- #return --thisModule.DataType2ReturnParameterDirectionKind(D) --return
 	)
 }
-
---lazy rule DataType2ReturnParameterDirectionKind {
---	from D : Palladio!DataType
---	to P : UML!ParameterDirectionKind (
---		name <- 'return'
---	)
---}
 
 unique lazy rule Parameter2Parameter {
 	from P : Palladio!Parameter
