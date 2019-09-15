@@ -24,7 +24,7 @@ unique lazy rule Package2Package {
 		name <- if P1.nestingPackage->oclIsUndefined() then P1.name 
 			else if P1.nestingPackage->oclIsTypeOf(UML!Model) then P1.nestingPackage.name + '.' + P1.name
 			else P1.nestingPackage.nestingPackage.name + '.' + P1.nestingPackage.name + '.' + P1.name endif endif, --WARNING TODO - helper function for any amount of packages above?
-		--compilationUnits <- P1.packagedElement --would be too easy - Class-CUs are created outside of Repo-Package for some reason
+		--compilationUnits <- P1.packagedElement --would be too easy without the need of lazy rules - Class-CUs are created outside of Repo-Package for some reason
 		compilationUnits <- P1.packagedElement->collect(e | 
 			if e.oclIsTypeOf(UML!Interface) then thisModule.Interface2CompilationUnit(e)
 			else if e.oclIsTypeOf(UML!Class) then thisModule.Class2CompilationUnit(e)
@@ -60,7 +60,7 @@ lazy rule Interface2ClassifierReference {
 	)
 }
 
-unique lazy rule InterfaceRealization2ClassifierReference {
+lazy rule InterfaceRealization2ClassifierReference {
 	from I : UML!InterfaceRealization
 	to C : JaMoPP!ClassifierReference(
 		target <- thisModule.Class2Class(I.implementingClassifier)
@@ -95,17 +95,18 @@ unique lazy rule Property2Field {
    		name <- P.name,
 		--thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
 		--typeReference <- if P.type.oclIsTypeOf(UML!Interface) then thisModule.Interface2ClassifierReference(P.type) else thisModule.Class2ClassifierReference(P.type) endif
-		typeReference <- thisModule.Interface2ClassifierReference(P.type)
+		typeReference <- if P.type.oclIsTypeOf(UML!Class) then thisModule.Class2ClassifierReference(P.type) else thisModule.Interface2ClassifierReference(P.type) endif
+		--typeReference <- thisModule.Interface2ClassifierReference(P.type)
 	)
 }
 	
 --thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
---lazy rule Class2ClassifierReference {
---	from C : UML!Class
---	to R : JaMoPP!ClassifierReference (
---		target <- thisModule.Class2Class(C)
---	)
---}
+lazy rule Class2ClassifierReference {
+	from C : UML!Class
+	to R : JaMoPP!ClassifierReference (
+		target <- thisModule.Class2Class(C)
+	)
+}
 
 lazy rule Operation2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
 	from B : UML!Operation
