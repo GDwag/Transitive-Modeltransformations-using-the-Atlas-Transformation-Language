@@ -1,6 +1,6 @@
 package pluginTest;
 
-//import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.junit.Test;
 
 import java.util.List;
@@ -22,28 +22,34 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-//import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
+import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.eclipse.emf.compare.utils.EMFComparePredicates;
 
 public class EMFComparePluginTest {
 	
 	@Test
-	public void compareUML() {
+	public void compareUML_XMI() {
 		//assert compare("../MediaStoreUML/MediaStoreUML.uml", "../Palladio2UML/Model/ms_small.uml");
-		assert compare("../Palladio2UML/Model/MediaStoreUML_copy_2019_09_13", "../Palladio2UML/Model/ms_small_copy_2019_09_13");
+		assert compare("../Palladio2UML/Model/MediaStoreUML_copy_2019_09_15", "../Palladio2UML/Model/ms_small_copy_2019_09_15", false);
+	}
+	
+	@Test
+	public void compareUML_UML() {
+		//assert compare("../MediaStoreUML/MediaStoreUML.uml", "../Palladio2UML/Model/ms_small.uml");
+		assert compare("../Palladio2UML/Model/MediaStoreUML_copy_2019_09_15", "../Palladio2UML/Model/ms_small_copy_2019_09_15", true);
 	}
 	
 	@Test
 	public void compareJava() {
-		assert compare("../Palladio2JaMoPP/Model/ms_small", "../UML2JaMoPP/Model/ms_small");
+		assert compare("../Palladio2JaMoPP/Model/ms_small", "../UML2JaMoPP/Model/ms_small", false);
 	}
 	
-	private boolean compare(String model1, String model2) {
+	private boolean compare(String model1, String model2, boolean useUML) {
 		URI uri1 = URI.createURI(model1);
 	    URI uri2 = URI.createURI(model2);
 
-	    //UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+	    if (useUML) UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
+	    else 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 
 	    ResourceSet resourceSet1 = new ResourceSetImpl();
 	    ResourceSet resourceSet2 = new ResourceSetImpl();

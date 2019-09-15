@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_TxOO8MS0EemAbKYWvpTVcg" name="MediaStoreUML">
+  <packagedElement xmi:type="uml:Package" xmi:id="_rtlhcMS0EemAbKYWvpTVcg" name="MediaStoreRepositoryContracts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_VTZTMNSVEemqEY6fsa17pw" name="IFileStorage">
+      <ownedOperation xmi:id="_oICH0NSeEemqEY6fsa17pw" name="getFiles">
+        <ownedParameter xmi:id="_5hXVsNSfEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
+        <ownedParameter xmi:id="_IGLfcNSfEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_VTG-UNSgEemqEY6fsa17pw" name="storeFile">
+        <ownedParameter xmi:id="_b4kPYNSgEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OMBc0MS7EemAbKYWvpTVcg" name="IDownload">
+      <ownedOperation xmi:id="_fjJqwNSgEemqEY6fsa17pw" name="download">
+        <ownedParameter xmi:id="_lyW_ANSgEemqEY6fsa17pw" type="_4yZF8NSWEemqEY6fsa17pw" direction="return"/>
+        <ownedParameter xmi:id="_kSa2QNSgEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_alQY8NSWEemqEY6fsa17pw" name="IMediaAccess">
+      <ownedOperation xmi:id="_poI9wNSgEemqEY6fsa17pw" name="upload">
+        <ownedParameter xmi:id="_tNi-MNSgEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_0TcC0NSgEemqEY6fsa17pw" name="getFileList"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_fIZM8NSWEemqEY6fsa17pw" name="IPackaging">
+      <ownedOperation xmi:id="_974jwNSgEemqEY6fsa17pw" name="zip">
+        <ownedParameter xmi:id="_DlIEMNShEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
+        <ownedParameter xmi:id="_BzDpoNShEemqEY6fsa17pw" name="audios" type="_4yZF8NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hp3EINSWEemqEY6fsa17pw" name="IMediaManagement">
+      <ownedOperation xmi:id="_G8JqYNShEemqEY6fsa17pw" name="upload">
+        <ownedParameter xmi:id="_G8JqYdShEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_N00yYNShEemqEY6fsa17pw" name="download">
+        <ownedParameter xmi:id="_N01ZcdShEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
+        <ownedParameter xmi:id="_N01ZcNShEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_jQXG4NShEemqEY6fsa17pw" name="getFileList"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_x_2JsMS0EemAbKYWvpTVcg" name="MediaStoreRepositoryDataTypes">
+    <packagedElement xmi:type="uml:Class" xmi:id="_8qVn4NSWEemqEY6fsa17pw" name="FileContent"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_4yZF8NSWEemqEY6fsa17pw" name="AudioCollectionRequest">
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_HdLfYNSXEemqEY6fsa17pw" name="Count"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_Jx8-YNSXEemqEY6fsa17pw" name="Size"/>
+    </packagedElement>
+  </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_fMta0MS0EemAbKYWvpTVcg" name="MediaStoreRepository">
     <packagedElement xmi:type="uml:Package" xmi:id="_DW-NkMS1EemAbKYWvpTVcg" name="EnqueueDownloadCache">
       <packagedElement xmi:type="uml:Class" xmi:id="_5917AMS0EemAbKYWvpTVcg" name="EnqueueDownloadCacheImpl">
@@ -89,52 +135,6 @@
           <ownedParameter xmi:id="_XUGTgNVBEemf_NMuXb_mnQ" name="required_IDataStorage" type="_VTZTMNSVEemqEY6fsa17pw"/>
         </ownedOperation>
       </packagedElement>
-    </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_rtlhcMS0EemAbKYWvpTVcg" name="MediaStoreRepositoryContracts">
-    <packagedElement xmi:type="uml:Interface" xmi:id="_VTZTMNSVEemqEY6fsa17pw" name="IFileStorage">
-      <ownedOperation xmi:id="_oICH0NSeEemqEY6fsa17pw" name="getFiles">
-        <ownedParameter xmi:id="_5hXVsNSfEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
-        <ownedParameter xmi:id="_IGLfcNSfEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_VTG-UNSgEemqEY6fsa17pw" name="storeFile">
-        <ownedParameter xmi:id="_b4kPYNSgEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
-      </ownedOperation>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_OMBc0MS7EemAbKYWvpTVcg" name="IDownload">
-      <ownedOperation xmi:id="_fjJqwNSgEemqEY6fsa17pw" name="download">
-        <ownedParameter xmi:id="_lyW_ANSgEemqEY6fsa17pw" type="_4yZF8NSWEemqEY6fsa17pw" direction="return"/>
-        <ownedParameter xmi:id="_kSa2QNSgEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
-      </ownedOperation>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_alQY8NSWEemqEY6fsa17pw" name="IMediaAccess">
-      <ownedOperation xmi:id="_poI9wNSgEemqEY6fsa17pw" name="upload">
-        <ownedParameter xmi:id="_tNi-MNSgEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_0TcC0NSgEemqEY6fsa17pw" name="getFileList"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_fIZM8NSWEemqEY6fsa17pw" name="IPackaging">
-      <ownedOperation xmi:id="_974jwNSgEemqEY6fsa17pw" name="zip">
-        <ownedParameter xmi:id="_DlIEMNShEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
-        <ownedParameter xmi:id="_BzDpoNShEemqEY6fsa17pw" name="audios" type="_4yZF8NSWEemqEY6fsa17pw"/>
-      </ownedOperation>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_hp3EINSWEemqEY6fsa17pw" name="IMediaManagement">
-      <ownedOperation xmi:id="_G8JqYNShEemqEY6fsa17pw" name="upload">
-        <ownedParameter xmi:id="_G8JqYdShEemqEY6fsa17pw" name="file" type="_8qVn4NSWEemqEY6fsa17pw"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_N00yYNShEemqEY6fsa17pw" name="download">
-        <ownedParameter xmi:id="_N01ZcdShEemqEY6fsa17pw" type="_8qVn4NSWEemqEY6fsa17pw" direction="return"/>
-        <ownedParameter xmi:id="_N01ZcNShEemqEY6fsa17pw" name="audioRequest" type="_4yZF8NSWEemqEY6fsa17pw"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_jQXG4NShEemqEY6fsa17pw" name="getFileList"/>
-    </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_x_2JsMS0EemAbKYWvpTVcg" name="MediaStoreRepositoryDataTypes">
-    <packagedElement xmi:type="uml:Class" xmi:id="_8qVn4NSWEemqEY6fsa17pw" name="FileContent"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_4yZF8NSWEemqEY6fsa17pw" name="AudioCollectionRequest">
-      <nestedClassifier xmi:type="uml:Class" xmi:id="_HdLfYNSXEemqEY6fsa17pw" name="Count"/>
-      <nestedClassifier xmi:type="uml:Class" xmi:id="_Jx8-YNSXEemqEY6fsa17pw" name="Size"/>
     </packagedElement>
   </packagedElement>
 </uml:Model>
