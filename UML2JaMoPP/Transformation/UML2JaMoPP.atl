@@ -10,22 +10,22 @@ helper context UML!Package def: setupPackages() : String =
 
 --Package foo
 rule Model2Package {
-	from M : UML!Model
-	to E : JaMoPP!Package (
-		name <-	M->setupPackages(), --dirty Hack to force creation of Packages with lazy rule (otherwise setting up compilation units is hindered by packages being of kind UML!PackageableElements themselves)
-		name <- M.name
+	from model : UML!Model
+	to package : JaMoPP!Package (
+		name <-	model->setupPackages(), --dirty Hack to force creation of Packages with lazy rule (otherwise setting up compilation units is hindered by packages being of kind UML!PackageableElements themselves)
+		name <- model.name
 	)
 }
 
 unique lazy rule Package2Package {
-	from P1 : UML!Package
-	to P2 : JaMoPP!Package (
-		name <- P1->setupPackages(), --dirty Hack to force creation of Packages with lazy rule (otherwise setting up compilation units is hindered by packages being of kind UML!PackageableElements themselves)
-		name <- if P1.nestingPackage->oclIsUndefined() then P1.name 
-			else if P1.nestingPackage->oclIsTypeOf(UML!Model) then P1.nestingPackage.name + '.' + P1.name
-			else P1.nestingPackage.nestingPackage.name + '.' + P1.nestingPackage.name + '.' + P1.name endif endif, --WARNING TODO - helper function for any amount of packages above?
-		--compilationUnits <- P1.packagedElement --would be too easy without the need of lazy rules - Class-CUs are created outside of Repo-Package for some reason
-		compilationUnits <- P1.packagedElement->collect(e | 
+	from uml_package : UML!Package
+	to java_package : JaMoPP!Package (
+		name <- uml_package->setupPackages(), --dirty Hack to force creation of Packages with lazy rule (otherwise setting up compilation units is hindered by packages being of kind UML!PackageableElements themselves)
+		name <- if uml_package.nestingPackage->oclIsUndefined() then uml_package.name 
+			else if uml_package.nestingPackage->oclIsTypeOf(UML!Model) then uml_package.nestingPackage.name + '.' + uml_package.name
+			else uml_package.nestingPackage.nestingPackage.name + '.' + uml_package.nestingPackage.name + '.' + uml_package.name endif endif, --WARNING TODO - helper function for any amount of packages above?
+		--compilationUnits <- uml_package.packagedElement --would be too easy without the need of lazy rules - Class-CUs are created outside of Repo-Package for some reason
+		compilationUnits <- uml_package.packagedElement->collect(e | 
 			if e.oclIsTypeOf(UML!Interface) then thisModule.Interface2CompilationUnit(e)
 			else if e.oclIsTypeOf(UML!Class) then thisModule.Class2CompilationUnit(e)
 			--else if e.oclIsTypeOf(UML!DataType) then thisModule.DataType2CompilationUnit(e) --Palladio DataTypes are Transformed to UML Classes
@@ -37,106 +37,106 @@ unique lazy rule Package2Package {
 
 --Interface foo
 unique lazy rule Interface2CompilationUnit {
-	from I : UML!Interface
-	to C : JaMoPP!CompilationUnit (
-		name <- I.name,
-		classifiers <- thisModule.Interface2Interface(I)
+	from interface : UML!Interface
+	to compilation_unit : JaMoPP!CompilationUnit (
+		name <- interface.name,
+		classifiers <- thisModule.Interface2Interface(interface)
 	)
 }
 
 unique lazy rule Interface2Interface {
-	from I1 : UML!Interface
-	to I2 : JaMoPP!Interface (
-		name <- I1.name,
-		members <- I1.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e))
+	from uml_interface : UML!Interface
+	to java_interface : JaMoPP!Interface (
+		name <- uml_interface.name,
+		members <- uml_interface.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e))
 		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
 
 lazy rule Interface2ClassifierReference {
-	from I : UML!Interface
-	to R : JaMoPP!ClassifierReference (
-		target <- thisModule.Interface2Interface(I)
+	from interface : UML!Interface
+	to classifier_reference : JaMoPP!ClassifierReference (
+		target <- thisModule.Interface2Interface(interface)
 	)
 }
 
 lazy rule InterfaceRealization2ClassifierReference {
-	from I : UML!InterfaceRealization
-	to C : JaMoPP!ClassifierReference(
-		target <- thisModule.Class2Class(I.implementingClassifier)
+	from interface_realization : UML!InterfaceRealization
+	to classifier_reference : JaMoPP!ClassifierReference(
+		target <- thisModule.Class2Class(interface_realization.implementingClassifier)
 	)
 }
 --Interface foo end
 
 --Class foo
 unique lazy rule Class2CompilationUnit {
-	from CL : UML!Class
-	to CU : JaMoPP!CompilationUnit (
-		name <- CL.name,
-		classifiers <- thisModule.Class2Class(CL)
+	from uml_class : UML!Class
+	to compilation_unit : JaMoPP!CompilationUnit (
+		name <- uml_class.name,
+		classifiers <- thisModule.Class2Class(uml_class)
 	)
 }
 
 unique lazy rule Class2Class {
-	from C1: UML!Class
-	to C2 : JaMoPP!Class (
-		name <- C1.name,
-		implements <- C1.interfaceRealization->collect(e | thisModule.InterfaceRealization2ClassifierReference(e)),
-		members <- C1.ownedAttribute->collect(e | thisModule.Property2Field(e)),
-		members <- C1.ownedOperation->collect (e | if e.name = C1.name then thisModule.Operation2Constructor(e) else thisModule.Operation2ClassMethod(e) endif),
-		members <- C1.nestedClassifier->collect(e | thisModule.Class2Class(e)) --From InnerDeclaration of Palladios CompositeDataType
+	from uml_class: UML!Class
+	to java_class : JaMoPP!Class (
+		name <- uml_class.name,
+		implements <- uml_class.interfaceRealization->collect(e | thisModule.InterfaceRealization2ClassifierReference(e)),
+		members <- uml_class.ownedAttribute->collect(e | thisModule.Property2Field(e)),
+		members <- uml_class.ownedOperation->collect (e | if e.name = uml_class.name then thisModule.Operation2Constructor(e) else thisModule.Operation2ClassMethod(e) endif),
+		members <- uml_class.nestedClassifier->collect(e | thisModule.Class2Class(e)) --From InnerDeclaration of Palladios CompositeDataType
 	)
 }
 
 	--Class Members foo
 unique lazy rule Property2Field {
-	from P : UML!Property
-	to F : JaMoPP!Field (
-   		name <- P.name,
+	from property : UML!Property
+	to field : JaMoPP!Field (
+   		name <- property.name,
 		--thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
-		--typeReference <- if P.type.oclIsTypeOf(UML!Interface) then thisModule.Interface2ClassifierReference(P.type) else thisModule.Class2ClassifierReference(P.type) endif
-		typeReference <- if P.type.oclIsTypeOf(UML!Class) then thisModule.Class2ClassifierReference(P.type) else thisModule.Interface2ClassifierReference(P.type) endif
+		--typeReference <- if property.type.oclIsTypeOf(UML!Interface) then thisModule.Interface2ClassifierReference(property.type) else thisModule.Class2ClassifierReference(property.type) endif
+		typeReference <- if property.type.oclIsTypeOf(UML!Class) then thisModule.Class2ClassifierReference(property.type) else thisModule.Interface2ClassifierReference(property.type) endif
 		--typeReference <- thisModule.Interface2ClassifierReference(P.type)
 	)
 }
 	
 --thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
 lazy rule Class2ClassifierReference {
-	from C : UML!Class
-	to R : JaMoPP!ClassifierReference (
-		target <- thisModule.Class2Class(C)
+	from class : UML!Class
+	to classifier_reference : JaMoPP!ClassifierReference (
+		target <- thisModule.Class2Class(class)
 	)
 }
 
 lazy rule Operation2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
-	from B : UML!Operation
-	to C : JaMoPP!Constructor (
-		name <- B.name,
-		parameters <- B.ownedParameter->collect(e | thisModule.Parameter2Parameter(e))--,
+	from operation : UML!Operation
+	to constructor : JaMoPP!Constructor (
+		name <- operation.name,
+		parameters <- operation.ownedParameter->collect(e | thisModule.Parameter2Parameter(e))--,
 	)
 }
 
 unique lazy rule Operation2ClassMethod { --if not "unique lazy", there seems to be some kind of "race condition", causing these to be created outside of their intended scope after doing seemingly unrelated changes
-	from O : UML!Operation
-	to M : JaMoPP!ClassMethod (
-		name <- O.name,
-		parameters <- O.ownedParameter->collect(e | if e.direction = #return then Set{} else thisModule.Parameter2Parameter(e) endif),
-		typeReference <- O.ownedParameter->collect(e | if e.direction = #return then thisModule.Parameter2ReturnType(e) else Set{} endif)
+	from operation : UML!Operation
+	to method : JaMoPP!ClassMethod (
+		name <- operation.name,
+		parameters <- operation.ownedParameter->collect(e | if e.direction = #return then Set{} else thisModule.Parameter2Parameter(e) endif),
+		typeReference <- operation.ownedParameter->collect(e | if e.direction = #return then thisModule.Parameter2ReturnType(e) else Set{} endif)
 	)
 }
 
 unique lazy rule Parameter2Parameter {
-	from P1 : UML!Parameter
-	to P2 : JaMoPP!OrdinaryParameter (
-		name <- P1.name,
-		typeReference <- thisModule.Interface2ClassifierReference(P1.type)
+	from uml_parameter : UML!Parameter
+	to java_parameter : JaMoPP!OrdinaryParameter (
+		name <- uml_parameter.name,
+		typeReference <- thisModule.Interface2ClassifierReference(uml_parameter.type)
 	)
 }
 
 unique lazy rule Parameter2ReturnType {
-	from P : UML!Parameter
-	to T : JaMoPP!ClassifierReference (
-		target <- thisModule.Interface2Interface(P.type)
+	from parameter : UML!Parameter
+	to classifierReference : JaMoPP!ClassifierReference (
+		target <- thisModule.Interface2Interface(parameter.type)
 	)
 }
 	--Class Members foo end

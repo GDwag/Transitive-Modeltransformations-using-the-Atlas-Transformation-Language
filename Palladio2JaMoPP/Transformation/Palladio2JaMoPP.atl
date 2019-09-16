@@ -6,22 +6,22 @@ module Palladio2JaMoPP;
 create OUT : JaMoPP from IN: Palladio;
 
 rule Repostiory2Package {
-	from R : Palladio!Repository
-	to PM : JaMoPP!Package (
+	from repository : Palladio!Repository
+	to package : JaMoPP!Package (
 		name <- 'MediaStore'
 	),
 	PI : JaMoPP!Package (
-		name <- 'MediaStore.' + R.entityName + 'Contracts',
-		compilationUnits <- R.interfaces__Repository->collect(e | thisModule.OperationInterface2CompilationUnit(e))
-		--imports <- R.components__Repository --how to create sub-Packages?!
+		name <- 'MediaStore.' + repository.entityName + 'Contracts',
+		compilationUnits <- repository.interfaces__Repository->collect(e | thisModule.OperationInterface2CompilationUnit(e))
+		--imports <- repository.components__Repository --how to create sub-Packages?!
 	),
 	PD : JaMoPP!Package (
-		name <- 'MediaStore.' + R.entityName + 'DataTypes',
-		compilationUnits <- R.dataTypes__Repository
+		name <- 'MediaStore.' + repository.entityName + 'DataTypes',
+		compilationUnits <- repository.dataTypes__Repository
 	),
 	PC : JaMoPP!Package (
-		name <- 'MediaStore.' + R.entityName--,
-		--compilationUnits <- R.components__Repository --each their own package instead - seperate, but with a corresponding name
+		name <- 'MediaStore.' + repository.entityName--,
+		--compilationUnits <- repository.components__Repository --each their own package instead - seperate, but with a corresponding name
 	)
 }
 
@@ -29,147 +29,147 @@ rule Repostiory2Package {
 
 --anything better than class? TypeParameter doesn't work, as it is no concrete classifier
 unique lazy rule DataType2Class {
-	from D : Palladio!DataType
-	to T : JaMoPP!Class (
-		name <- D.entityName
+	from data_type : Palladio!DataType
+	to class : JaMoPP!Class (
+		name <- data_type.entityName
 		--no transformable content - Palladio DataType doesn't inherit from anything and has its repository as only attribute
 	)
 }
 
 --Interface Foo
 unique lazy rule OperationInterface2CompilationUnit {
-	from B : Palladio!OperationInterface
-	to CU : JaMoPP!CompilationUnit (
-		name <- B.entityName,
-		classifiers <- thisModule.OperationInterface2Interface(B)
+	from interface : Palladio!OperationInterface
+	to compilation_unit : JaMoPP!CompilationUnit (
+		name <- interface.entityName,
+		classifiers <- thisModule.OperationInterface2Interface(interface)
 	)
 }
 
 unique lazy rule OperationInterface2Interface {
-	from O : Palladio!OperationInterface
-	to I : JaMoPP!Interface (
-		name <- O.entityName,
-		members <- O.signatures__OperationInterface->collect(e | thisModule.Signature2ClassMethod(e))
-		--typeParameters <- O.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
+	from pcm_interface : Palladio!OperationInterface
+	to java_interface : JaMoPP!Interface (
+		name <- pcm_interface.entityName,
+		members <- pcm_interface.signatures__OperationInterface->collect(e | thisModule.Signature2ClassMethod(e))
+		--typeParameters <- pcm_interface.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
 	)
 }
 
 unique lazy rule Signature2ClassMethod{
-	from S : Palladio!Signature
-	to O : JaMoPP!ClassMethod (
-		name <- S.entityName,
+	from signature : Palladio!Signature
+	to method : JaMoPP!ClassMethod (
+		name <- signature.entityName,
 		--returnType so nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
 		--if-abfrage mit dirty-hack notwendiges übel, weil sonst "NullPointer" (bzw. OclUndefined) fehler auftreten, wenn kein returnType existiert
 		typeReference <- 
-		if not S.returnType__OperationSignature->oclIsUndefined()
-			then thisModule.CompositeDataType2ClassifierReference(S.returnType__OperationSignature)
+		if not signature.returnType__OperationSignature->oclIsUndefined()
+			then thisModule.CompositeDataType2ClassifierReference(signature.returnType__OperationSignature)
 			else Set{}
 		endif,
-		parameters <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e))
+		parameters <- signature.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e))
 	)
 }
 
 unique lazy rule Parameter2Parameter {
-	from P1 : Palladio!Parameter
-	to P2 : JaMoPP!OrdinaryParameter (
-		name <- P1.parameterName,
+	from pcm_parameter : Palladio!Parameter
+	to java_parameter : JaMoPP!OrdinaryParameter (
+		name <- pcm_parameter.parameterName,
 		--so nur möglich, weil im Modell alle Parameter Typen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
-		typeReference <- thisModule.CompositeDataType2ClassifierReference(P1.dataType__Parameter)
+		typeReference <- thisModule.CompositeDataType2ClassifierReference(pcm_parameter.dataType__Parameter)
 	)
 }
 
 unique lazy rule Signature2TypeParameter {
-	from S :  Palladio!OperationSignature
-	to T :  JaMoPP!TypeParameter (
-		name <- S.entityName,
-		extendTypes <- Set {S.parameters__OperationSignature}
+	from signature :  Palladio!OperationSignature
+	to type_parameter :  JaMoPP!TypeParameter (
+		name <- signature.entityName,
+		extendTypes <- Set {signature.parameters__OperationSignature}
 	)
 }
 --Interface Foo end
 
 --Component Foo
 rule BasicComponent2Package {
-	from B : Palladio!BasicComponent
-	to CU : JaMoPP!Package (
-		name <- 'MediaStore.' + B.repository__RepositoryComponent.entityName + '.' + B.entityName,
-		compilationUnits <- thisModule.BasicComponent2CompilationUnit(B)
+	from component : Palladio!BasicComponent
+	to package : JaMoPP!Package (
+		name <- 'MediaStore.' + component.repository__RepositoryComponent.entityName + '.' + component.entityName,
+		compilationUnits <- thisModule.BasicComponent2CompilationUnit(component)
 	)
 }
 
 lazy rule BasicComponent2CompilationUnit {
-	from B : Palladio!BasicComponent
-	to CU : JaMoPP!CompilationUnit (
-		name <- B.entityName + 'Impl',
-		classifiers <- thisModule.BasicComponent2Class(B)
+	from component : Palladio!BasicComponent
+	to compilation_unit : JaMoPP!CompilationUnit (
+		name <- component.entityName + 'Impl',
+		classifiers <- thisModule.BasicComponent2Class(component)
 	)
 }
 
 unique lazy rule BasicComponent2Class {
-	from B : Palladio!BasicComponent
-	to C : JaMoPP!Class(
-		name <- B.entityName + 'Impl',
-		implements <- B.providedRoles_InterfaceProvidingEntity,
-		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Field(e)),
-		members <- thisModule.BasicComponent2Constructor(B),
-		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
-		members <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
+	from component : Palladio!BasicComponent
+	to class : JaMoPP!Class(
+		name <- component.entityName + 'Impl',
+		implements <- component.providedRoles_InterfaceProvidingEntity,
+		members <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Field(e)),
+		members <- thisModule.BasicComponent2Constructor(component),
+		members <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
+		members <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
 	)
 }
 
 	--Component Member Foo
 lazy rule RequiredRole2Field {
-	from R : Palladio!OperationRequiredRole
-	to F : JaMoPP!Field(
-   		name <- 'required_' + R.entityName,
-		typeReference <- thisModule.OperationInterface2ClassifierReference(R.requiredInterface__OperationRequiredRole)
+	from required_role : Palladio!OperationRequiredRole
+	to field : JaMoPP!Field(
+   		name <- 'required_' + required_role.entityName,
+		typeReference <- thisModule.OperationInterface2ClassifierReference(required_role.requiredInterface__OperationRequiredRole)
 	)
 }
 	
 lazy rule BasicComponent2Constructor {
-	from B : Palladio!BasicComponent
-	to C : JaMoPP!Constructor (
-		name <- B.entityName + 'Impl',
-		parameters <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.OperationInterface2Parameter(e.requiredInterface__OperationRequiredRole))
+	from component : Palladio!BasicComponent
+	to constructor : JaMoPP!Constructor (
+		name <- component.entityName + 'Impl',
+		parameters <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.OperationInterface2Parameter(e.requiredInterface__OperationRequiredRole))
 	)
 }
 
 		--Member Ref. to Interface
 lazy rule OperationInterface2ClassifierReference {
-	from I : Palladio!OperationInterface
-	to R : JaMoPP!ClassifierReference (
-		target <- thisModule.OperationInterface2Interface(I)
+	from interface : Palladio!OperationInterface
+	to classifier_reference : JaMoPP!ClassifierReference (
+		target <- thisModule.OperationInterface2Interface(interface)
 	)
 }
 
 lazy rule RequiredRole2Getter {
-	from R : Palladio!OperationRequiredRole
-	to G: JaMoPP!ClassMethod(
-		name <- 'get' + R.entityName,
-		typeReference <- thisModule.OperationInterface2ClassifierReference(R.requiredInterface__OperationRequiredRole)
+	from required_role : Palladio!OperationRequiredRole
+	to getter : JaMoPP!ClassMethod(
+		name <- 'get' + required_role.entityName,
+		typeReference <- thisModule.OperationInterface2ClassifierReference(required_role.requiredInterface__OperationRequiredRole)
 	)
 }
 
 lazy rule RequiredRole2Setter {
-	from R : Palladio!OperationRequiredRole
-	to S: JaMoPP!ClassMethod(
-		name <- 'set' + R.entityName,
-		parameters <- thisModule.OperationInterface2Parameter(R.requiredInterface__OperationRequiredRole)
+	from required_role : Palladio!OperationRequiredRole
+	to setter : JaMoPP!ClassMethod(
+		name <- 'set' + required_role.entityName,
+		parameters <- thisModule.OperationInterface2Parameter(required_role.requiredInterface__OperationRequiredRole)
 	)
 }
 
 		--Member Ref. to Interface
 lazy rule OperationInterface2Parameter {
-	from I : Palladio!OperationInterface
-	to P : JaMoPP!OrdinaryParameter (
-		name <- 'required_' + I.entityName,
-		typeReference <- thisModule.OperationInterface2ClassifierReference(I)
+	from interface : Palladio!OperationInterface
+	to parameter : JaMoPP!OrdinaryParameter (
+		name <- 'required_' + interface.entityName,
+		typeReference <- thisModule.OperationInterface2ClassifierReference(interface)
 	)
 }
 
 rule ProvidedRole2ClassifierReference {
-	from P : Palladio!OperationProvidedRole
-	to T : JaMoPP!ClassifierReference(
-		target <- thisModule.BasicComponent2Class(P.providingEntity_ProvidedRole)
+	from provided_role : Palladio!OperationProvidedRole
+	to classifier_reference : JaMoPP!ClassifierReference(
+		target <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole)
 	)
 }
 	--Component Member Foo end
@@ -177,32 +177,32 @@ rule ProvidedRole2ClassifierReference {
 
 --CompositeDataType Foo
 rule CompositeDataType2CompilationUnit {
-	from B : Palladio!CompositeDataType
-	to CU : JaMoPP!CompilationUnit (
-		name <- B.entityName,
-		classifiers <- thisModule.CompositeDataType2Class(B)
+	from composite_data_type : Palladio!CompositeDataType
+	to compilation_unit : JaMoPP!CompilationUnit (
+		name <- composite_data_type.entityName,
+		classifiers <- thisModule.CompositeDataType2Class(composite_data_type)
 	)
 }
 
 unique lazy rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
-	from D : Palladio!CompositeDataType
-	to C : JaMoPP!Class (
-		name <- D.entityName,
-		members <- D.innerDeclaration_CompositeDataType --Java Class erbt von Member UND MemberContainer
+	from composite_data_type : Palladio!CompositeDataType
+	to class : JaMoPP!Class (
+		name <- composite_data_type.entityName,
+		members <- composite_data_type.innerDeclaration_CompositeDataType --Java Class erbt von Member UND MemberContainer
 	)	
 }
 
 rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ich daraus eine sinnvolle klasse machen? TODO
-	from I : Palladio!InnerDeclaration
-	to C : JaMoPP!Class (
-		name <- I.entityName
+	from inner_declaration : Palladio!InnerDeclaration
+	to class : JaMoPP!Class (
+		name <- inner_declaration.entityName
 	)
 }
 
 lazy rule CompositeDataType2ClassifierReference {
-	from C : Palladio!CompositeDataType
-	to R : JaMoPP!ClassifierReference (
-		target <- thisModule.CompositeDataType2Class(C)
+	from composite_data_type : Palladio!CompositeDataType
+	to classifier_reference : JaMoPP!ClassifierReference (
+		target <- thisModule.CompositeDataType2Class(composite_data_type)
 	)
 }
 --CompositeDataType Foo end

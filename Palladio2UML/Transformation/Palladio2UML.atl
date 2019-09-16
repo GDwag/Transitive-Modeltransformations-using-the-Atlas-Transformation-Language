@@ -6,200 +6,183 @@ module Palladio2UML;
 create OUT: UML from IN: Palladio;
 
 rule Repository2Model {
-	from R : Palladio!Repository
-	to M : UML!Model (
+	from repository : Palladio!Repository
+	to model : UML!Model (
 		name <- 'MediaStore',
-		nestedPackage <- thisModule.Repostiory2ContractsPackage(R),
-		nestedPackage <- thisModule.Repostiory2DatatypesPackage(R),
-		nestedPackage <- thisModule.Repostiory2DefaultPackage(R)
+		nestedPackage <- thisModule.Repostiory2ContractsPackage(repository),
+		nestedPackage <- thisModule.Repostiory2DatatypesPackage(repository),
+		nestedPackage <- thisModule.Repostiory2DefaultPackage(repository)
 	)
 }
 
 --Package Stuff
 unique lazy rule Repostiory2DefaultPackage {
-	from R : Palladio!Repository
-	to P : UML!Package ( --Components
-		name <- R.entityName,
-		nestedPackage <- R.components__Repository
+	from repository : Palladio!Repository
+	to package : UML!Package ( --Components
+		name <- repository.entityName,
+		nestedPackage <- repository.components__Repository
 	)
 }
 
 unique lazy rule Repostiory2ContractsPackage {
-	from R : Palladio!Repository
-	to P2 : UML!Package ( --Interfaces		--scheint nicht so zu funktionieren, andere packages werden nicht angelegt
-		name <- R.entityName + 'Contracts',
-		packagedElement <- R.interfaces__Repository->collect(e | thisModule.OperationInterface2Interface(e))
+	from repository : Palladio!Repository
+	to package : UML!Package ( --Interfaces		--scheint nicht so zu funktionieren, andere packages werden nicht angelegt
+		name <- repository.entityName + 'Contracts',
+		packagedElement <- repository.interfaces__Repository->collect(e | thisModule.OperationInterface2Interface(e))
 	)
 }
 
 unique lazy rule Repostiory2DatatypesPackage {
-	from R : Palladio!Repository
-	to P3 : UML!Package ( --Datatypes
-		name <- R.entityName + 'Datatypes',
-		packagedElement <- R.dataTypes__Repository->collect(e | if e->oclIsTypeOf(Palladio!CompositeDataType) then thisModule.CompositeDataType2Class(e) else thisModule.DataType2DataType(e) endif)
+	from repository : Palladio!Repository
+	to package : UML!Package ( --Datatypes
+		name <- repository.entityName + 'Datatypes',
+		packagedElement <- repository.dataTypes__Repository->collect(e | if e->oclIsTypeOf(Palladio!CompositeDataType) then thisModule.CompositeDataType2Class(e) else thisModule.DataType2DataType(e) endif)
 	)
 }
 --Package Stuff end
 
 unique lazy rule DataType2DataType {
-	from D : Palladio!DataType
-	to T : UML!DataType (
-		name <- D.entityName
+	from pcm_data_type : Palladio!DataType
+	to uml_data_type : UML!DataType (
+		name <- pcm_data_type.entityName
 		--no transformable content - Palladio DataType doesn't inherit from anything and has its repository as only attribute
 	)
 }
 
 --Interface Stuff
 unique lazy rule OperationInterface2Interface { --WARNING - making this *unique* was necessary for some later *references*, but making it *unique* required making it *lazy*, and making it *lazy* mean i need to *manually* use it for every interface
-	from PI : Palladio!Interface
-	to UI : UML!Interface (
-		name <- PI.entityName,
-		protocol <- PI.protocols__Interface,
-		ownedOperation <- PI.signatures__OperationInterface->collect(e | thisModule.Signature2Operation(e))--,
+	from pcm_interface : Palladio!Interface
+	to uml_interface : UML!Interface (
+		name <- pcm_interface.entityName,
+		protocol <- pcm_interface.protocols__Interface,
+		ownedOperation <- pcm_interface.signatures__OperationInterface->collect(e | thisModule.Signature2Operation(e))--,
 	)
 }
 
 
 	--Signature-Stuff
 unique lazy rule Signature2Operation {
-	from S : Palladio!Signature
-	to O : UML!Operation (
-		name <- S.entityName,
+	from signature : Palladio!Signature
+	to operation : UML!Operation (
+		name <- signature.entityName,
 		--returnType so nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
 		--if-abfrage mit dirty-hack notwendiges übel, weil sonst "NullPointer" (bzw. OclUndefined) fehler auftreten, wenn kein returnType existiert
 		ownedParameter <- 
-		if not S.returnType__OperationSignature->oclIsUndefined()
-			then thisModule.CompositeDataType2ReturnParameter(S.returnType__OperationSignature)
+		if not signature.returnType__OperationSignature->oclIsUndefined()
+			then thisModule.CompositeDataType2ReturnParameter(signature.returnType__OperationSignature)
 			else Set{}
 		endif,
-		ownedParameter <- S.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
+		ownedParameter <- signature.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
 	)
 }
 	
 lazy rule CompositeDataType2ReturnParameter {
-	from D : Palladio!CompositeDataType
-	to R : UML!Parameter (
-		name <- D.entityName,
-		type <- thisModule.CompositeDataType2Class(D),
+	from composite_data_type : Palladio!CompositeDataType
+	to parameter : UML!Parameter (
+		name <- composite_data_type.entityName,
+		type <- thisModule.CompositeDataType2Class(composite_data_type),
 		direction <- #return --thisModule.DataType2ReturnParameterDirectionKind(D) --return
 	)
 }
 
 unique lazy rule Parameter2Parameter {
-	from P : Palladio!Parameter
-	to T : UML!Parameter (
-		name <- P.parameterName,
-		type <- thisModule.CompositeDataType2Class(P.dataType__Parameter)--,
-		--direction <- #in -- doesn't work, but doesn't seem to be necessary
-		--TODO how to get from PCM-Parameter-Type to a type definition in UML?
+	from pcm_parameter : Palladio!Parameter
+	to uml_parameter : UML!Parameter (
+		name <- pcm_parameter.parameterName,
+		type <- thisModule.CompositeDataType2Class(pcm_parameter.dataType__Parameter)--,
+		--direction <- #in -- not necessary, as it is the default setting
 	)
 }
 	--Signature Stuff end
 --Interface Stuff end
 
-rule Protocol2ProtocalStateMachine { --WARNING no change in model - why?
-	from PP : Palladio!Protocol
-	to UP: UML!ProtocalStateMachine ( --Palladio Protocol only has EString ID, which UML doesnt
-	)
-}
-
 --Component Stuff
 rule BasicComponent2Package {
-	from B : Palladio!BasicComponent
-	to P : UML!Package (
-		nestingPackage <- thisModule.Repostiory2DefaultPackage(B.repository__RepositoryComponent),
-		name <- B.entityName,
-		packagedElement <- thisModule.BasicComponent2Class(B)
+	from component : Palladio!BasicComponent
+	to package : UML!Package (
+		nestingPackage <- thisModule.Repostiory2DefaultPackage(component.repository__RepositoryComponent),
+		name <- component.entityName,
+		packagedElement <- thisModule.BasicComponent2Class(component)
 	)	
 }
 
 unique lazy rule BasicComponent2Class {
-	from B : Palladio!BasicComponent
-	to C : UML!Class (
-		name <- B.entityName + 'Impl',
-		interfaceRealization <- B.providedRoles_InterfaceProvidingEntity, --NOT extension - extensions refer to stereotypes
-		ownedAttribute <- B.requiredRoles_InterfaceRequiringEntity,
-		ownedOperation <- thisModule.Component2Operation(B),
-		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
-		ownedOperation <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
+	from component : Palladio!BasicComponent
+	to class : UML!Class (
+		name <- component.entityName + 'Impl',
+		interfaceRealization <- component.providedRoles_InterfaceProvidingEntity, --NOT extension - extensions refer to stereotypes
+		ownedAttribute <- component.requiredRoles_InterfaceRequiringEntity,
+		ownedOperation <- thisModule.Component2Operation(component),
+		ownedOperation <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
+		ownedOperation <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Setter(e))
 	)
 }
 
 -- constructor
 unique lazy rule Component2Operation {
-	from B : Palladio!BasicComponent
-	to A : UML!Operation(
-		name <- B.entityName + 'Impl',
-		ownedParameter <- B.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Parameter(e))
+	from component : Palladio!BasicComponent
+	to constructor : UML!Operation(
+		name <- component.entityName + 'Impl',
+		ownedParameter <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Parameter(e))
 	)
 }
 
 rule RequiredRole2Attribute {
-	from R : Palladio!OperationRequiredRole
-	to M : UML!Property (
-   		name <- 'required_' + R.entityName,
-		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)
+	from required_role : Palladio!OperationRequiredRole
+	to attribute : UML!Property (
+   		name <- 'required_' + required_role.entityName,
+		type <- thisModule.OperationInterface2Interface(required_role.requiredInterface__OperationRequiredRole)
 		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole) --"feature 'class' is not changeable" - allready given by inheritance?
 		-- + Parameter in Konstruktor -- ist eigener typ (?)
 	)
 }
 
 lazy rule RequiredRole2Parameter {
-	from R : Palladio!OperationRequiredRole
-	to M : UML!Parameter (
-   		name <- 'required_' + R.entityName,
-		type <- thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)
+	from required_role : Palladio!OperationRequiredRole
+	to parameter : UML!Parameter (
+   		name <- 'required_' + required_role.entityName,
+		type <- thisModule.OperationInterface2Interface(required_role.requiredInterface__OperationRequiredRole)
 	)
 }
 
 lazy rule RequiredRole2Getter {
-	from R : Palladio!OperationRequiredRole
-	to M : UML!Operation (
-   		name <- 'get' + R.entityName,
-		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
-		type <-  thisModule.OperationInterface2Interface(R.requiredInterface__OperationRequiredRole)--, --this is a return type, though it is a "parameter" in the model
-		--ownedTemplateSignature <- R.requiredInterface__OperationRequiredRole.signatures__OperationInterface->collect(e | thisModule.Signature2TemplateSignature(e)) --not good, because causes signatures to be stored in Operations instead of Interfaces. Workarround?
+	from required_role : Palladio!OperationRequiredRole
+	to getter : UML!Operation (
+   		name <- 'get' + required_role.entityName,
+		class <- thisModule.BasicComponent2Class(required_role.requiringEntity_RequiredRole),
+		type <-  thisModule.OperationInterface2Interface(required_role.requiredInterface__OperationRequiredRole)--, --this is a return type, though it is a "parameter" in the model
 	)
 }
 
 lazy rule RequiredRole2Setter {
-	from R : Palladio!OperationRequiredRole
-	to M : UML!Operation (
-   		name <- 'set' + R.entityName,
-		class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole),
-		ownedParameter <- thisModule.RequiredRole2Parameter(R)
+	from required_role : Palladio!OperationRequiredRole
+	to setter : UML!Operation (
+   		name <- 'set' + required_role.entityName,
+		class <- thisModule.BasicComponent2Class(required_role.requiringEntity_RequiredRole),
+		ownedParameter <- thisModule.RequiredRole2Parameter(required_role)
 	)
 }
 
 rule ProvidedRole2InterfaceRealization {
-	from P : Palladio!OperationProvidedRole
-	to E : UML!InterfaceRealization(
-		name <- P.entityName,
-		implementingClassifier <- thisModule.BasicComponent2Class(P.providingEntity_ProvidedRole)
+	from provided_role : Palladio!OperationProvidedRole
+	to interface_realization : UML!InterfaceRealization(
+		name <- provided_role.entityName,
+		implementingClassifier <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole)
 	)
 }
 --Class Stuff end
 
 unique lazy rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
-	from D : Palladio!CompositeDataType
-	to C : UML!Class (
-		name <- D.entityName,
-		nestedClassifier <- D.innerDeclaration_CompositeDataType
+	from composite_data_type : Palladio!CompositeDataType
+	to class : UML!Class (
+		name <- composite_data_type.entityName,
+		nestedClassifier <- composite_data_type.innerDeclaration_CompositeDataType
 	)	
 }
 
 rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ich daraus eine sinnvolle klasse machen? TODO
-	from I : Palladio!InnerDeclaration
-	to C : UML!Class (
-		name <- I.entityName
+	from inner_declaration : Palladio!InnerDeclaration
+	to class : UML!Class (
+		name <- inner_declaration.entityName
 	)
 }
-
---no CompositeDataType found in MediaStore example
---rule CollectionDataType2Class {
---	from D : Palladio!CollectionDataType
---	to C : UML!Class (
---		
---	)	
---	
---}
