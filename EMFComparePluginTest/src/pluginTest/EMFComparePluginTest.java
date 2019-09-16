@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.uml2.uml.internal.resource.UMLResourceWithoutUUIDsFactoryImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.eclipse.emf.compare.utils.EMFComparePredicates;
 
@@ -36,7 +37,7 @@ public class EMFComparePluginTest {
 	@Test
 	public void compareUML_UML() {
 		//assert compare("../MediaStoreUML/MediaStoreUML.uml", "../Palladio2UML/Model/ms_small.uml");
-		assert compare("../Palladio2UML/Model/MediaStoreUML_copy_2019_09_15", "../Palladio2UML/Model/ms_small_copy_2019_09_15", true);
+		assert compare("../MediaStoreUML/MediaStoreUML.uml", "../Palladio2UML/Model/ms_small.uml", true);
 	}
 	
 	@Test
@@ -48,8 +49,11 @@ public class EMFComparePluginTest {
 		URI uri1 = URI.createURI(model1);
 	    URI uri2 = URI.createURI(model2);
 
+	    /*
 	    if (useUML) UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
 	    else 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+	    */
+	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, new UMLResourceWithoutUUIDsFactoryImpl());
 
 	    ResourceSet resourceSet1 = new ResourceSetImpl();
 	    ResourceSet resourceSet2 = new ResourceSetImpl();
@@ -69,26 +73,24 @@ public class EMFComparePluginTest {
 
 	    List<Diff> differences = comparison.getDifferences();
 	    if (! differences.isEmpty()) {
+	    	/*
 	    	System.out.println();
 	    	System.out.println("----- IGNORED DIFFERENCES -----");
 	    	//for (int i = 0; i < differences.size(); i++) {
 	    		//Diff difference = differences.get(i);
 	    	for (Diff difference : differences) {
 	    		int i = differences.indexOf(difference);
-	    		/*if (difference.toString().contains("left=<null>") || difference.toString().contains("right=<null>")) {
-	    			differences.remove(i);
-	    			System.out.println("Difference Ignored: " + difference.toString());
-	    		} else*/
 	    		if (difference.getConflict() == null) { //TODO WARNING - good condition?
 	    			differences.remove(i);
 	    			System.out.println("Difference Ignored (because no conflict): " + difference.toString());
 	    		}
 	    		//trying to get rid of differences that don't matter to us
 	    	}
+	    	*/
 	    	System.out.println();
 	    	System.out.println("----- CONTENT OF DIFFERENCES -----");
-	    	//for (Diff difference : differences) System.out.println(difference.toString());
-	    	for (Diff difference : differences) System.out.println(difference.getConflict());//.getKind());//getKind().getName());
+	    	for (Diff difference : differences) System.out.println(difference.toString());
+	    	//for (Diff difference : differences) System.out.println(difference.getConflict());//.getKind());//getKind().getName());
 	    }
 	    return differences.isEmpty();
 	    // Let's NOT merge every single diff, because that's not the point - at least not in the file ("java.lang.RuntimeException: The resource already exists at that location.")
