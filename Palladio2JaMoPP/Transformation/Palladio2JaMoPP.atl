@@ -168,8 +168,8 @@ lazy rule RequiredRole2Parameter {
 rule ProvidedRole2ClassifierReference {
 	from provided_role : Palladio!OperationProvidedRole
 	to classifier_reference : JaMoPP!ClassifierReference(
-		target <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole)
-		--target <- thisModule.OperationInterface2Interface(provided_role.providedInterface__OperationProvidedRole)
+		--target <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole)
+		target <- thisModule.OperationInterface2Interface(provided_role.providedInterface__OperationProvidedRole)
 	)
 }
 	--Component Member Foo end

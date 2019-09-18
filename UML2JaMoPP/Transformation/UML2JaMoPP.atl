@@ -63,7 +63,7 @@ lazy rule Interface2ClassifierReference {
 lazy rule InterfaceRealization2ClassifierReference {
 	from interface_realization : UML!InterfaceRealization
 	to classifier_reference : JaMoPP!ClassifierReference(
-		target <- thisModule.Class2Class(interface_realization.implementingClassifier)
+		target <- thisModule.Interface2Interface(interface_realization.contract)
 	)
 }
 --Interface foo end
