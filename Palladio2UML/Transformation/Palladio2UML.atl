@@ -167,7 +167,8 @@ rule ProvidedRole2InterfaceRealization {
 	from provided_role : Palladio!OperationProvidedRole
 	to interface_realization : UML!InterfaceRealization(
 		name <- provided_role.entityName,
-		implementingClassifier <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole)
+		implementingClassifier <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole),
+		contract <-thisModule.OperationInterface2Interface(provided_role.providedInterface__OperationProvidedRole)
 	)
 }
 --Class Stuff end
