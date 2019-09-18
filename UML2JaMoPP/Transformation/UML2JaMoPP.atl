@@ -129,14 +129,14 @@ unique lazy rule Parameter2Parameter {
 	from uml_parameter : UML!Parameter
 	to java_parameter : JaMoPP!OrdinaryParameter (
 		name <- uml_parameter.name,
-		typeReference <- thisModule.Interface2ClassifierReference(uml_parameter.type)
+		typeReference <- if uml_parameter.type.oclIsTypeOf(UML!Interface) then thisModule.Interface2ClassifierReference(uml_parameter.type) else thisModule.Class2ClassifierReference(uml_parameter.type) endif
 	)
 }
 
 unique lazy rule Parameter2ReturnType {
 	from parameter : UML!Parameter
-	to classifierReference : JaMoPP!ClassifierReference (
-		target <- thisModule.Interface2Interface(parameter.type)
+	to classifierReference : JaMoPP!ClassifierReference(
+		target <- if parameter.type->oclIsTypeOf(UML!Interface) then thisModule.Interface2Interface(parameter.type) else thisModule.Class2Class(parameter.type) endif
 	)
 }
 	--Class Members foo end

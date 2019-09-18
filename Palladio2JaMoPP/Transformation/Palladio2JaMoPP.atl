@@ -50,7 +50,6 @@ unique lazy rule OperationInterface2Interface {
 	to java_interface : JaMoPP!Interface (
 		name <- pcm_interface.entityName,
 		members <- pcm_interface.signatures__OperationInterface->collect(e | thisModule.Signature2ClassMethod(e))
-		--typeParameters <- pcm_interface.signatures__OperationInterface->collect(e | thisModule.Signature2TypeParameter(e))
 	)
 }
 
@@ -75,14 +74,6 @@ unique lazy rule Parameter2Parameter {
 		name <- pcm_parameter.parameterName,
 		--so nur möglich, weil im Modell alle Parameter Typen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
 		typeReference <- thisModule.CompositeDataType2ClassifierReference(pcm_parameter.dataType__Parameter)
-	)
-}
-
-unique lazy rule Signature2TypeParameter {
-	from signature :  Palladio!OperationSignature
-	to type_parameter :  JaMoPP!TypeParameter (
-		name <- signature.entityName,
-		extendTypes <- Set {signature.parameters__OperationSignature}
 	)
 }
 --Interface Foo end
@@ -117,7 +108,7 @@ unique lazy rule BasicComponent2Class {
 }
 
 	--Component Member Foo
-lazy rule RequiredRole2Field {
+unique lazy rule RequiredRole2Field {
 	from required_role : Palladio!OperationRequiredRole
 	to field : JaMoPP!Field(
    		name <- 'required_' + required_role.entityName,
@@ -129,7 +120,7 @@ lazy rule BasicComponent2Constructor {
 	from component : Palladio!BasicComponent
 	to constructor : JaMoPP!Constructor (
 		name <- component.entityName + 'Impl',
-		parameters <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.OperationInterface2Parameter(e.requiredInterface__OperationRequiredRole))
+		parameters <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Parameter(e))
 	)
 }
 
@@ -153,7 +144,7 @@ lazy rule RequiredRole2Setter {
 	from required_role : Palladio!OperationRequiredRole
 	to setter : JaMoPP!ClassMethod(
 		name <- 'set' + required_role.entityName,
-		parameters <- thisModule.OperationInterface2Parameter(required_role.requiredInterface__OperationRequiredRole)
+		parameters <- thisModule.RequiredRole2Parameter(required_role)
 	)
 }
 
@@ -165,11 +156,20 @@ lazy rule OperationInterface2Parameter {
 		typeReference <- thisModule.OperationInterface2ClassifierReference(interface)
 	)
 }
+		
+lazy rule RequiredRole2Parameter {
+	from required_role : Palladio!OperationRequiredRole
+	to parameter : JaMoPP!OrdinaryParameter (
+		name <- 'required_' + required_role.entityName,
+		typeReference <- thisModule.OperationInterface2ClassifierReference(required_role.requiredInterface__OperationRequiredRole)
+	)
+}
 
 rule ProvidedRole2ClassifierReference {
 	from provided_role : Palladio!OperationProvidedRole
 	to classifier_reference : JaMoPP!ClassifierReference(
 		target <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole)
+		--target <- thisModule.OperationInterface2Interface(provided_role.providedInterface__OperationProvidedRole)
 	)
 }
 	--Component Member Foo end
