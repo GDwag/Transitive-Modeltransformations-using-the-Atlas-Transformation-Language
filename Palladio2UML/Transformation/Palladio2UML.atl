@@ -35,7 +35,7 @@ unique lazy rule Repostiory2ContractsPackage {
 unique lazy rule Repostiory2DatatypesPackage {
 	from repository : Palladio!Repository
 	to package : UML!Package ( --Datatypes
-		name <- repository.entityName + 'Datatypes',
+		name <- repository.entityName + 'DataTypes',
 		packagedElement <- repository.dataTypes__Repository->collect(e | if e->oclIsTypeOf(Palladio!CompositeDataType) then thisModule.CompositeDataType2Class(e) else thisModule.DataType2DataType(e) endif)
 	)
 }

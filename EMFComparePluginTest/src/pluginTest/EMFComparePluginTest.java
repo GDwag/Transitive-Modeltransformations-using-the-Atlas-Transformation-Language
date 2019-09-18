@@ -31,7 +31,7 @@ public class EMFComparePluginTest {
 	@Test
 	public void compareUML_XMI() {
 		//assert compare("../MediaStoreUML/MediaStoreUML.uml", "../Palladio2UML/Model/ms_small.uml");
-		assert compare("../Palladio2UML/Model/MediaStoreUML_copy_2019_09_15", "../Palladio2UML/Model/ms_small_copy_2019_09_16", false);
+		assert compare("../Palladio2UML/Model/MediaStoreUML_copy_2019_09_18", "../Palladio2UML/Model/ms_small_copy_2019_09_18", false);
 	}
 	
 	@Test
