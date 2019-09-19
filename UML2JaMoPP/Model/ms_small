@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:classifiers="http://www.emftext.org/java/classifiers" xmlns:containers="http://www.emftext.org/java/containers" xmlns:members="http://www.emftext.org/java/members" xmlns:parameters="http://www.emftext.org/java/parameters" xmlns:types="http://www.emftext.org/java/types">
+  <containers:Package name="MediaStore"/>
+  <containers:Package name="MediaStore.MediaStoreRepositoryContracts">
+    <compilationUnits name="IFileStorage">
+      <classifiers xsi:type="classifiers:Interface" name="IFileStorage">
+        <members xsi:type="members:ClassMethod" name="getFiles">
+          <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.0/@classifiers.0"/>
+          <parameters xsi:type="parameters:OrdinaryParameter" name="audioRequest">
+            <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="storeFile">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="file">
+            <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.0/@classifiers.0"/>
+          </parameters>
+        </members>
+      </classifiers>
+    </compilationUnits>
+    <compilationUnits name="IDownload">
+      <classifiers xsi:type="classifiers:Interface" name="IDownload">
+        <members xsi:type="members:ClassMethod" name="download">
+          <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.1/@classifiers.0"/>
+          <parameters xsi:type="parameters:OrdinaryParameter" name="audioRequest">
+            <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+      </classifiers>
+    </compilationUnits>
+    <compilationUnits name="IMediaAccess">
+      <classifiers xsi:type="classifiers:Interface" name="IMediaAccess">
+        <members xsi:type="members:ClassMethod" name="upload">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="file">
+            <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.0/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getFileList"/>
+      </classifiers>
+    </compilationUnits>
+    <compilationUnits name="IPackaging">
+      <classifiers xsi:type="classifiers:Interface" name="IPackaging">
+        <members xsi:type="members:ClassMethod" name="zip">
+          <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.0/@classifiers.0"/>
+          <parameters xsi:type="parameters:OrdinaryParameter" name="audios">
+            <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+      </classifiers>
+    </compilationUnits>
+    <compilationUnits name="IMediaManagement">
+      <classifiers xsi:type="classifiers:Interface" name="IMediaManagement">
+        <members xsi:type="members:ClassMethod" name="upload">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="file">
+            <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.0/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="download">
+          <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.0/@classifiers.0"/>
+          <parameters xsi:type="parameters:OrdinaryParameter" name="audioRequest">
+            <typeReference xsi:type="types:ClassifierReference" target="/2/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getFileList"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+  <containers:Package name="MediaStore.MediaStoreRepositoryDataTypes">
+    <compilationUnits name="FileContent">
+      <classifiers xsi:type="classifiers:Class" name="FileContent"/>
+    </compilationUnits>
+    <compilationUnits name="AudioCollectionRequest">
+      <classifiers xsi:type="classifiers:Class" name="AudioCollectionRequest">
+        <members xsi:type="classifiers:Class" name="Count"/>
+        <members xsi:type="classifiers:Class" name="Size"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+  <containers:Package name="MediaStore.MediaStoreRepository"/>
+  <containers:Package name="MediaStore.MediaStoreRepository.EnqueueDownloadCache">
+    <compilationUnits name="EnqueueDownloadCacheImpl">
+      <classifiers xsi:type="classifiers:Class" name="EnqueueDownloadCacheImpl">
+        <members xsi:type="members:Field" name="required_IDownload">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:Constructor" name="EnqueueDownloadCacheImpl">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDownload">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getIDownload">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:ClassMethod" name="setIDownload">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDownload">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+        <implements xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+  <containers:Package name="MediaStore.MediaStoreRepository.InstantDownloadCache">
+    <compilationUnits name="InstantDownloadCacheImpl">
+      <classifiers xsi:type="classifiers:Class" name="InstantDownloadCacheImpl">
+        <members xsi:type="members:Field" name="required_IDownload">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:Constructor" name="InstantDownloadCacheImpl">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDownload">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getIDownload">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:ClassMethod" name="setIDownload">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDownload">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+        <implements xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+  <containers:Package name="MediaStore.MediaStoreRepository.FileStorage">
+    <compilationUnits name="FileStorageImpl">
+      <classifiers xsi:type="classifiers:Class" name="FileStorageImpl">
+        <members xsi:type="members:Constructor" name="FileStorageImpl"/>
+        <implements xsi:type="types:ClassifierReference" target="/1/@compilationUnits.0/@classifiers.0"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+  <containers:Package name="MediaStore.MediaStoreRepository.MediaManagement">
+    <compilationUnits name="MediaManagementImpl">
+      <classifiers xsi:type="classifiers:Class" name="MediaManagementImpl">
+        <members xsi:type="members:Field" name="required_IDownload">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:Field" name="required_IPackaging">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.3/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:Field" name="required_IMediaAccess">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.2/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:Constructor" name="MediaManagementImpl">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDownload">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IPackaging">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.3/@classifiers.0"/>
+          </parameters>
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IMediaAccess">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.2/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getIDownload">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getIPackaging">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.3/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getIMediaAccess">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.2/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:ClassMethod" name="setIDownload">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDownload">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="setIPackaging">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IPackaging">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.3/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="setIMediaAccess">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IMediaAccess">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.2/@classifiers.0"/>
+          </parameters>
+        </members>
+        <implements xsi:type="types:ClassifierReference" target="/1/@compilationUnits.4/@classifiers.0"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+  <containers:Package name="MediaStore.MediaStoreRepository.Packaging">
+    <compilationUnits name="PackagingImpl">
+      <classifiers xsi:type="classifiers:Class" name="PackagingImpl">
+        <members xsi:type="members:Constructor" name="PackagingImpl"/>
+        <implements xsi:type="types:ClassifierReference" target="/1/@compilationUnits.3/@classifiers.0"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+  <containers:Package name="MediaStore.MediaStoreRepository.MediaAccess">
+    <compilationUnits name="MediaAccessImpl">
+      <classifiers xsi:type="classifiers:Class" name="MediaAccessImpl">
+        <members xsi:type="members:Field" name="required_IDataStorage">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.0/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:Constructor" name="MediaAccessImpl">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDataStorage">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.0/@classifiers.0"/>
+          </parameters>
+        </members>
+        <members xsi:type="members:ClassMethod" name="getIDataStorage">
+          <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.0/@classifiers.0"/>
+        </members>
+        <members xsi:type="members:ClassMethod" name="setIDataStorage">
+          <parameters xsi:type="parameters:OrdinaryParameter" name="required_IDataStorage">
+            <typeReference xsi:type="types:ClassifierReference" target="/1/@compilationUnits.0/@classifiers.0"/>
+          </parameters>
+        </members>
+        <implements xsi:type="types:ClassifierReference" target="/1/@compilationUnits.2/@classifiers.0"/>
+        <implements xsi:type="types:ClassifierReference" target="/1/@compilationUnits.1/@classifiers.0"/>
+      </classifiers>
+    </compilationUnits>
+  </containers:Package>
+</xmi:XMI>
