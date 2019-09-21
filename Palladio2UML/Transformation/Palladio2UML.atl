@@ -26,7 +26,7 @@ unique lazy rule Repostiory2DefaultPackage {
 
 unique lazy rule Repostiory2ContractsPackage {
 	from repository : Palladio!Repository
-	to package : UML!Package ( --Interfaces		--scheint nicht so zu funktionieren, andere packages werden nicht angelegt
+	to package : UML!Package (
 		name <- repository.entityName + 'Contracts',
 		packagedElement <- repository.interfaces__Repository->collect(e | thisModule.OperationInterface2Interface(e))
 	)
@@ -45,12 +45,11 @@ unique lazy rule DataType2DataType {
 	from pcm_data_type : Palladio!DataType
 	to uml_data_type : UML!DataType (
 		name <- pcm_data_type.entityName
-		--no transformable content - Palladio DataType doesn't inherit from anything and has its repository as only attribute
 	)
 }
 
 --Interface Stuff
-unique lazy rule OperationInterface2Interface { --WARNING - making this *unique* was necessary for some later *references*, but making it *unique* required making it *lazy*, and making it *lazy* mean i need to *manually* use it for every interface
+unique lazy rule OperationInterface2Interface {
 	from pcm_interface : Palladio!Interface
 	to uml_interface : UML!Interface (
 		name <- pcm_interface.entityName,
@@ -65,14 +64,13 @@ unique lazy rule Signature2Operation {
 	from signature : Palladio!Signature
 	to operation : UML!Operation (
 		name <- signature.entityName,
-		--returnType so nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
-		--if-abfrage mit dirty-hack notwendiges übel, weil sonst "NullPointer" (bzw. OclUndefined) fehler auftreten, wenn kein returnType existiert
+		--returnType only works that way, because all returnTypes in the example input model are Composite-DataTypes; otherwise if-clause would be necessary
 		ownedParameter <- 
 		if not signature.returnType__OperationSignature->oclIsUndefined()
 			then thisModule.CompositeDataType2ReturnParameter(signature.returnType__OperationSignature)
 			else Set{}
 		endif,
-		ownedParameter <- signature.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e)) --owned correct? also non-containment alternative available
+		ownedParameter <- signature.parameters__OperationSignature->collect(e | thisModule.Parameter2Parameter(e))
 	)
 }
 	
@@ -81,7 +79,7 @@ lazy rule CompositeDataType2ReturnParameter {
 	to parameter : UML!Parameter (
 		name <- composite_data_type.entityName,
 		type <- thisModule.CompositeDataType2Class(composite_data_type),
-		direction <- #return --thisModule.DataType2ReturnParameterDirectionKind(D) --return
+		direction <- #return
 	)
 }
 
@@ -110,7 +108,7 @@ unique lazy rule BasicComponent2Class {
 	from component : Palladio!BasicComponent
 	to class : UML!Class (
 		name <- component.entityName + 'Impl',
-		interfaceRealization <- component.providedRoles_InterfaceProvidingEntity, --NOT extension - extensions refer to stereotypes
+		interfaceRealization <- component.providedRoles_InterfaceProvidingEntity,
 		ownedAttribute <- component.requiredRoles_InterfaceRequiringEntity,
 		ownedOperation <- thisModule.Component2Operation(component),
 		ownedOperation <- component.requiredRoles_InterfaceRequiringEntity->collect(e | thisModule.RequiredRole2Getter(e)),
@@ -132,8 +130,6 @@ rule RequiredRole2Attribute {
 	to attribute : UML!Property (
    		name <- 'required_' + required_role.entityName,
 		type <- thisModule.OperationInterface2Interface(required_role.requiredInterface__OperationRequiredRole)
-		--class <- thisModule.BasicComponent2Class(R.requiringEntity_RequiredRole) --"feature 'class' is not changeable" - allready given by inheritance?
-		-- + Parameter in Konstruktor -- ist eigener typ (?)
 	)
 }
 
@@ -150,7 +146,7 @@ lazy rule RequiredRole2Getter {
 	to getter : UML!Operation (
    		name <- 'get' + required_role.entityName,
 		class <- thisModule.BasicComponent2Class(required_role.requiringEntity_RequiredRole),
-		type <-  thisModule.OperationInterface2Interface(required_role.requiredInterface__OperationRequiredRole)--, --this is a return type, though it is a "parameter" in the model
+		type <-  thisModule.OperationInterface2Interface(required_role.requiredInterface__OperationRequiredRole) --this is a return type, though it is a "parameter" in the model
 	)
 }
 
@@ -173,7 +169,7 @@ rule ProvidedRole2InterfaceRealization {
 }
 --Class Stuff end
 
-unique lazy rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
+unique lazy rule CompositeDataType2Class {
 	from composite_data_type : Palladio!CompositeDataType
 	to class : UML!Class (
 		name <- composite_data_type.entityName,
@@ -181,7 +177,7 @@ unique lazy rule CompositeDataType2Class { --? wie getter und setter einrichten?
 	)	
 }
 
-rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ich daraus eine sinnvolle klasse machen? TODO
+rule InnerDeclaration2Class {
 	from inner_declaration : Palladio!InnerDeclaration
 	to class : UML!Class (
 		name <- inner_declaration.entityName

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.uml2.uml.internal.resource.UMLResourceWithoutUUIDsFactoryImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.eclipse.emf.compare.utils.EMFComparePredicates;
 
@@ -49,11 +48,8 @@ public class EMFComparePluginTest {
 		URI uri1 = URI.createURI(model1);
 	    URI uri2 = URI.createURI(model2);
 
-	    /*
 	    if (useUML) UMLResource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
 	    else 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-	    */
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, new UMLResourceWithoutUUIDsFactoryImpl());
 
 	    ResourceSet resourceSet1 = new ResourceSetImpl();
 	    ResourceSet resourceSet2 = new ResourceSetImpl();

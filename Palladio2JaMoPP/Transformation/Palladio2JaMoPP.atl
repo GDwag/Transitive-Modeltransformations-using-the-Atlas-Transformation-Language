@@ -13,26 +13,21 @@ rule Repostiory2Package {
 	PI : JaMoPP!Package (
 		name <- 'MediaStore.' + repository.entityName + 'Contracts',
 		compilationUnits <- repository.interfaces__Repository->collect(e | thisModule.OperationInterface2CompilationUnit(e))
-		--imports <- repository.components__Repository --how to create sub-Packages?!
 	),
 	PD : JaMoPP!Package (
 		name <- 'MediaStore.' + repository.entityName + 'DataTypes',
 		compilationUnits <- repository.dataTypes__Repository
 	),
 	PC : JaMoPP!Package (
-		name <- 'MediaStore.' + repository.entityName--,
+		name <- 'MediaStore.' + repository.entityName
 		--compilationUnits <- repository.components__Repository --each their own package instead - seperate, but with a corresponding name
 	)
 }
 
-
-
---anything better than class? TypeParameter doesn't work, as it is no concrete classifier
 unique lazy rule DataType2Class {
 	from data_type : Palladio!DataType
 	to class : JaMoPP!Class (
 		name <- data_type.entityName
-		--no transformable content - Palladio DataType doesn't inherit from anything and has its repository as only attribute
 	)
 }
 
@@ -57,8 +52,7 @@ unique lazy rule Signature2ClassMethod{
 	from signature : Palladio!Signature
 	to method : JaMoPP!ClassMethod (
 		name <- signature.entityName,
-		--returnType so nur möglich, weil im Modell alle returnTypes von signaturen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
-		--if-abfrage mit dirty-hack notwendiges übel, weil sonst "NullPointer" (bzw. OclUndefined) fehler auftreten, wenn kein returnType existiert
+		--returnType only works that way, because all returnTypes in the example input model are Composite-DataTypes; otherwise if-clause would be necessary
 		typeReference <- 
 		if not signature.returnType__OperationSignature->oclIsUndefined()
 			then thisModule.CompositeDataType2ClassifierReference(signature.returnType__OperationSignature)
@@ -72,7 +66,7 @@ unique lazy rule Parameter2Parameter {
 	from pcm_parameter : Palladio!Parameter
 	to java_parameter : JaMoPP!OrdinaryParameter (
 		name <- pcm_parameter.parameterName,
-		--so nur möglich, weil im Modell alle Parameter Typen Composite-Datatypes sind, sonst if-abfrage nötig, weil kein parent typ konkret genug ist
+		--returnType only works that way, because all returnTypes in the example input model are Composite-DataTypes; otherwise if-clause would be necessary, because no parent type is specific enough
 		typeReference <- thisModule.CompositeDataType2ClassifierReference(pcm_parameter.dataType__Parameter)
 	)
 }
@@ -168,7 +162,6 @@ lazy rule RequiredRole2Parameter {
 rule ProvidedRole2ClassifierReference {
 	from provided_role : Palladio!OperationProvidedRole
 	to classifier_reference : JaMoPP!ClassifierReference(
-		--target <- thisModule.BasicComponent2Class(provided_role.providingEntity_ProvidedRole)
 		target <- thisModule.OperationInterface2Interface(provided_role.providedInterface__OperationProvidedRole)
 	)
 }
@@ -184,15 +177,15 @@ rule CompositeDataType2CompilationUnit {
 	)
 }
 
-unique lazy rule CompositeDataType2Class { --? wie getter und setter einrichten? TODO
+unique lazy rule CompositeDataType2Class {
 	from composite_data_type : Palladio!CompositeDataType
 	to class : JaMoPP!Class (
 		name <- composite_data_type.entityName,
-		members <- composite_data_type.innerDeclaration_CompositeDataType --Java Class erbt von Member UND MemberContainer
+		members <- composite_data_type.innerDeclaration_CompositeDataType
 	)	
 }
 
-rule InnerDeclaration2Class { --? kaum inhalte in inner declaration, wie soll ich daraus eine sinnvolle klasse machen? TODO
+rule InnerDeclaration2Class {
 	from inner_declaration : Palladio!InnerDeclaration
 	to class : JaMoPP!Class (
 		name <- inner_declaration.entityName

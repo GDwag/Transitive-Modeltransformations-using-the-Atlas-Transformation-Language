@@ -14,4 +14,3 @@ Import-Package: com.google.common.base,
  org.eclipse.uml2.uml,
  org.eclipse.uml2.uml.internal.resource,
  org.eclipse.uml2.uml.resource
-Export-Package: org.eclipse.uml2.uml.internal.resource

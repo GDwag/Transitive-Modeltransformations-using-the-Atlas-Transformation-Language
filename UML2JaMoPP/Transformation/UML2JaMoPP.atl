@@ -23,7 +23,7 @@ unique lazy rule Package2Package {
 		name <- uml_package->setupPackages(), --dirty Hack to force creation of Packages with lazy rule (otherwise setting up compilation units is hindered by packages being of kind UML!PackageableElements themselves)
 		name <- if uml_package.nestingPackage->oclIsUndefined() then uml_package.name 
 			else if uml_package.nestingPackage->oclIsTypeOf(UML!Model) then uml_package.nestingPackage.name + '.' + uml_package.name
-			else uml_package.nestingPackage.nestingPackage.name + '.' + uml_package.nestingPackage.name + '.' + uml_package.name endif endif, --WARNING TODO - helper function for any amount of packages above?
+			else uml_package.nestingPackage.nestingPackage.name + '.' + uml_package.nestingPackage.name + '.' + uml_package.name endif endif,
 		--compilationUnits <- uml_package.packagedElement --would be too easy without the need of lazy rules - Class-CUs are created outside of Repo-Package for some reason
 		compilationUnits <- uml_package.packagedElement->collect(e | 
 			if e.oclIsTypeOf(UML!Interface) then thisModule.Interface2CompilationUnit(e)
@@ -49,7 +49,6 @@ unique lazy rule Interface2Interface {
 	to java_interface : JaMoPP!Interface (
 		name <- uml_interface.name,
 		members <- uml_interface.ownedOperation->collect (e | thisModule.Operation2ClassMethod(e))
-		--typeParameters <- Set {O.signatures__OperationInterface}
 	)
 }
 
@@ -93,14 +92,10 @@ unique lazy rule Property2Field {
 	from property : UML!Property
 	to field : JaMoPP!Field (
    		name <- property.name,
-		--thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
-		--typeReference <- if property.type.oclIsTypeOf(UML!Interface) then thisModule.Interface2ClassifierReference(property.type) else thisModule.Class2ClassifierReference(property.type) endif
 		typeReference <- if property.type.oclIsTypeOf(UML!Class) then thisModule.Class2ClassifierReference(property.type) else thisModule.Interface2ClassifierReference(property.type) endif
-		--typeReference <- thisModule.Interface2ClassifierReference(P.type)
 	)
 }
-	
---thaught this would solve the issue of weird CompositeDataTypeInterfaces beeing created - didn't
+
 lazy rule Class2ClassifierReference {
 	from class : UML!Class
 	to classifier_reference : JaMoPP!ClassifierReference (
@@ -108,7 +103,7 @@ lazy rule Class2ClassifierReference {
 	)
 }
 
-lazy rule Operation2Constructor { --lazy because "Trying to register several rules as default for element org.eclipse.uml2.uml.internal.impl.ActivityImpl" (because it's a class)
+lazy rule Operation2Constructor {
 	from operation : UML!Operation
 	to constructor : JaMoPP!Constructor (
 		name <- operation.name,
@@ -116,7 +111,7 @@ lazy rule Operation2Constructor { --lazy because "Trying to register several rul
 	)
 }
 
-unique lazy rule Operation2ClassMethod { --if not "unique lazy", there seems to be some kind of "race condition", causing these to be created outside of their intended scope after doing seemingly unrelated changes
+unique lazy rule Operation2ClassMethod { --if not "unique lazy", these are created outside of their intended scope after doing seemingly unrelated changes
 	from operation : UML!Operation
 	to method : JaMoPP!ClassMethod (
 		name <- operation.name,
